@@ -11,9 +11,9 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <!-- <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet"> -->
 
-    <link href="{{asset('css/style.css')}}" rel="stylesheet">
+
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -23,7 +23,7 @@
 
 
 
-    <div style="display: block" id="app">
+    <!-- <div style="display: block" id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -84,10 +84,10 @@
         </nav>
 
         <main class="py-4">
-            <!-- @yield('content') -->
+            @yield('content')
         </main>
-    </div>
-  @yield('content')
+    </div> -->
+  <!-- @yield('content') -->
 
 
     <script>
