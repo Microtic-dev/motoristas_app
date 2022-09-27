@@ -3653,6 +3653,14 @@ ul.content-payment li {
     margin: 0 auto;
     padding-top: 20px;
 }
+.m_bd_motoristas {
 
-
+}
+.m_bd_motoristas .perfil img{
+  max-width: 70px;
+}
+.m_bd_motoristas .nome_motoritsa {
+  margin-left: 10px;
+  font-weight: bold;
+}
 /* Fim do CSS Motoristas */

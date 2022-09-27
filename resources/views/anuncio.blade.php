@@ -1,6 +1,6 @@
 @extends('layouts.appmain')
 @section('title')
-Motoristas |
+Titulo de anuncio |
 @endsection
 @section('content')
 

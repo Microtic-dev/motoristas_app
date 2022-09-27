@@ -68,7 +68,7 @@
                           <ul class="list-inline ml-auto mb-0">
 
                             <li class="list-inline-item dropdown notification-list nav-user">
-                                <a class="nav-link" href="/basedadosMotorista">
+                                <a class="nav-link" href="/bd-motoristas">
                                   <i class="bi bi-car-front"></i>&nbsp;Base de dados de Motorista
                                 </a>
                             </li>

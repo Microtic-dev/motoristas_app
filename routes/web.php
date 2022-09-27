@@ -26,3 +26,5 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
 Route::get('/', [App\Http\Controllers\InicioController::class, 'index'])->name('index');
 Route::get('/anuncio', [App\Http\Controllers\InicioController::class, 'anuncio'])->name('anuncio');
+
+Route::get('/bd-motoristas', [App\Http\Controllers\AdminController::class, 'index'])->name('bd-motoristas');
