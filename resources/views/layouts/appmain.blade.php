@@ -71,6 +71,7 @@
                                 <a class="nav-link" href="/bd-motoristas">
                                   <i class="bi bi-car-front"></i>&nbsp;Base de dados de Motorista
                                 </a>
+                                <a type="button" data-toggle="modal" data-target=".bs-example-modal-center">Center modal</a>
                             </li>
 
                             <li style="margin-right: 250px" class="list-inline-item dropdown notification-list nav-user">
@@ -157,6 +158,23 @@
         <!-- header-bg -->
 
         @yield('content')
+
+        <div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered text-center">
+                <div class="modal-content">
+                    <div class="btn-especial-close">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body mb-4">
+                        <h4>Base de dados de Motorista</h4>
+                        <p>A base de dados de motorista , é uma rede com mais de 3000+ motoristas e está reservada ao administrador. Para ter acesso a estes dados, contacte o administrador.</p>
+                        <button type="button" class="mt-5 btn btn-primary waves-effect waves-light">Ligar Agora</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
 
         <!-- Footer -->
         <footer class="footer">

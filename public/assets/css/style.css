@@ -3684,4 +3684,18 @@ ul.content-payment li {
   border: 1px solid #D8D8D8;
   border-radius: 8px;
 }
+.btn-especial-close {
+  top: -15px;
+  position: absolute;
+  right: -15px;
+  background-color: #ffffff;
+  border-radius: 100px;
+  width: 30px;
+  height: 30px;
+  padding: 0px 7px;
+}
+.btn-especial-close .close {
+  color: red;
+
+}
 /* Fim do CSS Motoristas */
