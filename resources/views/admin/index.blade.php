@@ -69,7 +69,7 @@ Base de Dados de Motoristas |
                         <div class="row perfil">
                           <div class="col-md-4">
                             <img src="{{asset('/assets/images/users/Ellipse.png')}}" class="rounded-circle"/>
-                            <span class="nome_motoritsa"><a href="/perfil">Matio Fernando Tambu</a></span>
+                            <span class="nome_motoritsa"><a href="/perfil/1">Matio Fernando Tambu</a></span>
                           </div>
                           <div class="col-md-4">
                             <p>Categoria de Carta: <b>G - Profissional</b></p>
@@ -90,7 +90,7 @@ Base de Dados de Motoristas |
                         <div class="row perfil">
                           <div class="col-md-4">
                             <img src="{{asset('/assets/images/users/Ellipse.png')}}" class="rounded-circle"/>
-                            <span class="nome_motoritsa"><a href="/perfil">Matio Fernando Tambu</a></span>
+                            <span class="nome_motoritsa"><a href="/perfil/1">Matio Fernando Tambu</a></span>
                           </div>
                           <div class="col-md-4">
                             <p>Categoria de Carta: <b>G - Profissional</b></p>
@@ -111,7 +111,7 @@ Base de Dados de Motoristas |
                         <div class="row perfil">
                           <div class="col-md-4">
                             <img src="{{asset('/assets/images/users/Ellipse.png')}}" class="rounded-circle"/>
-                            <span class="nome_motoritsa"><a href="/perfil">Matio Fernando Tambu</a></span>
+                            <span class="nome_motoritsa"><a href="/perfil/1">Matio Fernando Tambu</a></span>
                           </div>
                           <div class="col-md-4">
                             <p>Categoria de Carta: <b>G - Profissional</b></p>

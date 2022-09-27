@@ -3663,4 +3663,25 @@ ul.content-payment li {
   margin-left: 10px;
   font-weight: bold;
 }
+
+.m_pefil_motorista {
+
+}
+
+.m_pefil_motorista .perfil img{
+  max-width: 120px;
+}
+.m_pefil_motorista .nome_motoritsa {
+  margin-left: 10px;
+  font-weight: bold;
+}
+.navega {
+    border-bottom: 1px solid #007bff;
+    padding-bottom: 1%;
+}
+.detalhes_perfil .card {
+  margin-top: 20px;
+  border: 1px solid #D8D8D8;
+  border-radius: 8px;
+}
 /* Fim do CSS Motoristas */
