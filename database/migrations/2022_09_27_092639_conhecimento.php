@@ -1,4 +1,3 @@
-
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -14,11 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-      Schema::create('categorias', function (Blueprint $table) {
+      Schema::create('conhecimentos', function (Blueprint $table) {
           $table->bigIncrements('id');
-          $table->string('categoria');
-          $table->string('url');
+          $table->bigInteger('candidato_id')->unsigned();
+          $table->string('conhecimento');
           $table->timestamps();
+
+          $table->foreign('candidato_id')
+                  ->references('id')->on('candidatos')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
       });
     }
 
