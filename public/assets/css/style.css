@@ -3462,10 +3462,10 @@ ul.content-payment li {
   padding-right: 3em;
 }
 .postedCat h2 {
-    color: #3D9970;
+    color: #007bff;
     font-weight: normal;
     font-size: 1.2em;
-    border-bottom: 2px solid #3D9970;
+    border-bottom: 2px solid #007bff;
     width: 60%;
 }
 
@@ -3481,7 +3481,7 @@ ul.content-payment li {
     text-decoration: none;
 }
 .homepage a:hover, .homepage a:focus {
-  color: #3D9970;
+ color: #007bff;
 }
 .homepage img {
   width: 100%;
@@ -3492,7 +3492,7 @@ ul.content-payment li {
     margin-right: 1%;
 }
 .postedList h2 {
-    color: #3D9970;
+    color: #007bff;
     font-size: 1.075em;
 }
 .postedList p.nomeInst {
@@ -3503,7 +3503,7 @@ ul.content-payment li {
     color: #3A3C3D;
 }
 .postedList a {
-    color: #3D9970 !important;
+    color: #007bff !important;
 }
 .postedList a:hover, .postedList a:focus {
     color: #3A3C3D !important;
@@ -3533,7 +3533,7 @@ ul.content-payment li {
     float: right;
 }
 .anunciopage .navega {
-    border-bottom: 1px solid #3D9970;
+    border-bottom: 1px solid #007bff;
     padding-bottom: 1%;
 }
 .anunciopage p.nomeInst {
@@ -3545,7 +3545,7 @@ ul.content-payment li {
     border-radius: 50px;
 }
 .anunciopage .local {
-    color: #3D9970;
+    color: #007bff;
     font-weight: bold;
 }
 .anunciopage .local span {
@@ -3565,7 +3565,7 @@ ul.content-payment li {
     line-height: 1.15em;
 }
 .anuncio-descricao p strong {
-    color: #3D9970;
+    color: #007bff;
 }
 .anuncio-descricao ul li {
   color: #3A3C3D;
@@ -3622,7 +3622,7 @@ ul.content-payment li {
   list-style: none;
 }
 .minhas-candidaturas a {
-  color: #3D9970;
+  color: #007bff;
 }
 .minhas-candidaturas a:hover, .minhas-candidaturas a:focus {
     color: #3A3C3D !important;

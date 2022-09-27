@@ -69,7 +69,7 @@ Motoristas |
                         <div class="imagem">
                           <img src="{{asset('/assets/images/logo_dark.png')}}" class="img-fluid"/>
                         </div>
-                        <h4 class="mt-4">Motoristas Particular</h4>
+                        <h4 class="mt-4"><a href="/anuncio/">Motoristas Particular</a></h4>
                         <p>Maputo</p>
                     </div>
                 </div>
@@ -80,7 +80,7 @@ Motoristas |
                         <div class="imagem">
                           <img src="{{asset('/assets/images/logo.png')}}" class="img-fluid"/>
                         </div>
-                        <h4 class="mt-4">Motoristas Particular</h4>
+                        <h4 class="mt-4"><a href="/anuncio/">Motoristas Particular</a></h4>
                         <p>Sofala</p>
                     </div>
                 </div>
@@ -91,7 +91,7 @@ Motoristas |
                         <div class="imagem">
                           <img src="{{asset('/assets/images/Rectangle9.png')}}" class="img-fluid"/>
                         </div>
-                        <h4 class="mt-4">Motoristas Particular</h4>
+                        <h4 class="mt-4"><a href="/anuncio/">Motoristas Particular</a></h4>
                         <p>Cabo Delgado</p>
                     </div>
                 </div>
@@ -102,7 +102,7 @@ Motoristas |
                         <div class="imagem">
                           <img src="{{asset('/assets/images/tpm.jpeg')}}" class="img-fluid"/>
                         </div>
-                        <h4 class="mt-4">Motoristas Particular</h4>
+                        <h4 class="mt-4"><a href="/anuncio/">Motoristas Particular</a></h4>
                         <p>Sofala</p>
                     </div>
                 </div>
