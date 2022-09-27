@@ -4,7 +4,7 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-        <title>@yield('title') portaldoconcurso.com</title>
+        <title>@yield('title') motoristas.co.mz</title>
 
         <meta name="description" content="O portal de oportunidade emprego, estágio, freelance (Biscato) em Moçambique">
         <meta name="keywords" content="portal concurso, emprego, jobs, estagio, estágio,  concursos, moçambique, negócio, oportunidade, serviço, mozambique, maputo, contratação, higiene, limpeza, informática, carro, transporte, automoveis, turismo, manutenção, reparação">
@@ -51,8 +51,8 @@
         <div class="header-bg" >
             <!-- Navigation Bar-->
             <header id="topnav" >
-                <div class="topbar-main"  style="background: #FF4360">
-                    <div style="background: #FF4360" class="container-fluid">
+                <div class="topbar-main">
+                    <div class="container-fluid">
                       <!-- Logo-->
                       <div>
                           <a href="/" class="logo" >

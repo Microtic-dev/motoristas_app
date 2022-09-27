@@ -45,7 +45,7 @@ File: Main scss File
   General
 ===================*/
 body {
-  background: #f5f5f5;
+  background: #E2EEF1;
   margin: 0;
   font-size: 13px;
   font-family: "Lato",sans-serif;
@@ -55,7 +55,7 @@ html {
   overflow-x: hidden;
   position: relative;
   min-height: 100%;
-  background: #f5f5f5;
+  background: #E2EEF1;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -648,8 +648,7 @@ code {
 }
 
 #topnav .topbar-main {
-  background: #424858;
-  border-bottom: 4px solid #4CAF50;
+  background: #0C99C5;
 }
 
 #topnav .topbar-main .logo {
@@ -3630,3 +3629,30 @@ ul.content-payment li {
     text-decoration: underline;
 }
 /*# Fim de meu css */
+
+/* Inicio CSS Motoristas  */
+
+.m_filtro_nav {
+  background-color: #0C99C5;
+  border-radius: 3px;
+}
+
+.m_anunicios_home {
+  text-align: center;
+}
+.m_anunicios_home h4 {
+  font-size: 1.2em;
+}
+
+.m_anunicios_home img {
+  max-width: 200px;
+}
+
+.m_anunicios_home .imagem {
+    height: 100px;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+
+/* Fim do CSS Motoristas */
