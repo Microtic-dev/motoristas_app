@@ -1266,7 +1266,7 @@ body {
     footer
 ===================*/
 .footer {
-  background-color: #424858;
+  background-color: #0C99C5;
   font-size: 13px;
   bottom: 0;
   color: #ffffff;
@@ -1321,7 +1321,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #006666;
+  background-color: #0C99C5;
   z-index: 9999999;
 }
 

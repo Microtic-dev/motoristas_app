@@ -33,7 +33,7 @@ Motoristas |
         <div class="row">
           <!-- fitros section -->
           <div class="col-md-12 m_filtro_nav">
-            <div class="form-group mt-2 row">
+            <div class="form-group mt-3 row">
                 <div class="col-sm-4">
                     <input class="form-control" type="text" id="keyword"  name="keyword" placeholder="Pesquisa...">
                 </div>
@@ -107,7 +107,7 @@ Motoristas |
                     </div>
                 </div>
               </div>
-            
+
             </div>
           </div>
           <!-- end anuncios section -->
