@@ -21,6 +21,7 @@
         <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('assets/css/icons.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('assets/css/style.css')}}" rel="stylesheet" type="text/css" />
+          <link href="{{asset('assets/css/searchbar.css')}}" rel="stylesheet" type="text/css" />
 
         <!-- DataTables -->
         <link href="{{asset('plugins/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
@@ -65,6 +66,19 @@
                           <!-- Search input -->
 
                           <ul class="list-inline ml-auto mb-0">
+
+                            <li class="list-inline-item dropdown notification-list nav-user">
+                                <a class="nav-link" href="/basedadosMotorista">
+                                  <i class="bi bi-car-front"></i>&nbsp;Base de dados de Motorista
+                                </a>
+                            </li>
+
+                            <li style="margin-right: 250px" class="list-inline-item dropdown notification-list nav-user">
+                                <a class="nav-link" href="/centralRisco">
+                                  <i class="bi bi-sign-stop-fill"></i>&nbsp;Central de Risco de Motoristas
+                                </a>
+                            </li>
+
 
                               <!-- User-->
                               @guest

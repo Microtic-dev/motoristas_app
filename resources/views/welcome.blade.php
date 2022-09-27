@@ -76,7 +76,69 @@ Oportunidade de emprego, consultoria e prestação  de serviço |
                         </section>
                         @endif
                         <div class="card m-b-30 card-body">
-                          <ul>
+
+                                  <!---->
+
+  <div class="container mt-5" style="width:1200px">
+
+      <div class="row d-flex justify-content-center">
+          <div class="col-md-10">
+              <div class="card p-3  py-4">
+                  <div class="col-md-6">
+                      <input type="text" class="form-control" placeholder="Pesquisa">
+                  </div>
+
+                  <div class="row g-3 mt-2">
+
+                      <div class="col-md-3">
+                          <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+                              Categoria
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <li><a class="dropdown-item" href="#">1.A-Motorista</a></li>
+                              <li><a class="dropdown-item" href="#">1.B-Ligeiro</a></li>
+                              <li><a class="dropdown-item" href="#">1.C-Pesado</a></li>
+                              <li><a class="dropdown-item" href="#">1.G-Profissional</a></li>
+                              <li><a class="dropdown-item" href="#">1.P-Servicos publicos</a></li>
+                            </ul>
+                          </div>
+                      </div>
+
+                      <div class="col-md-3">
+                          <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+                              Localizacao
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <li><a class="dropdown-item" href="#">maputo</a></li>
+                              <li><a class="dropdown-item" href="#">Gaza</a></li>
+                              <li><a class="dropdown-item" href="#">Inhambane</a></li>
+                              <li><a class="dropdown-item" href="#">Sofala</a></li>
+                              <li><a class="dropdown-item" href="#">Manica</a></li>
+                              <li><a class="dropdown-item" href="#">Tete</a></li>
+                              <li><a class="dropdown-item" href="#">Zambézia</a></li>
+                              <li><a class="dropdown-item" href="#">Niassa</a></li>
+                              <li><a class="dropdown-item" href="#">Cabo Delgado</a></li>
+                              <li><a class="dropdown-item" href="#">Nampulaa</a></li>
+                            </ul>
+                          </div>
+                      </div>
+
+
+                      <div class="col-md-3">
+                          <button class="btn btn-secondary btn-block">Search</button>
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+      </div>
+
+  </div>
+
+                                  <!---->
+                                  <ul>
 
 
                           </ul>
