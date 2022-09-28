@@ -11,7 +11,7 @@
   </head>
   <body>
 
-    <h2>Motoristas</h2>
+    <h2><a href="/">Motoristas</a></h2>
     <div class="container" id="container">
     	<div class="form-container sign-up-container">
     			<h1>Criar conta!</h1>
@@ -70,7 +70,7 @@
                   {{ __('Esqueceu-se da senha?') }}
               </a>
           @endif
-    			<button type="submit">Sign In</button>
+    			<button type="submit">Entrar</button>
     		</form>
     	</div>
 

@@ -68,16 +68,27 @@
                           <ul class="list-inline ml-auto mb-0">
 
                             <li class="list-inline-item dropdown notification-list nav-user">
-                                <a class="nav-link" href="/bd-motoristas">
-                                  <i class="bi bi-car-front"></i>&nbsp;Base de dados de Motorista
-                                </a>
-                                <a type="button" data-toggle="modal" data-target=".bs-example-modal-center">Center modal</a>
+                                @guest
+                                    <a class="nav-link" href="#" data-toggle="modal" data-target=".bs-base-dados-modal-center">
+                                      <i class="bi bi-car-front"></i> Base de dados de Motorista
+                                    </a>
+                                @else
+                                    <a class="nav-link" href="/bd-motoristas">
+                                      <i class="bi bi-car-front"></i> Base de dados de Motorista
+                                    </a>
+                                @endguest
                             </li>
 
                             <li style="margin-right: 250px" class="list-inline-item dropdown notification-list nav-user">
-                                <a class="nav-link" href="/centralRisco">
-                                  <i class="bi bi-sign-stop-fill"></i>&nbsp;Central de Risco de Motoristas
-                                </a>
+                              @guest
+                                  <a class="nav-link" href="#" data-toggle="modal" data-target=".bs-central-risco-modal-center">
+                                    <i class="bi bi-car-front"></i> Central de Risco de Motoristas
+                                  </a>
+                              @else
+                                  <a class="nav-link" href="/centralRisco">
+                                    <i class="bi bi-sign-stop-fill"></i> Central de Risco de Motoristas
+                                  </a>
+                              @endguest
                             </li>
 
 
@@ -90,7 +101,7 @@
                               </li>
                               <li class="list-inline-item dropdown notification-list nav-user">
                                   <a class="nav-link" href="/login">
-                                    <i class="fas fa-hospital"></i>&nbsp;Recrutador
+                                    <i class="fas fa-hospital"></i>&nbsp;Empregador
                                   </a>
                               </li>
 
@@ -98,7 +109,7 @@
                                 @if(Auth::user()->privilegio == 'recrutador')
                                   <li class="list-inline-item dropdown notification-list nav-user">
                                       <a class="nav-link" href="/recrutador">
-                                        <i class="fas fa-hospital"></i>&nbsp;Recrutador
+                                        <i class="fas fa-hospital"></i>&nbsp;Empregador
                                       </a>
                                   </li>
                                 @endif
@@ -158,8 +169,8 @@
         <!-- header-bg -->
 
         @yield('content')
-
-        <div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <!-- /.modal-content base de dados-->
+        <div class="modal fade bs-base-dados-modal-center" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered text-center">
                 <div class="modal-content">
                     <div class="btn-especial-close">
@@ -168,9 +179,27 @@
                         </button>
                     </div>
                     <div class="modal-body mb-4">
-                        <h4>Base de dados de Motorista</h4>
-                        <p>A base de dados de motorista , é uma rede com mais de 3000+ motoristas e está reservada ao administrador. Para ter acesso a estes dados, contacte o administrador.</p>
-                        <button type="button" class="mt-5 btn btn-primary waves-effect waves-light">Ligar Agora</button>
+                        <h4 class="mb-4">Base de dados de Motorista</h4>
+                        <p>A base de dados de motorista , é uma rede com mais de 3000+ motoristas e está reservada ao administrador. <br>Para ter acesso a estes dados, contacte o administrador.</p>
+                        <a href="tel:+258875474495" class="mt-4 btn btn-primary waves-effect waves-light">Ligar Agora</a>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <!-- /.modal-content central de risco-->
+        <div class="modal fade bs-central-risco-modal-center" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered text-center">
+                <div class="modal-content">
+                    <div class="btn-especial-close">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body mb-4">
+                        <h4 class="mb-4">Central de Risco de Motoristas</h4>
+                        <p>Central de risco de motoristas, é uma lista de motoristas que cometeram crimes rodoviários, acidentes com culpa, desvio de mercadoria /combustível, condução danosa etc. <br>Para ter acesso contacte o administrador.</p>
+                        <a href="tel:+258875474495" class="mt-4 btn btn-primary waves-effect waves-light">Ligar Agora</a>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->

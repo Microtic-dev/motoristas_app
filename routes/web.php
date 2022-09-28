@@ -17,9 +17,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/bro', function () {
-    return view('login');
+// Route::get('/bro', function () {
+//     return view('login');
+// });
+
+Route::get('/logout', function () {
+    Auth::logout();
+    return redirect('/');
 });
+
 
 Auth::routes();
 
