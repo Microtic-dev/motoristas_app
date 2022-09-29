@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Anuncios;
+use App\Models\Categorias;
 
 class AnunciosController extends Controller
 {
@@ -42,8 +43,10 @@ class AnunciosController extends Controller
 
 public function verAnuncio($id){
 
+
     $anuncio = Anuncios::find($id);
-    return view('anuncio', array('anuncio' =>  $anuncio));
+    $categoria = Categorias::find($anuncio->categoria_id);
+    return view('anuncio', compact('anuncio' , 'categoria'));
 
 }
 

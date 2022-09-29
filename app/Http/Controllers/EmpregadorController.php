@@ -44,6 +44,7 @@ class EmpregadorController extends Controller
         $anuncio -> user_id = $request-> user_id;
         $anuncio -> validade = $request->validade;
         $anuncio -> descricao = $request->descricao;
+          $anuncio -> qualificacoes = $request->qualificacoes;
         $anuncio -> estado_anuncio = "Disponivel";
         $anuncio -> forma_de_candidatura = $request->forma_de_candidatura;
         $anuncio -> tipo_de_anuncio = $request -> tipo_de_anuncio;
