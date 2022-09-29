@@ -38,15 +38,18 @@ Titulo de anuncio |
             <div class="card m-b-30 card-body">
               <section class="navega">
                 <span><a href="javascript:history.back();">≪ Voltar</a></span> |
-                <span>Categoria: <a href="/categoria/administracao-secretariado">Administração, Secretariado</a></span>
+                <span>Categoria:
+                   <a href="/categoria/administracao-secretariado">
+                     $anuncio->categoria
+                   </a></span>
               </section>
 
-              <h2>Guarda </h2>
+              <h2>{{$anuncio->titulo}} </h2>
               <p class="nomeInst">Jhpiego</p>
               <section class="infoJob clearfix">
                 <p>
-                  <span class="badge badge-default">Publicado em: 14-Sep-2022</span>
-                  <span class="badge badge-default">Válido até: 20-Sep-2022</span>
+                  <span class="badge badge-default">{{$anuncio->created_at}} </span>
+                  <span class="badge badge-default">{{$anuncio->validade}} </span>
                 </p>
                 <p class="local">Local:  <span>Sofala</span>  </p>
                  <div class="anuncio-descricao">
@@ -67,7 +70,7 @@ Titulo de anuncio |
                   <li>Habilidades de comunicação, coordenação e trabalho em equipa;</li>
                   <li>Ter robustéz corporal.</li>
                   </ul>
-                  <p style="text-align: justify;">A data de encerramento da apresentação de candidaturas é&nbsp;<strong>20 de Setembro de 2022.</strong>&nbsp;Os candidatos interessados deverão apresentar uma carta de apresentação juntamente com o “Curriculum Vitae” detalhando as experiências relevantes e referências que possam ser enviadas para o seguinte email <strong>hr-mozambique@jhpiego.org</strong> e indique o assunto: “<strong>Guarda”</strong>.</p>
+                  <p style="text-align: justify;">A data de encerramento da apresentação de candidaturas é&nbsp;<strong>{{$anuncio->validade}}</strong>&nbsp;Os candidatos interessados deverão apresentar uma carta de apresentação juntamente com o “Curriculum Vitae” detalhando as experiências relevantes e referências que possam ser enviadas para o seguinte email <strong>hr-mozambique@jhpiego.org</strong> e indique o assunto: “<strong>Guarda”</strong>.</p>
                   <p style="text-align: justify;">&nbsp;Somente os candidatos selecionados para entrevista serão contactados.</p>
                   <p>&nbsp;</p>
                </div>

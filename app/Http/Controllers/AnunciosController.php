@@ -43,8 +43,8 @@ class AnunciosController extends Controller
 public function verAnuncio($id){
 
     $anuncio = Anuncios::find($id);
-    print_r($anuncio);
-    die();
+    return view('anuncio', array('anuncio' =>  $anuncio));
+
 }
 
 }
