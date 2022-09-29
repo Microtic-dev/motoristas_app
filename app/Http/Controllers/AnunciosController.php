@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Anuncios;
 
 class AnunciosController extends Controller
 {
-  public function create(Request $request)
+  public function criarAnuncio(Request $request)
   {
     if(empty($request->provincias)) {
       return redirect()->back()->with('erro', 'Ocorreu erro, Preenche todos campos obrigatorios!');
@@ -36,5 +37,14 @@ class AnunciosController extends Controller
            return redirect()->back()->with('erro', 'Ocorreu erro, tenta novamente!');
        }
     }
+
+}
+
+public function verAnuncio($id){
+
+    $anuncio = Anuncios::find($id);
+    print_r($anuncio);
+    die();
+}
 
 }

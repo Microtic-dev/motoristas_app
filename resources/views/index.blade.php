@@ -64,14 +64,13 @@ Motoristas |
             <div class="row">
 
               @foreach ($anuncios as $anuncio)
-
               <div class="col-md-3">
                 <div class="card m-b-30">
                       <div class="card-body">
                         <div class="imagem">
-                          <img src="{{ asset('/assets/images/logo_dark.png' )}}" class="img-fluid"/>
+                          <img src="{{ asset('/assets/images/logoRectangle.png' )}}" class="img-fluid"/>
                         </div>
-                        <h4 class="mt-4"><a href="/anuncio/">{{ $anuncio->titulo }}</a></h4>
+                        <h4 class="mt-4"><a href="/anuncio/{{$anuncio->id}}">{{ $anuncio->titulo }}</a></h4>
 
                           @foreach ($categorias as $categoria)
 
@@ -85,11 +84,6 @@ Motoristas |
               </div>
               @endforeach
 
-
-
-
-
-            
             </div>
           </div>
           <!-- end anuncios section -->

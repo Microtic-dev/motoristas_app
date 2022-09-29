@@ -28,7 +28,7 @@ Auth::routes();
 
 Route::get('/ ', [App\Http\Controllers\InicioController::class, 'index'])->name('index');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
-Route::get('/anuncio', [App\Http\Controllers\InicioController::class, 'anuncio'])->name('anuncio');
+Route::get('/anuncio/{id}', [App\Http\Controllers\AnunciosController::class, 'verAnuncio'])->name('verAnuncio');
 Route::post('/criarAnuncio', [App\Http\Controllers\EmpregadorController::class, 'criarAnuncio'])->name('criarAnuncio');
 Route::get('/bd-motoristas', [App\Http\Controllers\AdminController::class, 'index'])->name('bd-motoristas');
 Route::get('/perfil/{id}', [App\Http\Controllers\MotoristaController::class, 'perfil'])->name('perfil');
