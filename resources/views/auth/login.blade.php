@@ -18,6 +18,7 @@
     			<span>use as suas credenciais para registrar <br>a sua conta</span>
             <form method="POST" action="{{ route('register') }}">
            @csrf
+           <input type="hidden" name="privilegio" value="candidato"/>
            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Name">
            @error('name')
                <span class="invalid-feedback" role="alert">
@@ -41,13 +42,13 @@
            @enderror
 
           <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
-    			<button type="submit">  {{ __('Register') }}</button>
+    			<button type="submit">  {{ __('Cadastrar') }}</button>
     		</form>
     	</div>
 
 
     	<div class="form-container sign-in-container">
-    	  <form method="GET" action="{{ route('login') }}">
+    	  <form method="POST" action="{{ route('login') }}">
             @csrf
     			<h1 style="">Entrar</h1>
     			<span>use sua a conta para entrar</span>

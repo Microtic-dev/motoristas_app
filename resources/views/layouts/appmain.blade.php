@@ -96,7 +96,7 @@
                               @guest
                               <li class="list-inline-item dropdown notification-list">
                                   <a class="nav-link" href="/login">
-                                    <i class="dripicons-user"></i>&nbsp; Candidato
+                                    <i class="dripicons-user"></i> Candidato
                                   </a>
                               </li>
                               <li class="list-inline-item dropdown notification-list nav-user">
@@ -106,9 +106,9 @@
                               </li>
 
                               @else
-                                @if(Auth::user()->privilegio == 'recrutador')
+                                @if(Auth::user()->privilegio == 'empregador')
                                   <li class="list-inline-item dropdown notification-list nav-user">
-                                      <a class="nav-link" href="/recrutador">
+                                      <a class="nav-link" href="/empregador">
                                         <i class="fas fa-hospital"></i>&nbsp;Empregador
                                       </a>
                                   </li>

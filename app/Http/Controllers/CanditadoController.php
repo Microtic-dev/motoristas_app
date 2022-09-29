@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class CanditadoController extends Controller
 {
-    
+
 
     public function index()
    {
@@ -153,8 +153,8 @@ class CanditadoController extends Controller
 
 
 
-     @param  int  $id
-     @return \Illuminate\Http\Response
+    // @param  int  $id
+    // @return \Illuminate\Http\Response
     public function editContacto(Request $request)
     {
       $contacto = Candidato::find($request->candidato_id);
