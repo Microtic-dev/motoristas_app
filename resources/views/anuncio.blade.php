@@ -77,8 +77,8 @@ Titulo de anuncio |
         <div class="col-md-3 postedList">
           <div class="card m-b-30 card-body">
             <h2 class="detalhesC">Informação Adcional</h2>
-            <p><b>Data da Publicação: </b><span class="float-right">14-Sep-2022</span></p>
-            <p><b>Válido até:  </b><span class="float-right">20-Sep-2022</span></p>
+            <p><b>Data da Publicação: </b><span class="float-right">{{$anuncio->created_at}}</span></p>
+            <p><b>Válido até:  </b><span class="float-right">{{$anuncio->validade}}</span></p>
             <p><b>Email:  </b><span class="float-right"><a href="mailto:candidaturas@motorista.com">candidaturas@motorista.com</a></span></p>
             <hr>
               <p><a href="/register">Cria uma conta</a> ou faz <a href="/login">login</a> para candidatar-se </p>
