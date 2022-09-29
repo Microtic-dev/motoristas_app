@@ -93,9 +93,9 @@ Perfil |
                      <div id="anuncio" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                            <div class="modal-dialog modal-lg">
                                <div class="modal-content">
-                                 <form class="form-horizontal m-t-20" action="/add-anuncio" method="post" id="add_anuncio">
+                                 <form class="form-horizontal m-t-20" action="{{ route('criarAnuncio') }}" method="post" id="add_anuncio">
                                    @csrf
-                                   <input name="entidade_id" type="hidden" value="{{ Auth::user()->id }}">
+                                   <input name="user_id" type="hidden" value="{{ Auth::user()->id }}">
                                    <div class="modal-header">
                                        <h5 class="modal-title mt-0" id="myModalLabel">Anúncios de vaga</h5>
                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -112,10 +112,9 @@ Perfil |
                                      <div class="form-group row">
                                          <label for="example-text-input" class="col-sm-3 col-form-label">Tipo de anúncio </label>
                                          <div class="col-sm-9">
-                                           <select class="form-control" name="tipo_de_anuncio" id="tipo_de_anuncio" required>
-                                               <option value="Trabalho">Trabalho</option>
-                                               <option value="Prestação de SServiço">Prestação de serviço </option>
-                                               <option value="Consultoria">Consultoria</option>
+                                           <select  hidden class="form-control" name="tipo_de_anuncio" id="tipo_de_anuncio" required>
+
+                                               <option value="Consultoria">Motorista</option>
                                            </select>
                                          </div>
                                      </div>
@@ -134,11 +133,11 @@ Perfil |
                                          <label for="example-text-input" class="col-sm-3 col-form-label">Província </label>
                                          <div class="col-sm-9">
                                             <ul class="varias-provincias" id="varias_provincias">
-                                             @foreach ($provincias as $key => $provincia)
+                                             @foreach ($provincias as $provincia)
                                              <li>
                                               <input class="form-check-input provincia" type="checkbox" name="provincias[]" value="{{ $provincia->id }}" >
                                               <label class="form-check-label" for="provincia">
-                                                {{ $provincia->provincia }}
+                                                {{ $provincia->name }}
                                               </label>
                                               </li>
                                              @endforeach
