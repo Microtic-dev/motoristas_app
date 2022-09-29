@@ -62,51 +62,34 @@ Motoristas |
           <!-- anuncios section -->
           <div class="col-md-12 mt-4 m_anunicios_home">
             <div class="row">
-              <div class="col-md-3">
-                <div class="card m-b-30">
-                      <div class="card-body">
-                        <div class="imagem">
-                          <img src="{{asset('/assets/images/logo_dark.png')}}" class="img-fluid"/>
-                        </div>
-                        <h4 class="mt-4"><a href="/anuncio/">Motoristas Particular</a></h4>
-                        <p>Maputo</p>
-                    </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="card m-b-30">
-                      <div class="card-body">
-                        <div class="imagem">
-                          <img src="{{asset('/assets/images/logo.png')}}" class="img-fluid"/>
-                        </div>
-                        <h4 class="mt-4"><a href="/anuncio/">Motoristas Particular</a></h4>
-                        <p>Sofala</p>
-                    </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="card m-b-30">
-                      <div class="card-body">
-                        <div class="imagem">
-                          <img src="{{asset('/assets/images/Rectangle9.png')}}" class="img-fluid"/>
-                        </div>
-                        <h4 class="mt-4"><a href="/anuncio/">Motoristas Particular</a></h4>
-                        <p>Cabo Delgado</p>
-                    </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-                <div class="card m-b-30">
-                      <div class="card-body">
-                        <div class="imagem">
-                          <img src="{{asset('/assets/images/tpm.jpeg')}}" class="img-fluid"/>
-                        </div>
-                        <h4 class="mt-4"><a href="/anuncio/">Motoristas Particular</a></h4>
-                        <p>Sofala</p>
-                    </div>
-                </div>
-              </div>
 
+              @foreach ($anuncios as $anuncio)
+
+              <div class="col-md-3">
+                <div class="card m-b-30">
+                      <div class="card-body">
+                        <div class="imagem">
+                          <img src="{{ asset('/assets/images/logo_dark.png' )}}" class="img-fluid"/>
+                        </div>
+                        <h4 class="mt-4"><a href="/anuncio/">{{ $anuncio->titulo }}</a></h4>
+
+                          @foreach ($categorias as $categoria)
+
+                            @if($anuncio->categoria_id==$categoria->id)
+                                <p> {{ $categoria->categoria }}  </p>
+                            @endif
+                          @endforeach
+
+                    </div>
+                </div>
+              </div>
+              @endforeach
+
+
+
+
+
+            
             </div>
           </div>
           <!-- end anuncios section -->
