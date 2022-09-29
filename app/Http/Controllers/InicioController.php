@@ -6,11 +6,18 @@ use Illuminate\Http\Request;
 
 class InicioController extends Controller
 {
-    //
+
 
     public function index()
     {
        return view('index');
+    }
+
+
+    public function login($tipoDeUsuario){
+
+      $tipo = $tipoDeUsuario;
+      return view('login',  array('tipo' => $tipoDeUsuario));
     }
 
     public function anuncio()
@@ -24,6 +31,8 @@ class InicioController extends Controller
 
        return view('anuncio');
     }
+
+
 
 
 }

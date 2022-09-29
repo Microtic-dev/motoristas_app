@@ -95,12 +95,13 @@
                               <!-- User-->
                               @guest
                               <li class="list-inline-item dropdown notification-list">
-                                  <a class="nav-link" href="/login">
+
+                                  <a class="nav-link" href="{{route('login','candidato')}}">
                                     <i class="dripicons-user"></i>&nbsp; Candidato
                                   </a>
                               </li>
                               <li class="list-inline-item dropdown notification-list nav-user">
-                                  <a class="nav-link" href="/login">
+                                  <a class="nav-link" href="{{route('login','recrutador')}}">
                                     <i class="fas fa-hospital"></i>&nbsp;Empregador
                                   </a>
                               </li>

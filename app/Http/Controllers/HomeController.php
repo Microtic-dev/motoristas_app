@@ -21,16 +21,16 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function home($user)
     {
-       $anuncios = DB::table('anuncios')
-           //    ->join('recrutadores', 'anuncios.user_id', '=', 'recrutadores.id')
-               ->join('users', 'anuncios.user_id', '=', 'users.id')
-               ->select('anuncios.*', 'users.name as recrutador')
-               ->orderBy('created_at', 'DESC')
-               ->paginate(10);
+       // $anuncios = DB::table('anuncios')
+       //     //    ->join('recrutadores', 'anuncios.user_id', '=', 'recrutadores.id')
+       //         ->join('users', 'anuncios.user_id', '=', 'users.id')
+       //         ->select('anuncios.*', 'users.name as recrutador')
+       //         ->orderBy('created_at', 'DESC')
+       //         ->paginate(10);
 
-                  
-       return view('home', array( 'anuncios' => $anuncios ));
+
+       return view('home');
     }
 }

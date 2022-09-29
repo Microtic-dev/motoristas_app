@@ -11,7 +11,8 @@
   </head>
   <body>
 
-    <h2><a href="/">Motoristas</a></h2>
+    <h2><a href="/">{{ $tipoDeUsuario }}</a></h2>
+    
     <div class="container" id="container">
     	<div class="form-container sign-up-container">
     			<h1>Criar conta!</h1>
@@ -21,7 +22,7 @@
            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Name">
            @error('name')
                <span class="invalid-feedback" role="alert">
-                   <strong>{{ $message }}</strong>
+                     <strong>{{ $message }}</strong>
                </span>
            @enderror
 

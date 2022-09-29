@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class CanditadoController extends Controller
 {
-    
+
 
     public function index()
    {
@@ -60,7 +60,7 @@ class CanditadoController extends Controller
 
        $progress = 25 + $progressFormacao + $progressExperiencia + $progressConhecimento + $progressIdioma + $progressDocumento;
 
-       return view('backend.candidato', array('candidato' => $candidato, 'formacoes' => $formacoes, 'idiomas' => $idiomas,
+       return view('home', array('candidato' => $candidato, 'formacoes' => $formacoes, 'idiomas' => $idiomas,
      'documentos' => $documentos, 'conhecimentos' => $conhecimentos, 'experiencias' => $experiencias, 'progress' => $progress,
      'provas' => $provas, 'candidaturas' => $candidatura_anuncio ));
      }
@@ -153,8 +153,7 @@ class CanditadoController extends Controller
 
 
 
-     @param  int  $id
-     @return \Illuminate\Http\Response
+
     public function editContacto(Request $request)
     {
       $contacto = Candidato::find($request->candidato_id);
@@ -207,13 +206,4 @@ class CanditadoController extends Controller
       }
 
   }
-
-
-
-   public function atualizar(Request $request, $id)
-   {
-
-   }
-
-
 }
