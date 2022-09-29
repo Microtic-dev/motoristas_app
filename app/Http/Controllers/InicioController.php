@@ -12,8 +12,9 @@ class InicioController extends Controller
 
     public function index()
     {
+      $categorias = DB::table('categorias')->get();
       $provincias = DB::table('provincias')->get();
-       return view('index', array( 'provincias' => $provincias ));
+       return view('index',  compact('provincias' ,'categorias'));
     }
 
 

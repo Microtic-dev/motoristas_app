@@ -11,8 +11,8 @@
   </head>
   <body>
 
-    <h2><a href="/">{{ $tipoDeUsuario }}</a></h2>
-    
+    <h2><a href="/">Motoristas</a></h2>
+
     <div class="container" id="container">
     	<div class="form-container sign-up-container">
     			<h1>Criar conta!</h1>

@@ -40,11 +40,9 @@ Motoristas |
                 <div class="col-sm-3">
                     <select class="form-control">
                         <option value="null">Categoria</option>
-                        <option>A-Motociclo</option>
-                        <option>B-Ligeiro</option>
-                        <option>C-Pesado</option>
-                        <option>G-Profissional</option>
-                        <option>P-Serviços Públicos</option>
+                        @foreach ($categorias as $categoria)
+                          <option>{{$categoria->categoria}}</option>
+                        @endforeach
                       </select>
                 </div>
                 <div class="col-sm-3">
