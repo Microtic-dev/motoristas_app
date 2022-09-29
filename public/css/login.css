@@ -46,8 +46,8 @@ margin: 15px 0;
 
 button {
 border-radius: 20px;
-border: 1px solid #FF4B2B;
-background-color: #FF4B2B;
+border: 1px solid #0C99C5;
+background-color: #0C99C5;
 color: #FFFFFF;
 font-size: 12px;
 font-weight: bold;
@@ -161,8 +161,8 @@ transform: translateX(-100%);
 
 .overlay {
 background: #FF416C;
-background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
-background: linear-gradient(to right, #FF4B2B, #FF416C);
+background: -webkit-linear-gradient(to right, #0C99C5,#63A4FF);
+background: linear-gradient(to right, #0C99C5,#63A4FF);
 background-repeat: no-repeat;
 background-size: cover;
 background-position: 0 0;

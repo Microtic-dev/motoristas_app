@@ -14,7 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+// Route::get('/bro', function () {
+//     return view('login');
+// });
 
+Route::get('/logout', function () {
+    Auth::logout();
+    return redirect('/');
+});
+
+//auth
+Auth::routes();
 
 Auth::routes();
 Route::get('/ ', [App\Http\Controllers\InicioController::class, 'index'])->name('index');
