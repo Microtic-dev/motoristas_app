@@ -50,7 +50,9 @@ Motoristas |
                 <div class="col-sm-3">
                     <select class="form-control">
                          <option>Localização</option>
-
+                        @foreach ($provincias as $provincia)
+                          <option>{{ $provincia->name }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="col-sm-2">
