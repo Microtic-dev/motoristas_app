@@ -47,7 +47,7 @@
 
 
     	<div class="form-container sign-in-container">
-    	  <form method="POST" action="{{ route('login') }}">
+    	  <form method="GET" action="{{ route('login') }}">
             @csrf
     			<h1 style="">Entrar</h1>
     			<span>use sua a conta para entrar</span>
@@ -93,7 +93,7 @@
 
    <script>
 
- const signUpButton = document.getElementById('signUp');
+const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');
 const container = document.getElementById('container');
 

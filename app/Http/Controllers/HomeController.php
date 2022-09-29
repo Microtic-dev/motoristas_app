@@ -30,6 +30,7 @@ class HomeController extends Controller
                ->orderBy('created_at', 'DESC')
                ->paginate(10);
 
+                  
        return view('home', array( 'anuncios' => $anuncios ));
     }
 }
