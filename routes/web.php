@@ -26,15 +26,11 @@ Route::get('/logout', function () {
 //auth
 Auth::routes();
 
-Auth::routes();
 Route::get('/ ', [App\Http\Controllers\InicioController::class, 'index'])->name('index');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
 Route::get('/anuncio', [App\Http\Controllers\InicioController::class, 'anuncio'])->name('anuncio');
 Route::get('/bd-motoristas', [App\Http\Controllers\AdminController::class, 'index'])->name('bd-motoristas');
 Route::get('/perfil/{id}', [App\Http\Controllers\MotoristaController::class, 'perfil'])->name('perfil');
+//Route::get('/login2', [App\Http\Controllers\CanditadoController::class, 'login'])->name('login');
 
-Route::get('/login/{tipoDeUsuario}', function ($tipoDeUsuario) {
-      global $tipo;
-      $tipo = $tipoDeUsuario;
-     return view('auth.login', ['tipoDeUsuario'=>$tipo]);
-});
+Route::get('/empregador', [App\Http\Controllers\EmpregadorController::class, 'index'])->name('empregador');

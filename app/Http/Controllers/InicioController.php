@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\Provincias;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Auth;
 
 class InicioController extends Controller
 {
@@ -10,7 +12,8 @@ class InicioController extends Controller
 
     public function index()
     {
-       return view('index');
+      $provincias = DB::table('provincias')->get();
+       return view('index', array( 'provincias' => $provincias ));
     }
 
 
