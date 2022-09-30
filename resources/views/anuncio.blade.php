@@ -86,3 +86,18 @@ Titulo de anuncio |
 <!-- end wrapper -->
 
 @endsection
+
+<script>
+
+
+
+function dateHelper(date){
+           var mySQLDate = date;
+           var date= new Date(Date.parse(mySQLDate.replace(/-/g, '/')));
+
+           var day = ("0" + date.getDate()).slice(-2);
+           var month = ("0" + (date.getMonth() + 1)).slice(-2);
+
+           return date.getFullYear()+"-"+month+"-"+day
+       }
+</script>

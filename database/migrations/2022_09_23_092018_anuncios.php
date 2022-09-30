@@ -19,6 +19,7 @@ return new class extends Migration
         $table->string('titulo');
         $table->date('validade');
         $table->text('descricao');
+          $table->text('provincia_id');
         $table->string('estado_anuncio');
         $table->string('forma_de_candidatura');
         $table->bigInteger('categoria_id')->unsigned();
@@ -33,6 +34,11 @@ return new class extends Migration
                 ->references('id')->on('users')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+
+      $table->foreign('provincia_id')
+                  ->references('id')->on('provincias')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
 
     });
     }
