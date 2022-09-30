@@ -40,18 +40,17 @@ Titulo de anuncio |
                 <span><a href="javascript:history.back();">≪ Voltar</a></span> |
                 <span>Categoria:
                      <a href="/categoria/administracao-secretariado">
-                        {{ $categoria->categoria }}
+                        {{ $anuncio->categoria }}
                      </a>
                   </span>
               </section>
 
               <h2>{{$anuncio->titulo}} </h2>
-              <p class="nomeInst">Nome da empresa / empregador</p>
+              <p class="nomeInst">Anonimo</p>
               <section class="infoJob clearfix">
                 <p>
-                  <span class="badge badge-default">{{ $anuncio->provincia }} </span>
-                  <span class="badge badge-default">{{ Carbon\Carbon::parse($anuncio->created_at)->format('d-M-Y') }} </span>
-                  <span class="badge badge-default">{{ Carbon\Carbon::parse($anuncio->validade)->format('d-M-Y') }} </span>
+                  <span class="badge badge-default">{{$anuncio->created_at}} </span>
+                  <span class="badge badge-default">{{$anuncio->validade}} </span>
                 </p>
                 <p class="local">Local:  <span>Sofala</span>  </p>
                 <div class="anuncio-descricao">
@@ -65,9 +64,9 @@ Titulo de anuncio |
         <div class="col-md-3 postedList">
           <div class="card m-b-30 card-body">
             <h2 class="detalhesC">Informação Adcional</h2>
-            <p><b>Data da Publicação: </b><span class="float-right">{{ Carbon\Carbon::parse($anuncio->created_at)->format('d-M-Y') }}</span></p>
-            <p><b>Válido até:  </b><span class="float-right">{{ Carbon\Carbon::parse($anuncio->validade)->format('d-M-Y') }}</span></p>
-            <p><b>Email:  </b><span class="float-right"><a href="mailto:{{ $anuncio->email }}">{{ $anuncio->email }}</a></span></p>
+            <p><b>Data da Publicação: </b><span class="float-right">{{$anuncio->created_at}}</span></p>
+            <p><b>Válido até:  </b><span class="float-right">{{$anuncio->validade}}</span></p>
+            <p><b>Email:  </b><span class="float-right"><a href="mailto:candidaturas@motorista.com">candidaturas@motorista.com</a></span></p>
             <hr>
               <p><a href="/register">Cria uma conta</a> ou faz <a href="/login">login</a> para candidatar-se </p>
           </div>
@@ -87,18 +86,3 @@ Titulo de anuncio |
 <!-- end wrapper -->
 
 @endsection
-
-<script>
-
-
-
-function dateHelper(date){
-           var mySQLDate = date;
-           var date= new Date(Date.parse(mySQLDate.replace(/-/g, '/')));
-
-           var day = ("0" + date.getDate()).slice(-2);
-           var month = ("0" + (date.getMonth() + 1)).slice(-2);
-
-           return date.getFullYear()+"-"+month+"-"+day
-       }
-</script>

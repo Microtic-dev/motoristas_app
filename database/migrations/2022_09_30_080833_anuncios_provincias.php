@@ -13,27 +13,23 @@ return new class extends Migration
      */
     public function up()
     {
-      Schema::create('anuncios', function (Blueprint $table) {
+      Schema::create('anuncios_provincias', function (Blueprint $table) {
         $table->bigIncrements('id');
-        $table->bigInteger('user_id')->unsigned();
-        $table->string('titulo');
-        $table->date('validade');
-        $table->text('descricao');
-        $table->string('estado_anuncio');
-        $table->string('forma_de_candidatura');
-        $table->bigInteger('categoria_id')->unsigned();
+        $table->bigInteger('anuncio_id')->unsigned();
+        $table->bigInteger('provincia_id')->unsigned();
         $table->timestamps();
 
-      $table->foreign('categoria_id')
-                ->references('id')->on('categorias')
+      $table->foreign('anuncio_id')
+                ->references('id')->on('anuncios')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-      $table->foreign('user_id')
-                ->references('id')->on('users')
+      $table->foreign('provincia_id')
+                ->references('id')->on('provincias')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
+    
 
     });
     }

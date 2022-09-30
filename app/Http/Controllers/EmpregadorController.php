@@ -36,22 +36,22 @@ class EmpregadorController extends Controller
      return view('empregador.index', array( 'anuncios' => $anuncios, 'categorias' => $categorias, 'provincias' => $provincias ));
   }
 
-  public function criarAnuncio(Request $request){
-
-        $anuncio = new Anuncios();
-
-        $anuncio -> titulo = $request->titulo;
-        $anuncio -> user_id = $request-> user_id;
-        $anuncio -> validade = $request->validade;
-        $anuncio -> descricao = $request->descricao;  
-        $anuncio -> estado_anuncio = "Disponivel";
-        $anuncio -> forma_de_candidatura = $request->forma_de_candidatura;
-        $anuncio -> categoria_id = $request->categoria_id;
-
-        if($anuncio->save()){
-             return redirect()->back()->with('success','Formulario Preenchido');
-        }else{
-             return redirect()->back()->with('error','Ocorrou um erro, tente novamente');
-        }
-  }
+  // public function criarAnuncio(Request $request){
+  //
+  //       $anuncio = new Anuncios();
+  //
+  //       $anuncio -> titulo = $request->titulo;
+  //       $anuncio -> user_id = $request-> user_id;
+  //       $anuncio -> validade = $request->validade;
+  //       $anuncio -> descricao = $request->descricao;
+  //       $anuncio -> estado_anuncio = "Disponivel";
+  //       $anuncio -> forma_de_candidatura = $request->forma_de_candidatura;
+  //       $anuncio -> categoria_id = $request->categoria_id;
+  //
+  //       if($anuncio->save()){
+  //            return redirect()->back()->with('success','Formulario Preenchido');
+  //       }else{
+  //            return redirect()->back()->with('error','Ocorrou um erro, tente novamente');
+  //       }
+  // }
 }

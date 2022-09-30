@@ -1,10 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 use App\Models\Anuncios;
 use App\Models\Categorias;
+use App\Models\Anuncios_provincias;
+use Auth;
 
 class AnunciosController extends Controller
 {
@@ -19,15 +22,13 @@ class AnunciosController extends Controller
       $anuncio->user_id = Auth::user()->id;
       $anuncio->validade = $request->validade;
       $anuncio->descricao = $request->descricao;
-      $anuncio->estado_anuncio = $request->estado_anuncio;
       $anuncio->forma_de_candidatura = $request->forma_de_candidatura;
-      $anuncio->tipo_de_anuncio = $request->tipo_de_anuncio;
       $anuncio->categoria_id = $request->categoria_id;
       $anuncio->estado_anuncio = 'Publicado';
 
        if ($anuncio->save()) {
         foreach ($request->provincias as $key => $provincia) {
-          $anuncio_provincia = new Provincias;
+          $anuncio_provincia = new Anuncios_provincias;
           $anuncio_provincia->anuncio_id = $anuncio->id;
           $anuncio_provincia->provincia_id = $provincia;
           $anuncio_provincia->save();
@@ -44,9 +45,14 @@ class AnunciosController extends Controller
 public function verAnuncio($id){
 
 
-    $anuncio = Anuncios::find($id);
-    $categoria = Categorias::find($anuncio->categoria_id);
-    return view('anuncio', compact('anuncio' , 'categoria'));
+    $anuncio = DB::table('anuncios')
+              ->join('anuncios_provincias','anuncios.id', 'anuncios_provincias.anuncio_id')
+              ->join('provincias','anuncios_provincias.provincia_id','provincias.id')
+              ->join('categorias','anuncios.categoria_id','categorias.id')
+              ->where('anuncios.id',$id)
+              ->select('anuncios.*','provincias.name as provincia','categorias.categoria as categoria')
+              ->first();
+    return view('anuncio', compact('anuncio'));
 
 }
 
