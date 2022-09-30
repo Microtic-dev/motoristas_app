@@ -31,6 +31,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'home'])->name(
 Route::get('/anuncio/{id}', [App\Http\Controllers\AnunciosController::class, 'verAnuncio'])->name('verAnuncio');
 Route::post('/criarAnuncio', [App\Http\Controllers\EmpregadorController::class, 'criarAnuncio'])->name('criarAnuncio');
 Route::get('/bd-motoristas', [App\Http\Controllers\AdminController::class, 'index'])->name('bd-motoristas');
+Route::get('/centralRisco', [App\Http\Controllers\AdminController::class, 'index'])->name('bd-motoristas');
 Route::get('/perfil/{id}', [App\Http\Controllers\MotoristaController::class, 'perfil'])->name('perfil');
 //Route::get('/login2', [App\Http\Controllers\CanditadoController::class, 'login'])->name('login');
 

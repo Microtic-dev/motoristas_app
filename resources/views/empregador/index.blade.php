@@ -109,15 +109,7 @@ Perfil |
                                             <input class="form-control" name="titulo" id="titulo" type="text" required>
                                          </div>
                                      </div>
-                                     <div class="form-group row">
-                                         <label for="example-text-input" class="col-sm-3 col-form-label">Tipo de anúncio </label>
-                                         <div class="col-sm-9">
-                                           <select  hidden class="form-control" name="tipo_de_anuncio" id="tipo_de_anuncio" required>
-
-                                               <option value="Consultoria">Motorista</option>
-                                           </select>
-                                         </div>
-                                     </div>
+                                     
                                      <div class="form-group row">
                                          <label for="example-text-input" class="col-sm-3 col-form-label">Categoria </label>
                                          <div class="col-sm-9">
@@ -151,12 +143,7 @@ Perfil |
                                            </div>
                                        </div>
 
-                                       <div class="form-group row">
-                                           <label for="example-text-input" class="col-sm-3 col-form-label">Qualificações</label>
-                                             <div class="col-sm-9">
-                                               <textarea id="qualificacoes" name="qualificacoes" class="form-control" rows="6" placeholder="Ex: Escreve aqui a descrição do anúncio..."></textarea>
-                                           </div>
-                                       </div>
+
 
 
                                        <div class="form-group row">

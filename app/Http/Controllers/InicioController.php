@@ -28,11 +28,31 @@ class InicioController extends Controller
     }
 
 
-    public function login($tipoDeUsuario){
+    public function search($query,$categor)
+    {
+      $categorias = DB::table('categorias')->get();
+      $provincias = DB::table('provincias')->get();
 
-      $tipo = $tipoDeUsuario;
-      return view('login',  array('tipo' => $tipoDeUsuario));
+      $anuncios = DB::table('anuncios')
+          //    ->join('recrutadores', 'anuncios.user_id', '=', 'recrutadores.id')
+              ->join('users', 'anuncios.user_id', '=', 'users.id')
+              ->select('anuncios.*', 'users.name as recrutador')
+              ->orderBy('created_at', 'DESC')
+              ->paginate(10);
+
+      // $arraySearch[];
+      //
+      // foreach ($anuncios as $value) {
+      //     if($value)
+      // }
+
+
+
+       return view('index',  compact('provincias' ,'categorias', 'anuncios'));
     }
+
+
+
 
     public function anuncio()
     {

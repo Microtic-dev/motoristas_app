@@ -19,10 +19,8 @@ return new class extends Migration
         $table->string('titulo');
         $table->date('validade');
         $table->text('descricao');
-        $table->text('qualificacoes');
         $table->string('estado_anuncio');
         $table->string('forma_de_candidatura');
-        $table->string('tipo_de_anuncio');
         $table->bigInteger('categoria_id')->unsigned();
         $table->timestamps();
 

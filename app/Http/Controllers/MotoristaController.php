@@ -18,5 +18,5 @@ class MotoristaController extends Controller
      return view('candidato.perfil');
   }
 
-  public function
+
 }
