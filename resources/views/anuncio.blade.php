@@ -53,23 +53,10 @@ Titulo de anuncio |
                   <span class="badge badge-default">{{$anuncio->validade}} </span>
                 </p>
                 <p class="local">Local:  <span>Sofala</span>  </p>
-                 <div class="anuncio-descricao">
-                   <p><strong>Número de vagas</strong>: 01</p>
-                  <p><strong>&nbsp;</strong><strong>Descrição:</strong></p>
-                  <ul>
-                  <li>{{$anuncio->descricao}}</li>
-                  </ul>
+                <div class="anuncio-descricao">
 
-                  <p>&nbsp;<strong>Qualificações/Requisitos:</strong></p>
-                  <ul>
-                  <li>{{$anuncio->qualificacoes}}</li>
-                  </ul>
-                  <p style="text-align: justify;">A data de encerramento da apresentação de candidaturas é&nbsp;<strong>{{$anuncio->validade}}</strong>&nbsp;
-                    Os candidatos interessados deverão apresentar uma carta de apresentação juntamente com o “Curriculum Vitae” detalhando as experiências
-                     relevantes e referências que possam ser enviadas para o seguinte email <strong>candidaturas@motorista.com</strong> e indique o assunto: “<strong>{{$anuncio->titulo}}”</strong>.</p>
-                  <p style="text-align: justify;">&nbsp;Somente os candidatos selecionados para entrevista serão contactados.</p>
-                  <p>&nbsp;</p>
-               </div>
+                   {!! $anuncio->descricao !!}
+                </div>
               </section>
             </div>
         </div>
