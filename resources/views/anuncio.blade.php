@@ -3,7 +3,9 @@
 Titulo de anuncio |
 @endsection
 @section('content')
-
+@php
+ use Carbon\Carbon;
+@endphp
 <div class="wrapper">
     <div class="container-fluid homepage">
       <div class="container">
@@ -49,10 +51,22 @@ Titulo de anuncio |
               <p class="nomeInst">Anonimo</p>
               <section class="infoJob clearfix">
                 <p>
-                  <span class="badge badge-default">{{$anuncio->created_at}} </span>
-                  <span class="badge badge-default">{{$anuncio->validade}} </span>
+                  <span class="badge badge-default">{{ Carbon::parse($anuncio->created_at)->format('d-M-Y') }} </span>
+                  <span class="badge badge-default">{{ Carbon::parse($anuncio->validade)->format('d-M-Y') }}</span>
                 </p>
-                <p class="local">Local:  <span>Sofala</span>  </p>
+
+              <p class="local">Local:  <span>
+              @foreach ($anuncios_provincias as $anuncio_provincia)
+                @if($anuncio_provincia->anuncio_id==$anuncio->id)
+                    @foreach ($provincias as $provincia)
+                      @if($anuncio_provincia->provincia_id==$provincia->id)
+                            {{$provincia->name}} ,
+                      @endif
+                    @endforeach
+                @endif
+              @endforeach
+                </span>  </p>
+
                 <div class="anuncio-descricao">
 
                    {!! $anuncio->descricao !!}
@@ -64,9 +78,10 @@ Titulo de anuncio |
         <div class="col-md-3 postedList">
           <div class="card m-b-30 card-body">
             <h2 class="detalhesC">Informação Adcional</h2>
-            <p><b>Data da Publicação: </b><span class="float-right">{{$anuncio->created_at}}</span></p>
-            <p><b>Válido até:  </b><span class="float-right">{{$anuncio->validade}}</span></p>
-            <p><b>Email:  </b><span class="float-right"><a href="mailto:candidaturas@motorista.com">candidaturas@motorista.com</a></span></p>
+            <p><b>Data da Publicação: </b><span class="float-right">{{ Carbon::parse($anuncio->created_at)->format('d-M-Y') }}</span></p>
+            <p><b>Válido até:  </b><span class="float-right">{{ Carbon::parse($anuncio->validade)->format('d-M-Y') }}</span></p>
+            <p><b>Email:  </b><span class="float-right"><a href="mailto:motorista@motorista.co.mz"> motorista@motorista.co.mz </a></span></p>
+
             <hr>
               <p><a href="/register">Cria uma conta</a> ou faz <a href="/login">login</a> para candidatar-se </p>
           </div>

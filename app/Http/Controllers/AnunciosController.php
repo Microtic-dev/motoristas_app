@@ -44,6 +44,9 @@ class AnunciosController extends Controller
 
 public function verAnuncio($id){
 
+  $categorias = DB::table('categorias')->get();
+  $provincias = DB::table('provincias')->get();
+  $anuncios_provincias = DB::table('anuncios_provincias')->get();
 
     $anuncio = DB::table('anuncios')
               ->join('anuncios_provincias','anuncios.id', 'anuncios_provincias.anuncio_id')
@@ -52,7 +55,7 @@ public function verAnuncio($id){
               ->where('anuncios.id',$id)
               ->select('anuncios.*','provincias.name as provincia','categorias.categoria as categoria')
               ->first();
-    return view('anuncio', compact('anuncio'));
+    return view('anuncio', compact('anuncio','provincias' ,'categorias','anuncios_provincias'));
 
 }
 

@@ -71,13 +71,35 @@ Motoristas |
                           <img src="{{ asset('/assets/images/logoRectangle.png' )}}" class="img-fluid"/>
                         </div>
                         <h4 class="mt-4"><a href="/anuncio/{{$anuncio->id}}">{{ $anuncio->titulo }}</a></h4>
+                          <p>
 
-                          @foreach ($categorias as $categoria)
+                            @php
+                             global $i, $prov;
+                             $i = 0;
 
-                            @if($anuncio->categoria_id==$categoria->id)
-                                <p> {{ $categoria->categoria }}  </p>
+                            @endphp
+
+                          @foreach ($anuncios_provincias as $anuncio_provincia)
+                            @if($anuncio_provincia->anuncio_id==$anuncio->id)
+                                @foreach ($provincias as $provincia)
+                                  @if($anuncio_provincia->provincia_id==$provincia->id)
+
+                                  @php
+                                   $i++;
+                                   $prov = $provincia->name;
+                                  @endphp
+
+                                  @endif
+                                @endforeach
                             @endif
                           @endforeach
+
+                          @if($i>1)
+                             Varios locais
+                          @else
+                            {{ $prov }}
+                          @endif
+                           </p>
 
                     </div>
                 </div>

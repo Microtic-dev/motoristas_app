@@ -14,6 +14,7 @@ class InicioController extends Controller
     {
       $categorias = DB::table('categorias')->get();
       $provincias = DB::table('provincias')->get();
+      $anuncios_provincias = DB::table('anuncios_provincias')->get();
 
       $anuncios = DB::table('anuncios')
           //    ->join('recrutadores', 'anuncios.user_id', '=', 'recrutadores.id')
@@ -24,7 +25,7 @@ class InicioController extends Controller
 
 
 
-       return view('index',  compact('provincias' ,'categorias', 'anuncios'));
+       return view('index',  compact('provincias' ,'categorias', 'anuncios','anuncios_provincias'));
     }
 
 
