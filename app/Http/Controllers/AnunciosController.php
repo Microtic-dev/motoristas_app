@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Anuncios;
 use App\Models\Categorias;
+use App\Models\Provincias;
 use App\Models\Anuncios_provincias;
 use Auth;
 
@@ -57,6 +58,31 @@ public function verAnuncio($id){
               ->first();
     return view('anuncio', compact('anuncio','provincias' ,'categorias','anuncios_provincias'));
 
+}
+
+public function search(Request $request){
+
+  $categoriaQuery = Categorias::find($request->categoria);
+  $provinciaQuery = Provincias::find(1);
+
+  $categorias = DB::table('categorias');
+  $provincias = DB::table('provincias');
+
+
+
+    $anuncios_provincias = DB::table('anuncios_provincias')->get();
+
+
+
+     $anuncios = DB::table('anuncios')
+             ->where('titulo', $request->keyword)
+             ->orWhere('titulo', 'like', '%' .$request->keyword . '%')->get();
+
+
+      print_r($anuncios);
+      die();
+
+      return view('search', compact('anuncios','provincias' ,'categorias','anuncios_provincias'));
 }
 
 }

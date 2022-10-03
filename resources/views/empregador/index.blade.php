@@ -109,7 +109,7 @@ Perfil |
                                             <input class="form-control" name="titulo" id="titulo" type="text" required>
                                          </div>
                                      </div>
-                                     
+
                                      <div class="form-group row">
                                          <label for="example-text-input" class="col-sm-3 col-form-label">Categoria </label>
                                          <div class="col-sm-9">
