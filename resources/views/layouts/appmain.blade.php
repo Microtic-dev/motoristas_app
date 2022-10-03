@@ -56,8 +56,7 @@
                       <!-- Logo-->
                       <div>
                           <a href="/" class="logo" >
-                              <!-- <img src="{{asset('assets/images/logo.png')}}" alt="logo portaldoconcurso" height="26"> -->
-                              Motorista
+                            <img src="{{asset('assets/images/logo.png')}}" alt="logo motoristas" height="48">
                           </a>
                       </div>
                       <!-- End Logo-->

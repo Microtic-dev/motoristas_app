@@ -60,7 +60,7 @@ class CanditadoController extends Controller
 
        $progress = 25 + $progressFormacao + $progressExperiencia + $progressConhecimento + $progressIdioma + $progressDocumento;
 
-       return view('home', array('candidato' => $candidato, 'formacoes' => $formacoes, 'idiomas' => $idiomas,
+       return view('candidato.perfil', array('candidato' => $candidato, 'formacoes' => $formacoes, 'idiomas' => $idiomas,
      'documentos' => $documentos, 'conhecimentos' => $conhecimentos, 'experiencias' => $experiencias, 'progress' => $progress,
      'provas' => $provas, 'candidaturas' => $candidatura_anuncio ));
      }

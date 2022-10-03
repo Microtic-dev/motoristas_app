@@ -12,7 +12,7 @@
   </head>
   <body>
 
-    <h2><a href="/">Motoristas</a></h2>
+    <h2><a href="/"><img src="{{asset('assets/images/logo-blue.png')}}" alt="logo motoristas" height="60"></a></h2>
 
     <div class="container" id="container">
     	<div class="form-container sign-up-container">
@@ -50,12 +50,12 @@
           </a>
     		</form>
         @else
-        <h1>Criar conta Empregador!</h1>
-        <span>use as suas credenciais para registrar <br>a sua conta</span>
-          <form method="POST" action="{{ route('register') }}">
+
+            <form method="POST" action="{{ route('register') }}">
+              <h1>Criar conta Empregador!</h1><br>
              @csrf
              <input type="hidden" name="privilegio" value="empregador"/>
-             <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Name">
+             <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Nome Completo">
              @error('name')
                  <span class="invalid-feedback" role="alert">
                        <strong>{{ $message }}</strong>
@@ -75,15 +75,15 @@
                  </span>
              @enderror
 
-             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Password">
+             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Senha">
              @error('password')
                  <span class="invalid-feedback" role="alert">
                      <strong>{{ $message }}</strong>
                  </span>
              @enderror
 
-            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
-            <button type="submit">  {{ __('Cadastrar') }}</button>
+            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirmar Senha">
+            <br><button type="submit">  {{ __('Cadastrar') }}</button>
         </form>
 
         @endif
@@ -93,7 +93,6 @@
 
     	<div class="form-container sign-in-container">
         @if(isset($_GET['candidato']))
-
           <form method="POST" action="{{ route('login') }}">
               @csrf
             <h1 style="">Candidato</h1>
@@ -105,8 +104,6 @@
                     <strong>{{ $message }}</strong>
                 </span>
             @enderror
-
-
 
             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
             @error('password')
@@ -129,29 +126,26 @@
 
     	  <form method="POST" action="{{ route('login') }}">
             @csrf
-    			<h1 style="">Recrutador</h1>
-    			<span>use sua a conta para entrar</span>
+    			<h1 style="">Empregador</h1>
+    			<span>use sua a conta para entrar</span><br>
           <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
           @error('email')
               <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
               </span>
           @enderror
-
     		  <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
           @error('password')
               <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
               </span>
           @enderror
-
           @if (Route::has('password.request'))
               <a class="btn btn-link" href="{{ route('password.request') }}">
                   {{ __('Esqueceu-se da senha?') }}
               </a>
           @endif
-    			<button type="submit">Entrar</button>
-
+    			<button type="submit">Entrar</button><br>
           <a class="btn btn-link" href="{{route('login','candidato')}}">
               {{ __('Sou candidato') }}
           </a>

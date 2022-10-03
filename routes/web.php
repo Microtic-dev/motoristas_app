@@ -51,3 +51,5 @@ Route::get('/perfil/{id}', [App\Http\Controllers\MotoristaController::class, 'pe
 //Route::get('/login2', [App\Http\Controllers\CanditadoController::class, 'login'])->name('login');
 
 Route::get('/empregador', [App\Http\Controllers\EmpregadorController::class, 'index'])->name('empregador');
+
+Route::get('/candidato', [App\Http\Controllers\CandidatoController::class, 'index'])->name('candidato');
