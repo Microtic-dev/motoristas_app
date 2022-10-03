@@ -23,6 +23,18 @@ Route::get('/logout', function () {
     return redirect('/');
 });
 
+Route::get('/concluir', function () {
+     if(Auth::user()->privilegio == 'empregador'){
+        return redirect('/empregador');
+     }elseif (Auth::user()->privilegio == 'candidato') {
+       return redirect('/candidato');
+     }elseif (Auth::user()->privilegio == 'admin') {
+       return redirect('/admin');
+     }
+    return redirect('/');
+});
+
+
 //auth
 Auth::routes();
 

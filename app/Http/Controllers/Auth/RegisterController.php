@@ -30,8 +30,8 @@ class RegisterController extends Controller
      * @var string
      */
     //protected $redirectTo = RouteServiceProvider::HOME;
-    protected $redirectTo = '/';
-    //protected $redirectTo = '/concluir'; to redirect to canditato ou Empregador
+  //  protected $redirectTo = '/';
+      protected $redirectTo = '/concluir'; // to redirect to canditato ou Empregador
 
     /**
      * Create a new controller instance.
@@ -56,6 +56,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'privilegio' => ['required', 'string', 'max:255'],
+            'celular' => ['required', 'string', 'max:13','unique:users'],
         ]);
     }
 
@@ -71,6 +72,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'privilegio' => $data['privilegio'],
+            'celular' => $data['celular'],
             'password' => Hash::make($data['password']),
         ]);
     }

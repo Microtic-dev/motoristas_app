@@ -95,7 +95,7 @@
                               <!-- User-->
                               @guest
                               <li class="list-inline-item dropdown notification-list">
-                                  <a class="nav-link" href="/login">
+                                  <a class="nav-link" href="{{route('login','candidato')}}">
                                     <i class="dripicons-user"></i> Candidato
                                   </a>
                               </li>
