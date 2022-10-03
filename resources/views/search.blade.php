@@ -4,6 +4,8 @@ Motoristas |
 @endsection
 @section('content')
 
+
+
 <div class="wrapper">
     <div class="container-fluid homepage">
       <div class="container">
@@ -34,7 +36,7 @@ Motoristas |
           <!-- fitros section -->
           <div class="col-md-12 m_filtro_nav">
 
-            <form method="POST" action="{{ route('search') }}">
+            <form method="GET" action="{{ route('search') }}">
             @csrf
             <div class="form-group mt-3 row">
                 <div class="col-sm-4">
@@ -43,17 +45,24 @@ Motoristas |
                 <div class="col-sm-3">
 
                     <select name=categoria for="categoria" class="form-control">
-                        <option  value="null">Categoria</option>
+                      @foreach ($categorias as $categoria)
+                        @if($categoria_id!=null)
+                        @if($categoria->id==$categoria_id)
+                        <option value="{{$categoria->id}}">{{$categoria->categoria}}</option>
+                        @endif
+                        @e    ndif
+                      @endforeach
+
                         @foreach ($categorias as $categoria)
-                          <option value="{{ $categoria->id }}">{{$categoria->categoria}}</option>
+                          <option value="{{$categoria->id}}">{{$categoria->categoria}}</option>
                         @endforeach
                       </select>
 
                 </div>
                 <div class="col-sm-3">
 
-                    <select name=provincia for="categoria" class="form-control">
-                         <option>Localização</option>
+                    <select name=provincia for="provincia" class="form-control">
+                         <option value="null">Localização</option>
                         @foreach ($provincias as $provincia)
                           <option value="{{ $provincia->id }}">{{ $provincia->name }}</option>
                         @endforeach
@@ -69,7 +78,6 @@ Motoristas |
 
           </div>
           <!-- end fitros section -->
-
           <!-- anuncios section -->
           <div class="col-md-12 mt-4 m_anunicios_home">
             <div class="row">

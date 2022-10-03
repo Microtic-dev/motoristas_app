@@ -62,27 +62,59 @@ public function verAnuncio($id){
 
 public function search(Request $request){
 
-  $categoriaQuery = Categorias::find($request->categoria);
-  $provinciaQuery = Provincias::find(1);
+  $categorias = DB::table('categorias')->get();
+  $provincias = DB::table('provincias')->get();
+  $anuncios_provincias = DB::table('anuncios_provincias')->get();
 
-  $categorias = DB::table('categorias');
-  $provincias = DB::table('provincias');
+  global $anuncios;
+
+  if($request->keyword=="" && $request->categoria=="null"  && $request->provincia=="null"){//tudo vazio
+
+      $anuncios = DB::table('anuncios')
+              ->join('users', 'anuncios.user_id', '=', 'users.id')
+              ->select('anuncios.*', 'users.name as recrutador')
+              ->orderBy('created_at', 'DESC')
+              ->paginate(10);
+   } else if($request->keyword!="" && $request->categoria=="null"  && $request->provincia=="null"){//keyword
+
+        $anuncios = DB::table('anuncios')
+                ->where('titulo', $request->keyword)
+                ->orWhere('titulo', 'like', '%' .$request->keyword . '%')
+                ->orderBy('created_at', 'DESC')
+                ->paginate(10);
+  }  else if ($request->keyword=="" && $request->categoria!="null"  && $request->provincia!="null") { //categoria e localizacao
+
+          $anuncios = DB::table('anuncios')
+                       ->join('categorias','anuncios.categoria_id','categorias.id')
+                       ->where('categorias.id',$request->categoria)
+                       ->join('anuncios_provincias','anuncios.id', 'anuncios_provincias.anuncio_id')
+                       ->join('provincias','anuncios_provincias.provincia_id','provincias.id')
+                       ->where('provincias.id',$request->provincia)
+                       ->select('anuncios.*','provincias.name as provincia')
+                       ->orderBy('created_at', 'DESC')
+                       ->paginate(10);
+
+  } elseif ($request->keyword=="" && $request->categoria!="null"  && $request->provincia=="null") { //categoria
+
+    $anuncios = DB::table('anuncios')
+                 ->join('categorias','anuncios.categoria_id','categorias.id')
+                 ->where('categorias.id',$request->categoria)
+                 ->select('anuncios.*','categorias.categoria as categoria')
+                 ->orderBy('created_at', 'DESC')
+                 ->paginate(10);
+  } elseif ($request->keyword=="" && $request->categoria=="null"  && $request->provincia!="null") { // localizacao
+         $anuncios = DB::table('anuncios')
+                      ->join('anuncios_provincias','anuncios.id', 'anuncios_provincias.anuncio_id')
+                      ->join('provincias','anuncios_provincias.provincia_id','provincias.id')
+                      ->where('provincias.id',$request->provincia)
+                      ->select('anuncios.*','provincias.name as provincia')
+                      ->orderBy('created_at', 'DESC')
+                      ->paginate(10);
+
+  }
 
 
-
-    $anuncios_provincias = DB::table('anuncios_provincias')->get();
-
-
-
-     $anuncios = DB::table('anuncios')
-             ->where('titulo', $request->keyword)
-             ->orWhere('titulo', 'like', '%' .$request->keyword . '%')->get();
-
-
-      print_r($anuncios);
-      die();
-
-      return view('search', compact('anuncios','provincias' ,'categorias','anuncios_provincias'));
-}
+    return view('index', compact('anuncios','provincias' ,'categorias','anuncios_provincias'));
+  }
 
 }

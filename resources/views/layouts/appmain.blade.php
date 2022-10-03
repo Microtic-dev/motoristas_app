@@ -210,7 +210,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
-                        © Copyright 2022 - Motoristasco.mz. Todos os Direitos Reservados
+                        © Copyright 2022 - motoristas.co.mz. Todos os Direitos Reservados
                     </div>
                 </div>
             </div>
