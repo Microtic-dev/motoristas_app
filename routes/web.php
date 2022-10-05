@@ -12,11 +12,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
-// Route::get('/bro', function () {
-//     return view('login');
-// });
+Route::get('/home', function () {
+    return redirect('/');
+});
 
 Route::get('/logout', function () {
     Auth::logout();
@@ -39,7 +37,6 @@ Route::get('/concluir', function () {
 Auth::routes();
 
 Route::get('/ ', [App\Http\Controllers\InicioController::class, 'index'])->name('index');
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
 
 Route::post('/criarAnuncio', [App\Http\Controllers\AnunciosController::class, 'criarAnuncio'])->name('criarAnuncio');
 Route::get('/anuncio/{id}', [App\Http\Controllers\AnunciosController::class, 'verAnuncio'])->name('verAnuncio');
@@ -53,3 +50,5 @@ Route::get('/perfil/{id}', [App\Http\Controllers\MotoristaController::class, 'pe
 Route::get('/empregador', [App\Http\Controllers\EmpregadorController::class, 'index'])->name('empregador');
 
 Route::get('/candidato', [App\Http\Controllers\CandidatoController::class, 'index'])->name('candidato');
+Route::post('/new-candidato', [App\Http\Controllers\CandidatoController::class, 'novo'])->name('newCandidato');
+Route::get('/meu-cv', [App\Http\Controllers\CandidatoController::class, 'cv'])->name('meuCv');

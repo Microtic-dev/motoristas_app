@@ -72,9 +72,16 @@
                                       <i class="bi bi-car-front"></i> Base de dados de Motorista
                                     </a>
                                 @else
-                                    <a class="nav-link" href="/bd-motoristas">
-                                      <i class="bi bi-car-front"></i> Base de dados de Motorista
-                                    </a>
+                                    @if(Auth::user()->privilegio == 'admin')
+                                      <a class="nav-link" href="/bd-motoristas">
+                                        <i class="bi bi-car-front"></i> Base de dados de Motorista
+                                      </a>
+                                    @else
+                                      <a class="nav-link" href="#" data-toggle="modal" data-target=".bs-base-dados-modal-center">
+                                        <i class="bi bi-car-front"></i> Base de dados de Motorista
+                                      </a>
+                                    @endif
+
                                 @endguest
                             </li>
 
@@ -84,9 +91,16 @@
                                     <i class="bi bi-car-front"></i> Central de Risco de Motoristas
                                   </a>
                               @else
+                                  @if(Auth::user()->privilegio == 'admin')
                                   <a class="nav-link" href="/centralRisco">
                                     <i class="bi bi-sign-stop-fill"></i> Central de Risco de Motoristas
                                   </a>
+                                  @else
+                                  <a class="nav-link" href="#" data-toggle="modal" data-target=".bs-central-risco-modal-center">
+                                    <i class="bi bi-car-front"></i> Central de Risco de Motoristas
+                                  </a>
+                                  @endif
+
                               @endguest
                             </li>
 

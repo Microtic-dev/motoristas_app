@@ -17,9 +17,10 @@
     <div class="container" id="container">
     	<div class="form-container sign-up-container">
           @if(isset($_GET['candidato']))
-          <h1>Criar conta candidato!</h1>
-    			<span>use as suas credenciais para registrar <br>a sua conta</span>
-            <form method="POST" action="{{ route('register') }}">
+
+            <form method="POST" action="{{ route('newCandidato') }}">
+              <h1>Criar conta candidato!</h1>
+        			<span>use as suas credenciais para registrar <br>a sua conta</span>
            @csrf
            <input type="hidden" name="privilegio" value="candidato"/>
            <input type="hidden" name="email" id="email_number"/>
@@ -44,7 +45,10 @@
            @enderror
 
           <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirmar Senha">
-    			<button type="submit">  {{ __('Cadastrar') }}</button>
+           <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Nome Completo">
+
+
+          <button type="submit">  {{ __('Cadastrar') }}</button>
           <a class="btn btn-link" href="{{route('login','recrutador')}}">
               {{ __('Sou empregador') }}
           </a>

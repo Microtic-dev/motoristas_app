@@ -17,15 +17,18 @@ return new class extends Migration
           $table->bigIncrements('id');
           $table->bigInteger('user_id')->unsigned();
           $table->date('datanascimento');
-          $table->string('telefone')->unique();
           $table->string('telefone_alt')->nullable();
           $table->string('endereco');
           $table->bigInteger('provincia_id')->unsigned();
           $table->string('sexo');
-          $table->string('perfil')->nullable();
-          $table->string('ano_experiencia')->nullable();
+          $table->bigInteger('categoria_id')->unsigned();
+          $table->string('numero_carta_conducao')->nullable();
+          $table->string('validade_conducao')->nullable(); //sim, nao
+          $table->string('inibicao_anterior')->nullable(); //sim, nao
+          $table->text('inibicao_motivo')->nullable(); // motivo de inibicao
+          $table->string('envolvimento_acidente')->nullable(); //sim, nao, Já se envolveu em acidente de
+          $table->text('acidente_descricao')->nullable(); //descricao do acidente
           $table->string('grau_academico')->nullable();
-          $table->text('resumo')->nullable();
           $table->string('nacionalidade')->nullable();
           $table->timestamps();
 
@@ -38,6 +41,11 @@ return new class extends Migration
                   ->references('id')->on('provincias')
                   ->onDelete('cascade')
                   ->onUpdate('cascade');
+
+          $table->foreign('categoria_id')
+                  ->references('id')->on('categorias')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
       });
     }
 
@@ -48,6 +56,6 @@ return new class extends Migration
      */
     public function down()
     {
-          Schema::dropIfExists('candidatura_anuncio');
+          Schema::dropIfExists('candidatos');
     }
 };
