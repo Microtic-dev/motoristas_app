@@ -7,8 +7,9 @@
     <style>
           @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
     </style>
-        <link href="{{asset('css/login.css')}}" rel="stylesheet">
 
+        <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{asset('css/login.css')}}" rel="stylesheet">
   </head>
   <body>
 
@@ -18,13 +19,12 @@
     	<div class="form-container sign-up-container">
           @if(isset($_GET['candidato']))
 
-            <form method="POST" action="{{ route('newCandidato') }}">
+            <form method="POST" action="{{ route('newCandidato') }}" class="formulario">
               <h1>Criar conta candidato!</h1>
-        			<span>use as suas credenciais para registrar <br>a sua conta</span>
+        			<p class="text-center">Use as suas credenciais para registrar a sua conta</p>
            @csrf
            <input type="hidden" name="privilegio" value="candidato"/>
-           <input type="hidden" name="email" id="email_number"/>
-           <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Nome Completo">
+           <input id="name" type="text" class="form-control required @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Nome Completo">
            @error('name')
                <span class="invalid-feedback" role="alert">
                      <strong>{{ $message }}</strong>
@@ -37,18 +37,119 @@
                </span>
            @enderror
 
+           <input type="email" class="form-control" name="email" id="email" placeholder="Email"/>
+
            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Senha">
            @error('password')
                <span class="invalid-feedback" role="alert">
                    <strong>{{ $message }}</strong>
                </span>
            @enderror
+           <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirmar Senha">
 
-          <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirmar Senha">
-           <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Nome Completo">
+          <input id="data_nascimento" type="date" class="form-control" name="data_nascimento" required placeholder="Data de Nascimento">
+          <input id="nacionalidade" type="text" class="form-control" name="nacionalidade" required placeholder="Nacionalidade">
 
+          <div class="form-check">
+            <label class="form-check-label margin-left-20">Sexo: </label>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" name="sexo" type="radio" id="inlineCheckbox1" value="Masculino">
+                <label class="form-check-label" for="inlineCheckbox1">Masculino</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" name="sexo" type="radio" id="inlineCheckbox2" value="Feminino">
+                <label class="form-check-label" for="inlineCheckbox2">Feminino</label>
+              </div>
+          </div>
+          <div class="form-group row">
+            <label for="example-text-input" class="col-sm-12 col-form-label">Nível Académico</label>
+              <div class="col-sm-6">
+                <select class="form-control" id="nivel_de_ensino" name="nivel">
+                    <option>Nível</option>
+                    <option value="Escolar">Escolar</option>
+                    <option value="Tecnico-Profissional">Técnico-Profissional</option>
+                    <option value="Superior">Superior</option>
+                </select>
+              </div>
+              <div class="col-sm-6">
+                <select class="form-control" name="grau_academico">
+                    <option>Grau</option>
+                    <option class="escolar">1ª à 5ª Classe</option>
+                    <option class="escolar">6ª à 7ª Classe</option>
+                    <option class="escolar">8ª à 10ª Classe</option>
+                    <option class="escolar">11ª à 12ª Classe</option>
+                    <option class="tecnico">Básico</option>
+                    <option class="tecnico">Elementar</option>
+                    <option class="tecnico">Médio</option>
+                    <option class="superior">Bacharelato</option>
+                    <option class="superior">Licenciatura</option>
+                    <option class="superior">Mestrado</option>
+                    <option class="superior">Doutoramento</option>
+                    <option class="superior">Pós-Doutoramento</option>
+                </select>
+              </div>
+          </div>
 
-          <button type="submit">  {{ __('Cadastrar') }}</button>
+          <select class="form-control" name="provincia_id" id="provincia" required>
+            @php
+              $provincias = App\Models\Provincias::all();
+            @endphp
+              <option selected>Seleccione a Provincia</option>
+              @foreach ($provincias as $key => $provincia)
+                <option value="{{ $provincia->id }}">{{ $provincia->name }}</option>
+              @endforeach
+          </select>
+          <textarea class="form-control" name="endereco" id="endereco" rows="3" placeholder="Residência..."></textarea>
+          <select class="form-control" name="categoria_id" id="categoria" required>
+            @php
+              $categorias = App\Models\Categorias::all();
+            @endphp
+              <option selected>Habilitacao de Condução</option>
+              @foreach ($categorias as $key => $categoria)
+                <option value="{{ $categoria->id }}">{{ $categoria->categoria }}</option>
+              @endforeach
+          </select>
+
+          <input id="numero_carta_conducao" type="text" class="form-control" name="numero_carta_conducao" placeholder="Número da Carta de Condução ">
+          <div class="form-check">
+            <label class="form-check-label margin-left-20">A sua carta de condução está dentro da validade? </label><br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" name="validade_conducao" type="radio" id="inlineCheckboxValidadeConducao1" value="Sim">
+                <label class="form-check-label" for="inlineCheckboxValidadeConducao1">Sim</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" name="validade_conducao" type="radio" id="inlineCheckboxValidadeConducao2" value="Não">
+                <label class="form-check-label" for="inlineCheckboxValidadeConducao2">Não</label>
+              </div>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label margin-left-20">Já foi inibido de conduzir? </label><br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" name="inibicao_anterior" type="radio" id="inlineCheckboxInibicao1" value="Sim">
+                <label class="form-check-label" for="inlineCheckboxInibicao1">Sim</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" name="inibicao_anterior" type="radio" id="inlineCheckboxInibicao2" value="Não">
+                <label class="form-check-label" for="inlineCheckboxInibicao2">Não</label>
+              </div>
+          </div>
+
+          <textarea class="form-control" name="inibicao_motivo" id="inibicao_motivo" rows="3" placeholder="Motivo da Inibição..."></textarea>
+
+          <div class="form-check">
+            <label class="form-check-label margin-left-20">Já se envolveu em acidente de viação? </label><br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" name="envolvimento_acidente" type="radio" id="inlineCheckboxenvolvimentoAcidente1" value="Sim">
+                <label class="form-check-label" for="inlineCheckboxenvolvimentoAcidente1">Sim</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" name="envolvimento_acidente" type="radio" id="inlineCheckboxenvolvimentoAcidente2" value="Não">
+                <label class="form-check-label" for="inlineCheckboxenvolvimentoAcidente2">Não</label>
+              </div>
+          </div>
+          <textarea class="form-control" name="acidente_descricao" id="acidente_descricao" rows="3" placeholder="Descreve o acidente..."></textarea>
+
+          <button class="mt-5" type="submit">  {{ __('Cadastrar') }}</button>
           <a class="btn btn-link" href="{{route('login','recrutador')}}">
               {{ __('Sou empregador') }}
           </a>
@@ -86,7 +187,7 @@
                  </span>
              @enderror
 
-            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirmar Senha">
+
             <br><button type="submit">  {{ __('Cadastrar') }}</button>
         </form>
 
@@ -184,20 +285,74 @@
         var email = $('#celular_login').val();
         $('#email_login').val(email+"@motoristas.co.mz");
     });
+
+
+    $(".escolar").hide();
+    $(".tecnico").hide();
+    $(".superior").hide();
+
+    $('#nivel_de_ensino').on('change', function() {
+
+      if(this.value === 'Escolar') {
+        $(".escolar").show();
+      } else {
+        $(".escolar").hide();
+      }
+
+      if(this.value === 'Tecnico-Profissional') {
+        $(".tecnico").show();
+      } else {
+        $(".tecnico").hide();
+      }
+
+      if(this.value === 'Superior') {
+        $(".superior").show();
+      } else {
+        $(".superior").hide();
+      }
+
+    });
+
+    $('#inibicao_motivo').hide();
+    $('#inlineCheckboxInibicao1').change(function() {
+        if(this.checked) {
+            $('#inibicao_motivo').show();
+        }
+    });
+
+    $('#inlineCheckboxInibicao2').change(function() {
+        if(this.checked) {
+            $('#inibicao_motivo').hide();
+        }
+    });
+
+    $('#acidente_descricao').hide();
+    $('#inlineCheckboxenvolvimentoAcidente1').change(function() {
+        if(this.checked) {
+            $('#acidente_descricao').show();
+        }
+    });
+
+    $('#inlineCheckboxenvolvimentoAcidente2').change(function() {
+        if(this.checked) {
+            $('#acidente_descricao').hide();
+        }
+    });
+
     </script>
    <script>
 
-const signUpButton = document.getElementById('signUp');
-const signInButton = document.getElementById('signIn');
-const container = document.getElementById('container');
+      const signUpButton = document.getElementById('signUp');
+      const signInButton = document.getElementById('signIn');
+      const container = document.getElementById('container');
 
-signUpButton.addEventListener('click', () => {
- container.classList.add("right-panel-active");
-});
+      signUpButton.addEventListener('click', () => {
+       container.classList.add("right-panel-active");
+      });
 
-signInButton.addEventListener('click', () => {
- container.classList.remove("right-panel-active");
-});
+      signInButton.addEventListener('click', () => {
+       container.classList.remove("right-panel-active");
+      });
 
    </script>
   </body>

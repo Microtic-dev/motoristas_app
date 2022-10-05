@@ -150,7 +150,7 @@ class CandidatoController extends Controller
           if (Auth::attempt(['email' => $email, 'password' => $password])) {
               $candidato = new Candidatos;
               $candidato->user_id = Auth::user()->id;
-              $candidato->datanascimento = $request->datanascimento;
+              $candidato->datanascimento = $request->data_nascimento;
               $candidato->telefone_alt = $request->telefone_alt;
               $candidato->endereco = $request->endereco;
               $candidato->provincia_id = $request->provincia_id;
@@ -165,7 +165,7 @@ class CandidatoController extends Controller
               $candidato->nacionalidade = $request->nacionalidade;
 
                 if ($candidato->save()) {
-                    return redirect('/login')->with('success', 'candidato registrado com sucesso!');
+                    return redirect('/candidato')->with('success', 'Conta criada com sucesso!');
                 } else {
                     return redirect()->back()->with('erro', 'Ocorreu erro, tenta novamente!');
                 }
