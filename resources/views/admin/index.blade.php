@@ -73,7 +73,7 @@ Base de Dados de Motoristas |
                         <div class="row perfil">
                           <div class="col-md-4">
                             <img src="{{asset('/assets/images/users/user.png')}}" class="rounded-circle"/>
-                            <span class="nome_motoritsa"><a href="/perfil/1">{{ $motorista ->name}}</a></span>
+                            <span class="nome_motoritsa"><a href="{{route('perfil', $motorista->user_id )}}">{{ $motorista ->name}}</a></span>
                           </div>
                           <div class="col-md-4">
 
@@ -91,7 +91,7 @@ Base de Dados de Motoristas |
               </div>
               @endforeach
 
-          
+
 
             </div>
           </div>

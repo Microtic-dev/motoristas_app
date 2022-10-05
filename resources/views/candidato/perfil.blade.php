@@ -41,11 +41,11 @@ Perfil |
                         <div class="row perfil">
                           <div class="col-md-6">
                             <img src="{{asset('/assets/images/users/Ellipse.png')}}" class="rounded-circle"/>
-                            <span class="nome_motoritsa"><a href="/perfil/1">Matio Fernando Tambu</a></span>
+                            <span class="nome_motoritsa"><a href="#">{{$motorista->nome}}</a></span>
                           </div>
                           <div class="col-md-6">
                             <p>Contacto: <b> +258 84 64 ***** ; +258 87 64 ***** </b></p>
-                            <p>email: <b> matio@gmail.com</b></p>
+                            <p>email: <b> {{$motorista->email}}</b></p>
                           </div>
                         </div>
                         <section class="navega"></section>
@@ -57,7 +57,7 @@ Perfil |
                                 <p>Data de Nascimento: <span class="float-right">25/08/1988</span></p>
                                 <p>Género: <span class="float-right"> Masculino</span></p>
                                 <p>Nacionalidade: <span class="float-right">Mocambicano</span></p>
-                                <p>Residência: <span class="float-right">Av. Malhangalene nr 67</span></p>
+                                <p>Residência: <span class="float-right">{{$motorista->endereco}}</span></p>
                               </div>
                             </div>
                           </div>

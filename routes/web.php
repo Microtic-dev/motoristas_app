@@ -46,7 +46,7 @@ Route::get('/search', [App\Http\Controllers\AnunciosController::class, 'search']
 
 Route::get('/bd-motoristas', [App\Http\Controllers\AdminController::class, 'index'])->name('bd-motoristas');
 Route::get('/centralRisco', [App\Http\Controllers\AdminController::class, 'index'])->name('bd-motoristas');
-Route::get('/perfil/{id}', [App\Http\Controllers\MotoristaController::class, 'perfil'])->name('perfil');
+Route::get('/perfil/{id}', [App\Http\Controllers\CandidatoController::class, 'perfil'])->name('perfil');
 //Route::get('/login2', [App\Http\Controllers\CanditadoController::class, 'login'])->name('login');
 
 Route::get('/empregador', [App\Http\Controllers\EmpregadorController::class, 'index'])->name('empregador');
