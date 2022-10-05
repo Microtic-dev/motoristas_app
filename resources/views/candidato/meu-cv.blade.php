@@ -95,9 +95,8 @@ Meu Curriculum Vitae - {{ Auth::user()->name }} |
                                 </h4>
                                 <p><b>Nome completo: </b>{{ ucfirst(Auth::user()->name) }}</p>
                                 <p><b>Celular: </b>{{ Auth::user()->celular }}</p>
-                                <p><b>Experiência: </b>{{ $candidato->ano_experiencia }} anos</p>
                                 <p><b>Grau Académico: </b>{{ $candidato->grau_academico }}</p>
-                                <p><b>Resumo: </b>{{ $candidato->resumo }}</p>
+                                <p><b>Habilitacao de Condução: </b>{{ $candidato->categoria }}</p>
 
                             </div>
                             <!-- sample modal content -->
@@ -118,36 +117,6 @@ Meu Curriculum Vitae - {{ Auth::user()->name }} |
                                                   <label for="example-text-input" class="col-sm-3 col-form-label">Nome completo</label>
                                                   <div class="col-sm-9">
                                                       <input class="form-control" name="nome" type="text" value="{{ $candidato->nome }}">
-                                                  </div>
-                                              </div>
-                                              <div class="form-group row">
-                                                  <label for="example-text-input" class="col-sm-3 col-form-label">Perfil</label>
-                                                  <div class="col-sm-9">
-                                                      <input class="form-control" name="perfil" type="text" value="{{ $candidato->perfil }}">
-                                                  </div>
-                                              </div>
-                                              <div class="form-group row">
-                                                  <label for="example-text-input" class="col-sm-3 col-form-label">Resumo</label>
-                                                  <div class="col-sm-9">
-                                                    <textarea id="textarea" class="form-control" maxlength="225" rows="3" name=resumo>{{ $candidato->resumo }}</textarea>
-                                                </div>
-                                              </div>
-                                              <div class="form-group row">
-                                                  <label for="example-text-input" class="col-sm-3 col-form-label">Experiência</label>
-                                                  <div class="col-sm-9">
-                                                    <select class="form-control" name="ano_experiencia">
-                                                        <option value="0">Anos de Experiência</option>
-                                                        <option value="1" @if($candidato->ano_experiencia == 1) selected @endif >1 ano</option>
-                                                        <option value="2" @if($candidato->ano_experiencia == 2) selected @endif>2 anos</option>
-                                                        <option value="3" @if($candidato->ano_experiencia == 3) selected @endif>3 anos</option>
-                                                        <option value="4" @if($candidato->ano_experiencia == 4) selected @endif>4 anos</option>
-                                                        <option value="5" @if($candidato->ano_experiencia == 5) selected @endif>5 anos</option>
-                                                        <option value="6" @if($candidato->ano_experiencia == 6) selected @endif>6 anos</option>
-                                                        <option value="7" @if($candidato->ano_experiencia == 7) selected @endif>7 anos</option>
-                                                        <option value="8" @if($candidato->ano_experiencia == 8) selected @endif>8 anos</option>
-                                                        <option value="9" @if($candidato->ano_experiencia == 9) selected @endif>9 anos</option>
-                                                        <option value="+10" @if($candidato->ano_experiencia == '+10') selected @endif>+10 anos</option>
-                                                    </select>
                                                   </div>
                                               </div>
                                               <div class="form-group row">
@@ -264,7 +233,7 @@ Meu Curriculum Vitae - {{ Auth::user()->name }} |
                                     </button>
                                   </span>
                                 </h4>
-                                <p><b>N° Telefone: </b>{{$candidato->telefone }}</p>
+                                <p><b>N° Telefone: </b>{{ Auth::user()->celular }}</p>
                                 <p><b>N° Telefone Alternativo: </b>{{ $candidato->telefone_alt }}</p>
                                 <p><b>Email: </b>{{ $candidato->email }}</p>
                             </div>
@@ -286,7 +255,7 @@ Meu Curriculum Vitae - {{ Auth::user()->name }} |
                                               <div class="form-group row">
                                                   <label for="example-text-input" class="col-sm-3 col-form-label">N° Telefone</label>
                                                   <div class="col-sm-9">
-                                                    <input class="form-control" type="number" name="telefone" value="{{ $candidato->telefone }}" required>
+                                                    <input class="form-control" type="number" name="telefone" value="{{ Auth::user()->celular }}" required>
                                                   </div>
                                               </div>
                                               <div class="form-group row">

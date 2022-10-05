@@ -79,16 +79,16 @@ class CandidatoController extends Controller
 
       public function CV()
       {
-        $candidato = DB::table('users')
-                ->where('id', Auth::user()->id)
-                ->first();
 
-        // $candidato = DB::table('candidatos')
-        //         ->join('provincias', 'candidatos.provincia_id', '=', 'provincias.id')
-        //         ->join('users', 'candidatos.user_id', '=', 'users.id')
-        //         ->where('user_id', Auth::user()->id)
-        //         ->select('candidatos.*', 'users.name as nome', 'users.email as email', 'users.privilegio as privilegio', 'provincias.provincia as provincia')
-        //         ->first();
+
+        $candidato = DB::table('candidatos')
+                ->join('provincias', 'candidatos.provincia_id', '=', 'provincias.id')
+                ->join('categorias', 'candidatos.categoria_id', '=', 'categorias.id')
+                ->join('users', 'candidatos.user_id', '=', 'users.id')
+                ->where('candidatos.user_id', Auth::user()->id)
+                ->select('candidatos.*', 'users.name as nome', 'users.email as email', 'users.privilegio as privilegio', 'provincias.name as provincia',
+                'categorias.categoria as categoria')
+                ->first();
 
         $formacoes = DB::table('formacoes')
                 ->where('candidato_id', $candidato->id)
@@ -162,6 +162,7 @@ class CandidatoController extends Controller
               $candidato->inibicao_motivo = $request->inibicao_motivo; // motivo de inibicao
               $candidato->envolvimento_acidente = $request->envolvimento_acidente; // Já se envolveu em acidente de
               $candidato->acidente_descricao = $request->acidente_descricao; // descricao do acidente
+              $candidato->grau_academico = $request->grau_academico;
               $candidato->nacionalidade = $request->nacionalidade;
 
                 if ($candidato->save()) {
