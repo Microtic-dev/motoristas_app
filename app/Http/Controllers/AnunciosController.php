@@ -20,7 +20,7 @@ class AnunciosController extends Controller
 
 
       $anuncio = new Anuncios;
-      $anuncio->titulo = $request->title;
+      $anuncio->titulo = $request->titulo;
       $anuncio->user_id = Auth::user()->id;
       $anuncio->validade = $request->validade;
       $anuncio->descricao = $request->descricao;
@@ -93,6 +93,15 @@ public function editarAnuncio(Request $request){
   }
 
 
+}
+
+public function apagarAnuncio($id){
+    $anuncio = Anuncios::find($id);
+    if($anuncio->delete()){
+       return redirect()->back()->with('success', 'Anúncio atualizado com sucesso!');
+    }else {
+        return redirect()->back()->with('erro', 'Ocorreu erro, tenta novamente!');
+    }
 }
 
 public function search(Request $request){

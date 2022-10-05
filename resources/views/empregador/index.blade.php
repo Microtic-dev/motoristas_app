@@ -83,7 +83,7 @@ Perfil |
                                        @endphp
                                    <button href="#" class="btn btn-sm btn-primary waves-effect waves-light" data-toggle="modal" data-target="#editarAnuncio"  onclick="loadData('{{$anuncio_obj}}')"><i class="fa fa-edit"></i></button>
 
-                                   <form method="post" style="display: inline;" action="/delete-anuncio/{{ $anuncio->id }}">
+                                   <form method="post" style="display: inline;" action="{{ route('apagarAnuncio', $anuncio->id) }}">
                                      {{ csrf_field() }}
                                      <button onclick="confirm('{{ __("Tem certeza que pretende eliminar este anuncio?") }}') ? this.parentElement.submit() : ''" class="btn btn-sm btn-danger waves-effect waves-light">
                                        <i class="far fa-trash-alt"></i>
