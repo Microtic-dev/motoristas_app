@@ -41,7 +41,7 @@ Titulo de anuncio |
               <section class="navega">
                 <span><a href="javascript:history.back();">≪ Voltar</a></span> |
                 <span>Categoria:
-                     <a href="/categoria/administracao-secretariado">
+                     <a href="#">
                         {{ $anuncio->categoria }}
                      </a>
                   </span>
