@@ -18,8 +18,9 @@ class AnunciosController extends Controller
       return redirect()->back()->with('erro', 'Ocorreu erro, Preenche todos campos obrigatorios!');
     }else {
 
+
       $anuncio = new Anuncios;
-      $anuncio->titulo = $request->titulo;
+      $anuncio->titulo = $request->title;
       $anuncio->user_id = Auth::user()->id;
       $anuncio->validade = $request->validade;
       $anuncio->descricao = $request->descricao;
@@ -57,6 +58,40 @@ public function verAnuncio($id){
               ->select('anuncios.*','provincias.name as provincia','categorias.categoria as categoria')
               ->first();
     return view('anuncio', compact('anuncio','provincias' ,'categorias','anuncios_provincias'));
+
+}
+
+public function editarAnuncio(Request $request){
+
+  if(empty($request->provincias)) {
+    return redirect()->back()->with('erro', 'Ocorreu erro, Preenche todos campos obrigatorios!');
+  }else {
+
+    $anuncio = Anuncios::find($request->id);
+
+    $anuncio->titulo = $request->title;
+
+    $anuncio->user_id = Auth::user()->id;
+    $anuncio->validade = $request->validade;
+    $anuncio->descricao = $request->descricao;
+    $anuncio->forma_de_candidatura = $request->forma_de_candidatura;
+    $anuncio->categoria_id = $request->categoria_id;
+    $anuncio->estado_anuncio = 'Publicado';
+
+     if ($anuncio->update()) {
+      foreach ($request->provincias as $key => $provincia) {
+        $anuncio_provincia = new Anuncios_provincias;
+        $anuncio_provincia->anuncio_id = $anuncio->id;
+        $anuncio_provincia->provincia_id = $provincia;
+        $anuncio_provincia->save();
+      }
+
+         return redirect()->back()->with('success', 'Anúncio atualizado com sucesso!');
+     } else {
+         return redirect()->back()->with('erro', 'Ocorreu erro, tenta novamente!');
+     }
+  }
+
 
 }
 

@@ -40,6 +40,7 @@ Route::get('/ ', [App\Http\Controllers\InicioController::class, 'index'])->name(
 
 Route::post('/criarAnuncio', [App\Http\Controllers\AnunciosController::class, 'criarAnuncio'])->name('criarAnuncio');
 Route::get('/anuncio/{id}', [App\Http\Controllers\AnunciosController::class, 'verAnuncio'])->name('verAnuncio');
+Route::post('/editarAnuncio', [App\Http\Controllers\AnunciosController::class, 'editarAnuncio'])->name('editarAnuncio');
 Route::get('/search', [App\Http\Controllers\AnunciosController::class, 'search'])->name('search');
 
 Route::get('/bd-motoristas', [App\Http\Controllers\AdminController::class, 'index'])->name('bd-motoristas');

@@ -51,7 +51,11 @@ Perfil |
           <div class="col-xl-9">
               <div class="card">
                   <div class="card-body">
-                    <h4 class="mt-0 header-title mb-4">Anúncios de vaga <span class="float-right"><button class="btn btn-success btn-sm waves-effect waves-light" data-toggle="modal" data-target="#anuncio"><i class="dripicons-plus"></i>&nbsp;Novo </button></span></h4>
+                    <h4 class="mt-0 header-title mb-4">Anúncios de vaga <span class="float-right">
+                      <button class="btn btn-success btn-sm waves-effect waves-light" data-toggle="modal" data-target="#anuncio"
+                      <i class="dripicons-plus">
+                      </i>&nbsp;Novo </button>
+                    </span></h4>
                     <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                          <thead>
                          <tr>
@@ -74,7 +78,10 @@ Perfil |
                                  <td class="text-center">
                                    <a href="/candidatos-anuncio/{{ $anuncio->id }}" class="btn btn-sm btn-success waves-effect waves-light"><i class="fa fa-users"></i> Candidaturas</a>
 
-                                   <button href="#" class="btn btn-sm btn-primary waves-effect waves-light"><i class="fa fa-edit"></i></button>
+                                        @php
+                                            $anuncio_obj =  json_encode((array) $anuncio);
+                                       @endphp
+                                   <button href="#" class="btn btn-sm btn-primary waves-effect waves-light" data-toggle="modal" data-target="#editarAnuncio"  onclick="loadData('{{$anuncio_obj}}')"><i class="fa fa-edit"></i></button>
 
                                    <form method="post" style="display: inline;" action="/delete-anuncio/{{ $anuncio->id }}">
                                      {{ csrf_field() }}
@@ -89,6 +96,7 @@ Perfil |
 
                          </tbody>
                      </table>
+
 
                      <div id="anuncio" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                            <div class="modal-dialog modal-lg">
@@ -172,7 +180,99 @@ Perfil |
                                </div><!-- /.modal-content -->
                            </div><!-- /.modal-dialog -->
                      </div><!-- /.modal -->
-                  </div>
+
+
+
+                  <div id="editarAnuncio" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                              <form class="form-horizontal m-t-20" action="{{route('editarAnuncio')}}" method="post" id="add_anuncio">
+                                @csrf
+                                <input name="user_id" type="hidden" value="{{ Auth::user()->id }}">
+                                <input name="id" id="anuncioIdEdit" type="hidden" >
+
+                                <div class="modal-header">
+                                    <h5 class="modal-title mt-0" id="myModalLabel">Editar Anúncios de vaga</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                  <div class="form-group row">
+                                      <label for="example-text-input" class="col-sm-3 col-form-label">Titulo do anúncio</label>
+                                        <div class="col-sm-9">
+                                         <input class="form-control" name="title" id="title" type="text" required>
+                                      </div>
+                                  </div>
+
+                                  <div class="form-group row">
+                                      <label for="example-text-input" class="col-sm-3 col-form-label">Categoria </label>
+                                      <div class="col-sm-9">
+
+
+                                        <select class="form-control" name="categoria_id" id="categoria" required>
+                                            <option selected>Seleccione a Categoria...</option>
+
+                                            @foreach ($categorias as $key => $categoria)
+                                              <option value="{{ $categoria->id }}">{{ $categoria->categoria }}</option>
+                                            @endforeach
+
+                                        </select>
+                                      </div>
+                                  </div>
+                                  <div class="form-group row">
+                                      <label for="example-text-input" class="col-sm-3 col-form-label">Província </label>
+                                      <div class="col-sm-9">
+                                         <ul class="varias-provincias" id="varias_provincias">
+                                          @foreach ($provincias as $provincia)
+                                          <li>
+                                           <input class="form-check-input provincia" type="checkbox" name="provincias[]" value="{{ $provincia->id }}" >
+                                           <label class="form-check-label" for="provincia">
+                                             {{ $provincia->name }}
+                                           </label>
+                                           </li>
+                                          @endforeach
+                                        </ul>
+                                      </div>
+                                  </div>
+                                    <div class="form-group row">
+                                        <label for="example-text-input" class="col-sm-3 col-form-label">Descrição</label>
+                                          <div class="col-sm-9">
+                                            <textarea id="descriptionEdit" name="descricao" class="form-control" rows="6" placeholder="Ex: Escreve aqui a descrição do anúncio..."></textarea>
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <div class="form-group row">
+                                        <label for="example-text-input" class="col-sm-3 col-form-label">Forma de candidatura</label>
+                                        <div class="col-sm-9">
+                                          <label class="radio-inline">
+                                            <input type="radio" id="inlineRadio1" name="forma_de_candidatura" value="Portal" checked>No Portal
+                                          </label>
+                                          <label class="radio-inline">
+                                            <input type="radio" id="inlineRadio2" name="forma_de_candidatura" value="Outro meio">Outro meio
+                                          </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="example-text-input" class="col-sm-3 col-form-label">Validade</label>
+                                        <div class="col-sm-5">
+                                          <input class="form-control" name="validade" id="validade" type="date"  required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-primary waves-effect waves-light">Publicar</button>
+                                </div>
+                              </form>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                  </div><!-- /.modal -->
+
+                 </div>
               </div>
           </div>
             <div class="col-xl-3">
@@ -206,5 +306,23 @@ Perfil |
     </div> <!-- end container-fluid -->
 </div>
 <!-- end wrapper -->
+<script>
 
+function loadData(json){
+
+          var anuncio = JSON.parse(json)
+
+          console.log(anuncio);
+
+          $('#title').val(anuncio.titulo);
+          $('#descriptionEdit').val(anuncio.descricao);
+          $('#anuncioIdEdit').val(anuncio.id)
+           if(anuncio.forma_de_candidatura=="Portal"){
+           $('#inlineRadio1').attr('checked', 'checked');
+           }else{
+           $('#inlineRadio2').attr('checked', 'checked');
+           }
+
+      }
+</script>
 @endsection
