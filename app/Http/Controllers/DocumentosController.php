@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Documentos;
+use Illuminate\Support\Facades\DB;
+use Auth;
 
-class documentos extends Controller
+class DocumentosController extends Controller
 {
-
-  public function criar(Request $request)
+  public function create(Request $request)
   {
     $documento = $request->file('documento');
+
     $documentoName = time() . '-' . $request->tipo . '.' . $documento->getClientOriginalExtension();
     $upload_success = $documento->move(public_path('uploads'), $documentoName);
 

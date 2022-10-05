@@ -74,18 +74,18 @@
               <div class="col-sm-6">
                 <select class="form-control" name="grau_academico">
                     <option>Grau</option>
-                    <option class="escolar">1ª à 5ª Classe</option>
-                    <option class="escolar">6ª à 7ª Classe</option>
-                    <option class="escolar">8ª à 10ª Classe</option>
-                    <option class="escolar">11ª à 12ª Classe</option>
-                    <option class="tecnico">Básico</option>
-                    <option class="tecnico">Elementar</option>
-                    <option class="tecnico">Médio</option>
-                    <option class="superior">Bacharelato</option>
-                    <option class="superior">Licenciatura</option>
-                    <option class="superior">Mestrado</option>
-                    <option class="superior">Doutoramento</option>
-                    <option class="superior">Pós-Doutoramento</option>
+                    <option class="escolar" value="1ª à 5ª Classe">1ª à 5ª Classe</option>
+                    <option class="escolar" value="6ª à 7ª Classe">6ª à 7ª Classe</option>
+                    <option class="escolar" value="8ª à 10ª Classe">8ª à 10ª Classe</option>
+                    <option class="escolar" value="11ª à 12ª Classe">11ª à 12ª Classe</option>
+                    <option class="tecnico" value="Tecnico Básico">Básico</option>
+                    <option class="tecnico" value="Tecnico Elementar">Elementar</option>
+                    <option class="tecnico" value="Tecnico Médio">Médio</option>
+                    <option class="superior" value="Bacharelato">Bacharelato</option>
+                    <option class="superior" value="Licenciatura">Licenciatura</option>
+                    <option class="superior" value="Mestrado">Mestrado</option>
+                    <option class="superior" value="Doutoramento">Doutoramento</option>
+                    <option class="superior" value="Pós-Doutoramento">Pós-Doutoramento</option>
                 </select>
               </div>
           </div>

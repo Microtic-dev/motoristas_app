@@ -79,21 +79,16 @@ class CandidatoController extends Controller
 
       public function CV()
       {
-        $candidato = DB::table('users')
-                ->where('id', Auth::user()->id)
+
+
+        $candidato = DB::table('candidatos')
+                ->join('provincias', 'candidatos.provincia_id', '=', 'provincias.id')
+                ->join('categorias', 'candidatos.categoria_id', '=', 'categorias.id')
+                ->join('users', 'candidatos.user_id', '=', 'users.id')
+                ->where('candidatos.user_id', Auth::user()->id)
+                ->select('candidatos.*', 'users.name as nome', 'users.email as email', 'users.privilegio as privilegio', 'provincias.name as provincia',
+                'categorias.categoria as categoria')
                 ->first();
-
-        // $candidato = DB::table('candidatos')
-        //         ->join('provincias', 'candidatos.provincia_id', '=', 'provincias.id')
-        //         ->join('users', 'candidatos.user_id', '=', 'users.id')
-        //         ->where('user_id', Auth::user()->id)
-        //         ->select('candidatos.*', 'users.name as nome', 'users.email as email', 'users.privilegio as privilegio', 'provincias.provincia as provincia')
-        //         ->first();
-
-        $formacoes = DB::table('formacoes')
-                ->where('candidato_id', $candidato->id)
-                ->get();
-
 
         $idiomas = DB::table('idiomas')
                 ->where('candidato_id', $candidato->id)
@@ -103,24 +98,19 @@ class CandidatoController extends Controller
                 ->where('candidato_id', $candidato->id)
                 ->get();
 
-        $conhecimentos = DB::table('conhecimentos')
-                ->where('candidato_id', $candidato->id)
-                ->get();
-
         $experiencias = DB::table('experiencias')
                 ->where('candidato_id', $candidato->id)
                 ->get();
 
-                if(sizeof($formacoes) < 1) {  $progressFormacao = 0; }else{  $progressFormacao = 15; }
-                if(sizeof($experiencias) < 1) { $progressExperiencia = 0; } else { $progressExperiencia = 15; }
-                if(sizeof($conhecimentos) < 1) { $progressConhecimento = 0; } else { $progressConhecimento = 15; }
-                if(sizeof($idiomas) < 1) { $progressIdioma = 0; } else { $progressIdioma = 15; }
-                if(sizeof($documentos) < 1) { $progressDocumento = 0; } else { $progressDocumento = 15; }
 
-        $progress = 25 + $progressFormacao + $progressExperiencia + $progressConhecimento + $progressIdioma + $progressDocumento;
+                if(sizeof($experiencias) < 1) { $progressExperiencia = 0; } else { $progressExperiencia = 20; }
+                if(sizeof($idiomas) < 1) { $progressIdioma = 0; } else { $progressIdioma = 20; }
+                if(sizeof($documentos) < 1) { $progressDocumento = 0; } else { $progressDocumento = 20; }
 
-        return view('candidato.meu-cv', array('candidato' => $candidato, 'formacoes' => $formacoes, 'idiomas' => $idiomas,
-      'documentos' => $documentos, 'conhecimentos' => $conhecimentos, 'experiencias' => $experiencias, 'progress' => $progress ));
+        $progress = 40 + $progressExperiencia + $progressIdioma + $progressDocumento;
+
+        return view('candidato.meu-cv', array('candidato' => $candidato, 'idiomas' => $idiomas,
+      'documentos' => $documentos, 'experiencias' => $experiencias, 'progress' => $progress ));
       }
 
 
@@ -162,6 +152,7 @@ class CandidatoController extends Controller
               $candidato->inibicao_motivo = $request->inibicao_motivo; // motivo de inibicao
               $candidato->envolvimento_acidente = $request->envolvimento_acidente; // Já se envolveu em acidente de
               $candidato->acidente_descricao = $request->acidente_descricao; // descricao do acidente
+              $candidato->grau_academico = $request->grau_academico;
               $candidato->nacionalidade = $request->nacionalidade;
 
                 if ($candidato->save()) {

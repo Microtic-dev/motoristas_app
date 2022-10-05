@@ -37,8 +37,9 @@ Meu Curriculum Vitae - {{ Auth::user()->name }} |
                          </div>
                           <section class="navega">
                           <div class="direita">
-                            <span><a href="/" >Home</a></span> |
-                            <span>meu cv<a href="#"></a><span>
+                            <span><a href="/" >Inicio</a></span> |
+                            <span><a href="/candidato" >Candidato</a></span> |
+                            <span>Meu Curriculum Vitae<a href="#"></a><span>
                            </div>
                           </section>
                       </div>
@@ -52,7 +53,7 @@ Meu Curriculum Vitae - {{ Auth::user()->name }} |
             <div class="col-xl-3">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="mt-0 header-title mb-4">Estado do meu CV </h4>
+                        <h4 class="mt-0 header-title mb-4 text-center">Estado do meu CV </h4>
                         <div class="text-center">
                             <div class="social-source-icon lg-icon mb-3">
                                 <img src="assets/images/users/avatar-6.jpg" alt="user" class="rounded-circle width-100">
@@ -67,9 +68,7 @@ Meu Curriculum Vitae - {{ Auth::user()->name }} |
                             <div class="col-md-12">
                               <p>Dados pessoais <span><i class="dripicons-checkmark float-right text-success"></i></span></p>
                               <p>Contactos <span><i class="dripicons-checkmark float-right text-success"></i></span></p>
-                              <p>Formações @if(sizeof($formacoes) < 1) <span><i class="dripicons-cross float-right text-danger"></i></span>  @else <span><i class="dripicons-checkmark float-right text-success"></i></span> @endif</p>
                               <p>Experiências @if(sizeof($experiencias) < 1) <span><i class="dripicons-cross float-right text-danger"></i></span>  @else <span><i class="dripicons-checkmark float-right text-success"></i></span> @endif</p>
-                              <p>Conhecimentos @if(sizeof($conhecimentos) < 1) <span><i class="dripicons-cross float-right text-danger"></i></span>  @else <span><i class="dripicons-checkmark float-right text-success"></i></span> @endif</p>
                               <p>Idiomas @if(sizeof($idiomas) < 1) <span><i class="dripicons-cross float-right text-danger"></i></span>  @else <span><i class="dripicons-checkmark float-right text-success"></i></span> @endif</p>
                               <p>Documentos @if(sizeof($documentos) < 1) <span><i class="dripicons-cross float-right text-danger"></i></span>  @else <span><i class="dripicons-checkmark float-right text-success"></i></span> @endif</p>
 
@@ -82,7 +81,7 @@ Meu Curriculum Vitae - {{ Auth::user()->name }} |
             <div class="col-xl-9">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="mt-0 header-title mb-4">Curriculum Vitae <span class="float-right"><button  class="btn btn-secondary btn-sm waves-effect waves-light"> CURRICULUM PDF &nbsp;<i class="dripicons-download"></i></button></span></h4>
+                        <!-- <h4 class="mt-0 header-title mb-4">Curriculum Vitae <span class="float-right"><button  class="btn btn-secondary btn-sm waves-effect waves-light"> CURRICULUM PDF &nbsp;<i class="dripicons-download"></i></button></span></h4>-->
                         <div class="row">
                           <div class="col-md-6">
                             <div class="card m-b-30 card-body">
@@ -95,9 +94,8 @@ Meu Curriculum Vitae - {{ Auth::user()->name }} |
                                 </h4>
                                 <p><b>Nome completo: </b>{{ ucfirst(Auth::user()->name) }}</p>
                                 <p><b>Celular: </b>{{ Auth::user()->celular }}</p>
-                                <p><b>Experiência: </b>{{ $candidato->ano_experiencia }} anos</p>
                                 <p><b>Grau Académico: </b>{{ $candidato->grau_academico }}</p>
-                                <p><b>Resumo: </b>{{ $candidato->resumo }}</p>
+                                <p><b>Habilitacao de Condução: </b>{{ $candidato->categoria }}</p>
 
                             </div>
                             <!-- sample modal content -->
@@ -118,36 +116,6 @@ Meu Curriculum Vitae - {{ Auth::user()->name }} |
                                                   <label for="example-text-input" class="col-sm-3 col-form-label">Nome completo</label>
                                                   <div class="col-sm-9">
                                                       <input class="form-control" name="nome" type="text" value="{{ $candidato->nome }}">
-                                                  </div>
-                                              </div>
-                                              <div class="form-group row">
-                                                  <label for="example-text-input" class="col-sm-3 col-form-label">Perfil</label>
-                                                  <div class="col-sm-9">
-                                                      <input class="form-control" name="perfil" type="text" value="{{ $candidato->perfil }}">
-                                                  </div>
-                                              </div>
-                                              <div class="form-group row">
-                                                  <label for="example-text-input" class="col-sm-3 col-form-label">Resumo</label>
-                                                  <div class="col-sm-9">
-                                                    <textarea id="textarea" class="form-control" maxlength="225" rows="3" name=resumo>{{ $candidato->resumo }}</textarea>
-                                                </div>
-                                              </div>
-                                              <div class="form-group row">
-                                                  <label for="example-text-input" class="col-sm-3 col-form-label">Experiência</label>
-                                                  <div class="col-sm-9">
-                                                    <select class="form-control" name="ano_experiencia">
-                                                        <option value="0">Anos de Experiência</option>
-                                                        <option value="1" @if($candidato->ano_experiencia == 1) selected @endif >1 ano</option>
-                                                        <option value="2" @if($candidato->ano_experiencia == 2) selected @endif>2 anos</option>
-                                                        <option value="3" @if($candidato->ano_experiencia == 3) selected @endif>3 anos</option>
-                                                        <option value="4" @if($candidato->ano_experiencia == 4) selected @endif>4 anos</option>
-                                                        <option value="5" @if($candidato->ano_experiencia == 5) selected @endif>5 anos</option>
-                                                        <option value="6" @if($candidato->ano_experiencia == 6) selected @endif>6 anos</option>
-                                                        <option value="7" @if($candidato->ano_experiencia == 7) selected @endif>7 anos</option>
-                                                        <option value="8" @if($candidato->ano_experiencia == 8) selected @endif>8 anos</option>
-                                                        <option value="9" @if($candidato->ano_experiencia == 9) selected @endif>9 anos</option>
-                                                        <option value="+10" @if($candidato->ano_experiencia == '+10') selected @endif>+10 anos</option>
-                                                    </select>
                                                   </div>
                                               </div>
                                               <div class="form-group row">
@@ -264,7 +232,7 @@ Meu Curriculum Vitae - {{ Auth::user()->name }} |
                                     </button>
                                   </span>
                                 </h4>
-                                <p><b>N° Telefone: </b>{{$candidato->telefone }}</p>
+                                <p><b>N° Telefone: </b>{{ Auth::user()->celular }}</p>
                                 <p><b>N° Telefone Alternativo: </b>{{ $candidato->telefone_alt }}</p>
                                 <p><b>Email: </b>{{ $candidato->email }}</p>
                             </div>
@@ -286,7 +254,7 @@ Meu Curriculum Vitae - {{ Auth::user()->name }} |
                                               <div class="form-group row">
                                                   <label for="example-text-input" class="col-sm-3 col-form-label">N° Telefone</label>
                                                   <div class="col-sm-9">
-                                                    <input class="form-control" type="number" name="telefone" value="{{ $candidato->telefone }}" required>
+                                                    <input class="form-control" type="number" name="telefone" value="{{ Auth::user()->celular }}" required>
                                                   </div>
                                               </div>
                                               <div class="form-group row">
@@ -313,118 +281,6 @@ Meu Curriculum Vitae - {{ Auth::user()->name }} |
 
                           </div>
 
-                          <div class="col-md-6">
-                            <div class="card m-b-30 card-body">
-                                <h4 class="card-title font-16 mt-0">Formações
-                                  <span class="float-right">
-                                    <button  class="btn btn-info btn-circle waves-effect waves-light" data-toggle="modal" data-target="#cvFormacao">
-                                    <i class="dripicons-plus"></i>
-                                    </button>
-                                  </span>
-                                </h4>
-                                @if(sizeof($formacoes) < 1)
-                                <p class="card-text text-warning">Nenhuma formação cadastrado</p>
-                                @else
-                                <ul>
-                                  @foreach ($formacoes as $key => $formacao)
-                                    <li><span class="text-info">*</span> {{ $formacao->grau_de_ensino }} - <b>{{ $formacao->curso }}</b> - {{ $formacao->instituicao }} - {{ $formacao->inicio }} - {{ $formacao->fim }} - {{ $formacao->situacao }}</li>
-                                  @endforeach
-
-                                </ul>
-                                @endif
-
-                            </div>
-                            <!-- sample modal content -->
-                              <div id="cvFormacao" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog">
-                                      <div class="modal-content">
-                                        <form class="form-horizontal m-t-20" action="/add-formacao" method="post">
-                                          @csrf
-                                          <input name="candidato_id" type="hidden" value="{{ $candidato->id }}">
-                                          <div class="modal-header">
-                                              <h5 class="modal-title mt-0" id="myModalLabel">Adicionar Formação</h5>
-                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                  <span aria-hidden="true">&times;</span>
-                                              </button>
-                                          </div>
-                                          <div class="modal-body">
-                                              <div class="form-group row">
-                                              <label for="example-text-input" class="col-sm-3 col-form-label">Nível de ensino</label>
-                                              <div class="col-sm-9">
-                                                <select class="form-control" id="nivel_de_ensino" name="nivel">
-                                                    <option>Nível</option>
-                                                    <option value="Escolar">Escolar</option>
-                                                    <option value="Tecnico-Profissional">Técnico-Profissional</option>
-                                                    <option value="Superior">Superior</option>
-                                                </select>
-                                              </div>
-                                              <div class="col-sm-9 offset-md-3">
-                                                <select class="form-control" name="grau">
-                                                    <option>Grau</option>
-                                                    <option class="escolar">1ª à 5ª Classe</option>
-                                                    <option class="escolar">6ª à 7ª Classe</option>
-                                                    <option class="escolar">8ª à 10ª Classe</option>
-                                                    <option class="escolar">11ª à 12ª Classe</option>
-                                                    <option class="tecnico">Básico</option>
-                                                    <option class="tecnico">Elementar</option>
-                                                    <option class="tecnico">Médio</option>
-                                                    <option class="superior">Bacharelato</option>
-                                                    <option class="superior">Licenciatura</option>
-                                                    <option class="superior">Mestrado</option>
-                                                    <option class="superior">Doutoramento</option>
-                                                    <option class="superior">Pós-Doutoramento</option>
-                                                </select>
-                                              </div>
-
-                                              </div>
-
-                                              <div class="form-group row">
-                                                  <label for="example-text-input" class="col-sm-3 col-form-label">Instituição</label>
-                                                  <div class="col-sm-9">
-                                                    <input class="form-control" name="instituicao" type="text" required>
-                                                  </div>
-                                              </div>
-                                              <div class="form-group row">
-                                                  <label for="example-text-input" class="col-sm-3 col-form-label">Curso</label>
-                                                  <div class="col-sm-9">
-                                                    <input class="form-control" name="curso" type="text" required>
-                                                  </div>
-                                              </div>
-
-                                              <div class="form-group row">
-                                                  <label for="example-text-input" class="col-sm-3 col-form-label">Situação</label>
-                                                  <div class="col-sm-9">
-                                                    <select class="form-control" name="situacao">
-                                                        <option value="Cursando">Cursando</option>
-                                                        <option value="Interrompido">Interrompido</option>
-                                                        <option value="Finalista">Finalista</option>
-                                                        <option value="Concluido">Concluido</option>
-                                                    </select>
-                                                  </div>
-                                              </div>
-                                              <div class="form-group row">
-                                                  <label for="example-text-input" class="col-sm-3 col-form-label">Inicio</label>
-                                                  <div class="col-sm-9">
-                                                    <input class="form-control" name="inicio" type="date" required>
-                                                  </div>
-                                              </div>
-                                              <div class="form-group row">
-                                                  <label for="example-text-input" class="col-sm-3 col-form-label">Conclusão</label>
-                                                  <div class="col-sm-9">
-                                                    <input class="form-control" name="fim" type="date" required>
-                                                  </div>
-                                              </div>
-
-                                          </div>
-                                          <div class="modal-footer">
-                                              <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Cancelar</button>
-                                              <button type="submit" class="btn btn-primary waves-effect waves-light">Guardar</button>
-                                          </div>
-                                        </form>
-                                      </div><!-- /.modal-content -->
-                                  </div><!-- /.modal-dialog -->
-                              </div><!-- /.modal -->
-                          </div>
 
                           <div class="col-md-6">
                             <div class="card m-b-30 card-body">
@@ -806,66 +662,6 @@ Meu Curriculum Vitae - {{ Auth::user()->name }} |
 
                           <div class="col-md-6">
                             <div class="card m-b-30 card-body">
-                                <h4 class="card-title font-16 mt-0">Conhecimento Tecnológico/ Habilidades
-                                  <span class="float-right">
-                                    <button  class="btn btn-info btn-circle waves-effect waves-light" data-toggle="modal" data-target="#cvConhecimento">
-                                    <i class="dripicons-plus"></i>
-                                    </button>
-                                  </span>
-                                </h4>
-                                @if(sizeof($conhecimentos) < 1)
-                                <p class="card-text text-warning">Nenhum Conhecimento Tecnológico/ Habilidades</p>
-                                @else
-                                <p>
-                                  @foreach ($conhecimentos as $key => $conhecimento)
-
-                                  @php $arrayConhecimento =  explode(", ", $conhecimento->conhecimento); @endphp
-                                  @foreach($arrayConhecimento as $value)
-
-                                    <span class="badge badge-info"> {{ $value }} </span>
-                                  @endforeach
-                                  @endforeach
-
-                                </p>
-                                @endif
-
-                            </div>
-
-                            <!-- sample modal content -->
-                              <div id="cvConhecimento" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog">
-                                      <div class="modal-content">
-                                        <form class="form-horizontal m-t-20" action="/add-conhecimento" method="post">
-                                          @csrf
-                                          <input name="candidato_id" type="hidden" value="{{ $candidato->id }}">
-                                          <div class="modal-header">
-                                              <h5 class="modal-title mt-0" id="myModalLabel">Idiomas</h5>
-                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                  <span aria-hidden="true">&times;</span>
-                                              </button>
-                                          </div>
-                                          <div class="modal-body">
-                                              <div class="form-group row">
-                                                  <label for="example-text-input" class="col-sm-4 col-form-label">Conhecimentos / Habilidade</label>
-                                                    <div class="col-sm-8">
-                                                      <input class="form-control" name="conhecimento" type="text" placeholder="Ex: Excel, Primavera, PHP, etc" required>
-                                                    </div>
-                                              </div>
-                                          </div>
-                                          <div class="modal-footer">
-                                              <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Cancelar</button>
-                                              <button type="submit" class="btn btn-primary waves-effect waves-light">Guardar</button>
-                                          </div>
-                                        </form>
-                                      </div><!-- /.modal-content -->
-                                  </div><!-- /.modal-dialog -->
-                              </div><!-- /.modal -->
-
-
-                          </div>
-
-                          <div class="col-md-6">
-                            <div class="card m-b-30 card-body">
                                 <h4 class="card-title font-16 mt-0">Idiomas
                                   <span class="float-right">
                                     <button  class="btn btn-info btn-circle waves-effect waves-light" data-toggle="modal" data-target="#cvIdioma">
@@ -950,7 +746,7 @@ Meu Curriculum Vitae - {{ Auth::user()->name }} |
                                                           <option value="Norwegian">Norwegian</option>
                                                           <option value="Persian">Persian</option>
                                                           <option value="Polish">Polish</option>
-                                                          <option value="Portuguese">Portuguese</option>
+                                                          <option value="Português" selected>Português</option>
                                                           <option value="Punjabi">Punjabi</option>
                                                           <option value="Quechua">Quechua</option>
                                                           <option value="Romanian">Romanian</option>
@@ -1041,11 +837,11 @@ Meu Curriculum Vitae - {{ Auth::user()->name }} |
                                                   <div class="col-sm-9">
                                                     <select class="form-control" name="tipo">
                                                       <option value="Curriculum Vitae">Curriculum Vitae</option>
-                                                      <option value="Carta de Apresentação">Carta de Apresentação</option>
+                                                      <option value="Carta de Condução">Carta de Condução</option>
                                                       <option value="Carta de Recomendação">Carta de Recomendação</option>
                                                       <option value="Certificado">Certificado</option>
                                                       <option value="Diploma">Diploma</option>
-                                                      <option value="Portfolio">Portfolio</option>
+                                                      <option value="Outro">Outro</option>
                                                     </select>
                                                   </div>
                                             </div>

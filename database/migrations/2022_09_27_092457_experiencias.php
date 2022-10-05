@@ -26,7 +26,7 @@ return new class extends Migration
           $table->string('trabalha_ate_agora');
           $table->string('tipo_de_contrato');
           $table->string('ultimo_salario')->nullable();
-          $table->text('motivo_de_saida');
+          $table->text('motivo_de_saida')->nullable();
           $table->timestamps();
 
           $table->foreign('candidato_id')

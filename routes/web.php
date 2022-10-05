@@ -54,3 +54,8 @@ Route::get('/empregador', [App\Http\Controllers\EmpregadorController::class, 'in
 Route::get('/candidato', [App\Http\Controllers\CandidatoController::class, 'index'])->name('candidato');
 Route::post('/new-candidato', [App\Http\Controllers\CandidatoController::class, 'novo'])->name('newCandidato');
 Route::get('/meu-cv', [App\Http\Controllers\CandidatoController::class, 'cv'])->name('meuCv');
+
+Route::post('/add-idioma', [App\Http\Controllers\IdiomasController::class, 'create'])->name('addIdioma');
+Route::post('/add-documento', [App\Http\Controllers\DocumentosController::class, 'create'])->name('addDocumento');
+Route::post('/add-conhecimento', [App\Http\Controllers\ConhecimentosController::class, 'create'])->name('addConhecimento');
+Route::post('/add-experiencia', [App\Http\Controllers\ExperienciasController::class, 'create'])->name('addExperiencia');
