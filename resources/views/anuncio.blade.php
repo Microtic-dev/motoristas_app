@@ -87,7 +87,7 @@ Titulo de anuncio |
             @guest
               @if($anuncio->forma_de_candidatura == 'Portal')
               <hr>
-              <p><a href="/register">Cria uma conta</a> ou faz <a href="/login">login</a> para candidatar-se </p>
+              <p><a href="{{route('login','candidato')}}">Cria uma conta</a> ou faz <a href="{{route('login','candidato')}}">login</a> para candidatar-se </p>
               @endif
 
             @else
