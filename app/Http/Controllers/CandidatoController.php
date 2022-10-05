@@ -90,11 +90,6 @@ class CandidatoController extends Controller
                 'categorias.categoria as categoria')
                 ->first();
 
-        $formacoes = DB::table('formacoes')
-                ->where('candidato_id', $candidato->id)
-                ->get();
-
-
         $idiomas = DB::table('idiomas')
                 ->where('candidato_id', $candidato->id)
                 ->get();
@@ -103,24 +98,19 @@ class CandidatoController extends Controller
                 ->where('candidato_id', $candidato->id)
                 ->get();
 
-        $conhecimentos = DB::table('conhecimentos')
-                ->where('candidato_id', $candidato->id)
-                ->get();
-
         $experiencias = DB::table('experiencias')
                 ->where('candidato_id', $candidato->id)
                 ->get();
 
-                if(sizeof($formacoes) < 1) {  $progressFormacao = 0; }else{  $progressFormacao = 15; }
-                if(sizeof($experiencias) < 1) { $progressExperiencia = 0; } else { $progressExperiencia = 15; }
-                if(sizeof($conhecimentos) < 1) { $progressConhecimento = 0; } else { $progressConhecimento = 15; }
-                if(sizeof($idiomas) < 1) { $progressIdioma = 0; } else { $progressIdioma = 15; }
-                if(sizeof($documentos) < 1) { $progressDocumento = 0; } else { $progressDocumento = 15; }
 
-        $progress = 25 + $progressFormacao + $progressExperiencia + $progressConhecimento + $progressIdioma + $progressDocumento;
+                if(sizeof($experiencias) < 1) { $progressExperiencia = 0; } else { $progressExperiencia = 20; }
+                if(sizeof($idiomas) < 1) { $progressIdioma = 0; } else { $progressIdioma = 20; }
+                if(sizeof($documentos) < 1) { $progressDocumento = 0; } else { $progressDocumento = 20; }
 
-        return view('candidato.meu-cv', array('candidato' => $candidato, 'formacoes' => $formacoes, 'idiomas' => $idiomas,
-      'documentos' => $documentos, 'conhecimentos' => $conhecimentos, 'experiencias' => $experiencias, 'progress' => $progress ));
+        $progress = 40 + $progressExperiencia + $progressIdioma + $progressDocumento;
+
+        return view('candidato.meu-cv', array('candidato' => $candidato, 'idiomas' => $idiomas,
+      'documentos' => $documentos, 'experiencias' => $experiencias, 'progress' => $progress ));
       }
 
 
