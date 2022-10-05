@@ -59,3 +59,5 @@ Route::post('/add-idioma', [App\Http\Controllers\IdiomasController::class, 'crea
 Route::post('/add-documento', [App\Http\Controllers\DocumentosController::class, 'create'])->name('addDocumento');
 Route::post('/add-conhecimento', [App\Http\Controllers\ConhecimentosController::class, 'create'])->name('addConhecimento');
 Route::post('/add-experiencia', [App\Http\Controllers\ExperienciasController::class, 'create'])->name('addExperiencia');
+
+Route::post('/candidatar', [App\Http\Controllers\CandidaturasAnunciosController::class, 'create'])->name('candidatar');

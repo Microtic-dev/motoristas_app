@@ -83,7 +83,41 @@ Titulo de anuncio |
             <p><b>Email:  </b><span class="float-right"><a href="mailto:motorista@motorista.co.mz"> motorista@motorista.co.mz </a></span></p>
 
             <hr>
+
+            @guest
+              @if($anuncio->forma_de_candidatura == 'Portal')
+              <hr>
               <p><a href="/register">Cria uma conta</a> ou faz <a href="/login">login</a> para candidatar-se </p>
+              @endif
+
+            @else
+
+              @if(Auth::user()->privilegio == 'candidato')
+                @if($anuncio->forma_de_candidatura == 'Portal')
+                @php
+                  $candidaturas_anuncios = DB::table('candidaturas_anuncios')
+                       ->join('users', 'candidaturas_anuncios.user_id', '=', 'users.id')
+                       ->where('users.id', Auth::user()->id)
+                       ->where('candidaturas_anuncios.anuncio_id', $anuncio->id)
+                       ->first();
+                @endphp
+                @if(empty($candidaturas_anuncios))
+                <form method="post" style="display: inline;" action="/candidatar">
+                  {{ csrf_field() }}
+                  <input type="hidden" value="{{ $anuncio->id }}" name="anuncio_id" />
+                  <button class="btn btn-block btn-success waves-effect waves-light">Candidatar-me</button>
+                </form>
+                @else
+                <p class="text-center mt-4"><span class="badge badge-info"> Já se candidatou a essa vaga!</span></p>
+                @endif
+
+                @endif
+
+              @else
+              <a class="btn btn-block btn-info waves-effect waves-light" href="/empregador" style="color: #ffffff !important;">Gerir candidaturas</a>
+              @endif
+
+            @endguest
           </div>
 
           <div class="card m-b-30 card-body">
