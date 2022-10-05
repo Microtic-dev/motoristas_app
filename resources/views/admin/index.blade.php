@@ -61,70 +61,37 @@ Base de Dados de Motoristas |
           </div>
           <!-- end fitros section -->
           <!-- anuncios section -->
+
+
           <div class="col-md-12 mt-4 m_bd_motoristas">
             <div class="row">
-              <div class="col-md-12">
-                <div class="card m-b-30">
-                      <div class="card-body">
-                        <div class="row perfil">
-                          <div class="col-md-4">
-                            <img src="{{asset('/assets/images/users/Ellipse.png')}}" class="rounded-circle"/>
-                            <span class="nome_motoritsa"><a href="/perfil/1">Matio Fernando Tambu</a></span>
-                          </div>
-                          <div class="col-md-4">
-                            <p>Categoria de Carta: <b>G - Profissional</b></p>
-                            <p>Anos de Experiência: <b> 5</b></p>
-                          </div>
-                          <div class="col-md-4">
-                            <p>Contacto: <b> +258 84 64 ***** </b></p>
-                            <p>Localização: <b> Tete</b></p>
-                          </div>
-                        </div>
-                    </div>
-                </div>
-              </div>
 
+                @foreach($motoristas as $motorista)
               <div class="col-md-12">
                 <div class="card m-b-30">
                       <div class="card-body">
                         <div class="row perfil">
                           <div class="col-md-4">
-                            <img src="{{asset('/assets/images/users/Ellipse.png')}}" class="rounded-circle"/>
-                            <span class="nome_motoritsa"><a href="/perfil/1">Matio Fernando Tambu</a></span>
+                            <img src="{{asset('/assets/images/users/user.png')}}" class="rounded-circle"/>
+                            <span class="nome_motoritsa"><a href="/perfil/1">{{ $motorista ->name}}</a></span>
                           </div>
                           <div class="col-md-4">
-                            <p>Categoria de Carta: <b>G - Profissional</b></p>
-                            <p>Anos de Experiência: <b> 5</b></p>
-                          </div>
-                          <div class="col-md-4">
-                            <p>Contacto: <b> +258 84 64 ***** </b></p>
-                            <p>Localização: <b> Tete</b></p>
-                          </div>
-                        </div>
-                    </div>
-                </div>
-              </div>
 
-              <div class="col-md-12">
-                <div class="card m-b-30">
-                      <div class="card-body">
-                        <div class="row perfil">
-                          <div class="col-md-4">
-                            <img src="{{asset('/assets/images/users/Ellipse.png')}}" class="rounded-circle"/>
-                            <span class="nome_motoritsa"><a href="/perfil/1">Matio Fernando Tambu</a></span>
+                              <p>Categoria de Carta: <b>{{$motorista->categoria}}</b></p>
+                              <p>Anos de Experiência: <b> 5</b></p>
                           </div>
+
                           <div class="col-md-4">
-                            <p>Categoria de Carta: <b>G - Profissional</b></p>
-                            <p>Anos de Experiência: <b> 5</b></p>
-                          </div>
-                          <div class="col-md-4">
-                            <p>Contacto: <b> +258 84 64 ***** </b></p>
-                            <p>Localização: <b> Tete</b></p>
+                            <p>Contacto: <b> {{$motorista->celular}}</b></p>
+                            <p>Nacionalidade: <b> {{$motorista->nacionalidade}}</b></p>
                           </div>
                         </div>
                     </div>
                 </div>
               </div>
+              @endforeach
+
+          
 
             </div>
           </div>
