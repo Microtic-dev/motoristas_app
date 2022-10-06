@@ -22,7 +22,7 @@ class CentralDeRiscoController extends Controller
 
     public function denunciarMotorista(Request $request){
 
-        if(Auth->privilegio=="empregador"){
+        if(Auth::user->privilegio=="empregador"){
 
                 $centralRisco = new CentralDeRisco;
                 $centralRisco->empregador_id=$request->empregador_id;
@@ -33,7 +33,7 @@ class CentralDeRiscoController extends Controller
                 $centralRisco->versao_motorista=$request->versao_motorista;
 
               if($centralRisco->save()){
-                
+
                return redirect()->back()->with('success', 'Motorista denunciado, os Admininstradores cuidaram do resto!');
              }else{
               return redirect()->back()->with('erro', 'Ocorreu erro, tenta novamente!');
@@ -42,6 +42,6 @@ class CentralDeRiscoController extends Controller
         }else {
               return redirect()->back()->with('erro', 'Voce nao tem acesso a centralRisco!');
         }
-
     }
+
 }
