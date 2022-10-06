@@ -20,7 +20,7 @@ class AdminController extends Controller
                  ->paginate(1);
 
     $countMotoritas = DB::table('users')->where('privilegio', 'candidato')->count();
-    $countCentralRisco = DB::table('users')->where('privilegio', 'candidato')->count();
+    $countCentralRisco = DB::table('central_de_riscos')->count();
     $countEmpregador = DB::table('users')->where('privilegio', 'empregador')->count();
     $countAnuncios = DB::table('anuncios')->count();
 
