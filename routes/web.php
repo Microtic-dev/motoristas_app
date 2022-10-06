@@ -44,7 +44,7 @@ Route::post('/editarAnuncio', [App\Http\Controllers\AnunciosController::class, '
 Route::post('/apagarAnuncio/{id}', [App\Http\Controllers\AnunciosController::class, 'apagarAnuncio'])->name('apagarAnuncio');
 Route::get('/search', [App\Http\Controllers\AnunciosController::class, 'search'])->name('search');
 
-Route::get('/bd-motoristas', [App\Http\Controllers\AdminController::class, 'index'])->name('bd-motoristas');
+Route::get('/bd-motoristas', [App\Http\Controllers\AdminController::class, 'motoristas'])->name('bd-motoristas');
 Route::get('/centralRisco', [App\Http\Controllers\AdminController::class, 'index'])->name('bd-motoristas');
 Route::get('/perfil/{id}', [App\Http\Controllers\CandidatoController::class, 'perfil'])->name('perfil');
 //Route::get('/login2', [App\Http\Controllers\CanditadoController::class, 'login'])->name('login');
@@ -61,3 +61,5 @@ Route::post('/add-conhecimento', [App\Http\Controllers\ConhecimentosController::
 Route::post('/add-experiencia', [App\Http\Controllers\ExperienciasController::class, 'create'])->name('addExperiencia');
 
 Route::post('/candidatar', [App\Http\Controllers\CandidaturasAnunciosController::class, 'create'])->name('candidatar');
+
+Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');

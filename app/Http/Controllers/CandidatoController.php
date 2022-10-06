@@ -76,27 +76,56 @@ class CandidatoController extends Controller
     //  return view('candidato.candidato', array('candidato' => $candidato));
       }
 
-
-
       public function perfil($id){
+        // $motorista = DB::table('candidatos')
+        //         ->join('provincias', 'candidatos.provincia_id', '=', 'provincias.id')
+        //         ->join('categorias', 'candidatos.categoria_id', '=', 'categorias.id')
+        //         ->join('users', 'candidatos.user_id', '=', 'users.id')
+        //         ->where('users.id', $id)
+        //         ->select('candidatos.*', 'users.name as nome', 'users.email as email', 'users.privilegio as privilegio', 'provincias.name as provincia',
+        //         'categorias.categoria as categoria')
+        //         ->first();
+
+        // print_r($candidato);
+        // die();
+
         $candidato = DB::table('candidatos')
                 ->join('provincias', 'candidatos.provincia_id', '=', 'provincias.id')
                 ->join('categorias', 'candidatos.categoria_id', '=', 'categorias.id')
                 ->join('users', 'candidatos.user_id', '=', 'users.id')
                 ->where('candidatos.user_id', $id)
-                ->select('candidatos.*', 'users.name as nome', 'users.email as email', 'users.privilegio as privilegio', 'provincias.name as provincia',
+                ->select('candidatos.*', 'candidatos.id as candidato_id', 'users.name as nome', 'users.email as email', 'users.privilegio as privilegio',
+                 'provincias.name as provincia', 'users.celular as celular',
                 'categorias.categoria as categoria')
                 ->first();
 
-        print_r($candidato);
-        die();
-        return view('candidato.perfil', compact('candidato'));
+        $idiomas = DB::table('idiomas')
+                ->where('candidato_id', $candidato->candidato_id)
+                ->get();
 
+        $documentos = DB::table('documentos')
+                ->where('candidato_id', $candidato->candidato_id)
+                ->get();
+
+        $experiencias = DB::table('experiencias')
+                ->where('candidato_id', $candidato->candidato_id)
+                ->get();
+
+
+                if(sizeof($experiencias) < 1) { $progressExperiencia = 0; } else { $progressExperiencia = 20; }
+                if(sizeof($idiomas) < 1) { $progressIdioma = 0; } else { $progressIdioma = 20; }
+                if(sizeof($documentos) < 1) { $progressDocumento = 0; } else { $progressDocumento = 20; }
+
+        $progress = 40 + $progressExperiencia + $progressIdioma + $progressDocumento;
+
+        return view('candidato.perfil', array('candidato' => $candidato, 'idiomas' => $idiomas,
+      'documentos' => $documentos, 'experiencias' => $experiencias, 'progress' => $progress ));
+
+      //  return view('candidato.perfil', compact('motorista'));
       }
 
-      public function CV()
+      public function cv()
       {
-
 
         $candidato = DB::table('candidatos')
                 ->join('provincias', 'candidatos.provincia_id', '=', 'provincias.id')
