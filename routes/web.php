@@ -63,3 +63,7 @@ Route::post('/add-experiencia', [App\Http\Controllers\ExperienciasController::cl
 Route::post('/candidatar', [App\Http\Controllers\CandidaturasAnunciosController::class, 'create'])->name('candidatar');
 
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
+
+
+//@// TODO:CentralDeRisco
+Route::post('/denunciarMotorista', [App\Http\Controllers\CentralDeRiscoController::class, 'denunciar'])->name('denunciar');
