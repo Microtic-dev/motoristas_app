@@ -11,13 +11,7 @@ class CentralDeRiscoController extends Controller
 {
 
 
-  $table->bigIncrements('id');
-  $table->bigInteger('empregador_id')->unsigned();
-  $table->bigInteger('candidato_id')->unsigned();
-  $table->text('funcoes_do_candidato')->nullable();
-  $table->string('infracao')->nullable();
-  $table->string('merece_portunidade')->nullable();
-  $table->text('versao_motorista');
+
 
 
     public function denunciarMotorista(Request $request){
@@ -42,6 +36,21 @@ class CentralDeRiscoController extends Controller
         }else {
               return redirect()->back()->with('erro', 'Voce nao tem acesso a central de risco!');
         }
+    }
+
+
+    public function verCentralDeRisco(){
+
+
+            $centralRisco = DB::table('central_de_riscos')
+                          ->join('recrutadores', 'central_de_riscos.empregador_id','=','recrutadores.id')
+                          ->join('candidatos', 'central_de_riscos.candidato_id','=','candidatos.id')
+                          ->join('users', 'candidatos.user_id','=','users.id')
+                          ->select('central_de_riscos.*','users.id as user_id', 'users.name as name','users.celular as celular')->get();
+
+
+
+          return view('centralRisco',compact('centralRisco'));
     }
 
 }
