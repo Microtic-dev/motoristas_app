@@ -18,20 +18,20 @@ return new class extends Migration
         Schema::create('central_de_riscos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('empregador_id')->unsigned();
-            $table->bigInteger('candidato_id')->unsigned();
-            $table->text('funcoes_do_candidato')->nullable();
-            $table->string('infracao')->nullable();
+            $table->bigInteger('user_id')->unsigned();
+            $table->string('funcoes_do_candidato')->nullable();
+            $table->text('infracao')->nullable();
             $table->string('merece_portunidade')->nullable();
             $table->text('versao_motorista')->nullable();
             $table->timestamps();
 
-            $table->foreign('candidato_id')
-                    ->references('id')->on('candidatos')
+            $table->foreign('user_id')
+                    ->references('id')->on('users')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
 
             $table->foreign('empregador_id')
-                    ->references('id')->on('recrutadores')
+                    ->references('id')->on('users')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
 

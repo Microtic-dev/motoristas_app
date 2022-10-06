@@ -340,7 +340,7 @@
                         <div class="form-group row">
                             <label for="example-text-input" class="col-sm-3 col-form-label">Seleccione o Motorista</label>
                               <div class="col-sm-9">
-                                <select class="form-control" name="resul_pesquisa" id="resul_pesquisa" disabled required>
+                                <select class="form-control" name="candidato_id" id="resul_pesquisa" disabled required>
                                   <option>Seleccione o motorista...</option>
                                 </select>
                             </div>
