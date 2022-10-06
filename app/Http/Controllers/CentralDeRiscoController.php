@@ -1,22 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
-use Auth;
 use App\Models\CentralDeRisco;
 use Illuminate\Support\Facades\DB;
-
 use Illuminate\Http\Request;
+use Auth;
+
 
 class CentralDeRiscoController extends Controller
 {
 
-
-
-
-
     public function denunciarMotorista(Request $request){
 
-        if(Auth::user()->privilegio=="empregador"){
+
+    //    if(Auth::user()->privilegio=="empregador"){
 
                 $centralRisco = new CentralDeRisco;
                 $centralRisco->empregador_id=$request->empregador_id;
@@ -33,9 +30,9 @@ class CentralDeRiscoController extends Controller
               return redirect()->back()->with('erro', 'Ocorreu erro, tenta novamente!');
               }
 
-        }else {
-              return redirect()->back()->with('erro', 'Voce nao tem acesso a central de risco!');
-        }
+  //      }else {
+    //          return redirect()->back()->with('erro', 'Voce nao tem acesso a central de risco!');
+    //    }
     }
 
 
@@ -51,6 +48,18 @@ class CentralDeRiscoController extends Controller
 
 
           return view('centralRisco',compact('centralRisco'));
+    }
+
+
+    public function deletarCentralDeRisdco($id){
+
+        $centralRisco = CentralDeRisco::find($id);
+        if($centralRisco->delete()){
+           return redirect()->back()->with('success', 'Motorista removido da central de Risco!');
+        }else {
+            return redirect()->back()->with('erro', 'Ocorreu erro, tenta novamente!');
+        }
+
     }
 
 }
