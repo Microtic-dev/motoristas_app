@@ -35,7 +35,9 @@ Route::get('/concluir', function () {
 
 //auth
 Auth::routes();
-
+Route::get('/centras', function (){
+  return view('test');
+});
 Route::get('/ ', [App\Http\Controllers\InicioController::class, 'index'])->name('index');
 
 Route::post('/criarAnuncio', [App\Http\Controllers\AnunciosController::class, 'criarAnuncio'])->name('criarAnuncio');
@@ -67,5 +69,11 @@ Route::post('/candidatar', [App\Http\Controllers\CandidaturasAnunciosController:
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
 
 
+<<<<<<< HEAD
 // :CentralDeRisco
 Route::post('/denunciarMotorista', [App\Http\Controllers\CentralDeRiscoController::class, 'create'])->name('denunciar');
+=======
+//@// TODO:CentralDeRisco
+Route::post('/denunciarMotorista', [App\Http\Controllers\CentralDeRiscoController::class, 'denunciarMotorista'])->name('denunciarMotorista');
+Route::get('/verCentralDeRisco', [App\Http\Controllers\CentralDeRiscoController::class, 'verCentralDeRisco'])->name('verCentralDeRisco');
+>>>>>>> bba21b7c1f028231bfa2611aa8d18882289e65d6

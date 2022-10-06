@@ -16,7 +16,8 @@ class AdminController extends Controller
                  ->join('users', 'candidatos.user_id', '=', 'users.id')
                   ->join('categorias', 'candidatos.categoria_id', '=', 'categorias.id')
                  ->select('candidatos.*','users.id as user_id', 'users.name as name','users.celular as celular','categorias.categoria as categoria')
-                 ->get();
+                 ->orderBy('id', 'DESC')
+                 ->paginate(1);
 
     $countMotoritas = DB::table('users')->where('privilegio', 'candidato')->count();
     $countCentralRisco = DB::table('users')->where('privilegio', 'candidato')->count();

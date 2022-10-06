@@ -15,7 +15,7 @@ return new class extends Migration
     {
 
 
-        Schema::create('centralRisco', function (Blueprint $table) {
+        Schema::create('central_de_riscos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('empregador_id')->unsigned();
             $table->bigInteger('candidato_id')->unsigned();

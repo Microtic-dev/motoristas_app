@@ -110,6 +110,8 @@ Base de Dados de Motoristas |
                     <div class="card-body">
                         <h4 class="mt-0 header-title mb-4">Motoristas</h4>
                         <div class="latest-massage">
+
+                          @foreach($motoristas as $motorista)
                             <a href="#" class="latest-message-list">
                                 <div class="border-bottom position-relative">
                                     <div class="float-left user mr-3">
@@ -119,11 +121,13 @@ Base de Dados de Motoristas |
                                         <p class="m-0 text-muted">Just Now</p>
                                     </div>
                                     <div class="massage-desc">
-                                        <h5 class="font-14 mt-0 text-dark">Victor Zamora</h5>
+                                        <h5 class="font-14 mt-0 text-dark">{{$motorista->name}}</h5>
                                         <p class="text-muted">Hey! there I'm available...</p>
                                     </div>
                                 </div>
                             </a>
+                            @endforeach
+
                             <a href="#" class="latest-message-list">
                                 <div class="border-bottom mt-3 position-relative">
                                     <div class="float-left user mr-3">
@@ -152,6 +156,7 @@ Base de Dados de Motoristas |
                                     </div>
                                 </div>
                             </a>
+
                             <a href="#" class="latest-message-list">
                                 <div class="border-bottom mt-3 position-relative">
                                     <div class="float-left user mr-3">
@@ -166,6 +171,7 @@ Base de Dados de Motoristas |
                                     </div>
                                 </div>
                             </a>
+
                             <a href="#" class="latest-message-list">
                                 <div class="mt-3 position-relative">
                                     <div class="float-left user mr-3">
@@ -180,6 +186,7 @@ Base de Dados de Motoristas |
                                     </div>
                                 </div>
                             </a>
+
                         </div>
                         <hr>
                         <div class="text-center mt-3">
