@@ -53,7 +53,6 @@ Perfil do Motorista - {{ $candidato->nome }} |
             <div class="col-xl-3">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="mt-0 header-title mb-4 text-center">Estado do meu CV </h4>
                         <div class="text-center">
                             <div class="social-source-icon lg-icon mb-3">
                                 <img src="assets/images/users/avatar-6.jpg" alt="user" class="rounded-circle width-100">
