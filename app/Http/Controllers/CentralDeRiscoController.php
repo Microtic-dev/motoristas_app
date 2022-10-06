@@ -10,17 +10,7 @@ use Illuminate\Http\Request;
 class CentralDeRiscoController extends Controller
 {
 
-
-  $table->bigIncrements('id');
-  $table->bigInteger('empregador_id')->unsigned();
-  $table->bigInteger('candidato_id')->unsigned();
-  $table->text('funcoes_do_candidato')->nullable();
-  $table->string('infracao')->nullable();
-  $table->string('merece_portunidade')->nullable();
-  $table->text('versao_motorista');
-
-
-    public function denunciarMotorista(Request $request){
+    public function create(Request $request){
 
         if(Auth::user()->privilegio=="empregador"){
 

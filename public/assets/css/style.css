@@ -3696,6 +3696,11 @@ ul.content-payment li {
 }
 .btn-especial-close .close {
   color: red;
+}
 
+.fundo-gray {
+  border-radius: 4px;
+  background-color: #eee;
+  padding: 15px 0px 2px 10px;
 }
 /* Fim do CSS Motoristas */

@@ -50,6 +50,8 @@ Route::get('/perfil/{id}', [App\Http\Controllers\CandidatoController::class, 'pe
 //Route::get('/login2', [App\Http\Controllers\CanditadoController::class, 'login'])->name('login');
 
 Route::get('/empregador', [App\Http\Controllers\EmpregadorController::class, 'index'])->name('empregador');
+Route::get('/procurar-motorista', [App\Http\Controllers\EmpregadorController::class, 'procurarMotorista'])->name('procurarMotorista');
+Route::get('/get-motorista', [App\Http\Controllers\EmpregadorController::class, 'getMotorista'])->name('getMotorista');
 
 Route::get('/candidato', [App\Http\Controllers\CandidatoController::class, 'index'])->name('candidato');
 Route::post('/new-candidato', [App\Http\Controllers\CandidatoController::class, 'novo'])->name('newCandidato');
@@ -65,5 +67,5 @@ Route::post('/candidatar', [App\Http\Controllers\CandidaturasAnunciosController:
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
 
 
-//@// TODO:CentralDeRisco
-Route::post('/denunciarMotorista', [App\Http\Controllers\CentralDeRiscoController::class, 'denunciar'])->name('denunciar');
+// :CentralDeRisco
+Route::post('/denunciarMotorista', [App\Http\Controllers\CentralDeRiscoController::class, 'create'])->name('denunciar');

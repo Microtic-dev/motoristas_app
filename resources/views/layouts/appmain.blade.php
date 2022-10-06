@@ -7,8 +7,8 @@
         <title>@yield('title') motoristas.co.mz</title>
 
         <meta name="description" content="O portal de oportunidade emprego, estágio, freelance (Biscato) em Moçambique">
-        <meta name="keywords" content="portal concurso, emprego, jobs, estagio, estágio,  concursos, moçambique, negócio, oportunidade, serviço, mozambique, maputo, contratação, higiene, limpeza, informática, carro, transporte, automoveis, turismo, manutenção, reparação">
-        <meta content="Luzépio Joaquim Nhachengo" name="author" />
+        <meta name="keywords" content="emprego, jobs, estagio, estágio,  concursos, moçambique, negócio, oportunidade, serviço, mozambique, maputo, contratação, higiene, limpeza, informática, carro, transporte, automoveis, turismo, manutenção, reparação">
+        <meta content="Microitc Lda" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
         <!-- App Icons -->
@@ -277,11 +277,7 @@
         <!-- App js -->
         <script src="{{asset('assets/js/app.js')}}"></script>
 
-        <!-- google maps api -->
-        <script src="https://maps.google.com/maps/api/js?key=AIzaSyA_NTMHZDMlgP99BvsMJvrzd31pni_5yz0"></script>
-        <!-- Gmaps file -->
-        <script src="{{asset('plugins/gmaps/gmaps.min.js')}}"></script>
-        <!-- demo codes -->
+
 
 
         <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_NTMHZDMlgP99BvsMJvrzd31pni_5yz0"></script> -->

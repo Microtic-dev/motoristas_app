@@ -36,6 +36,43 @@ class EmpregadorController extends Controller
      return view('empregador.index', array( 'anuncios' => $anuncios, 'categorias' => $categorias, 'provincias' => $provincias ));
   }
 
+  public function procurarMotorista(Request $request)
+  {
+     $motorista = DB::table('users')
+             ->where('users.name', $request->keyword)
+             ->orWhere('users.name', 'like', '%' . $request->keyword . '%')
+             ->where('users.privilegio', 'candidato')
+             ->get();
+
+         if (!empty($motorista)) {
+             return response(['msg' => $motorista]);
+         } else {
+             return response(['msg' => 'Ocorreu erro, tenta novamente!', 'error' => '500']);
+         }
+  }
+
+  public function getMotorista(Request $request)
+  {
+     $motorista = DB::table('candidatos')
+             ->where('candidatos.user_id', $request->id)
+             ->where('users.privilegio', 'candidato')
+             ->join('provincias', 'candidatos.provincia_id', '=', 'provincias.id')
+             ->join('categorias', 'candidatos.categoria_id', '=', 'categorias.id')
+             ->join('users', 'candidatos.user_id', '=', 'users.id')
+             ->select('candidatos.*', 'users.name as nome', 'users.email as email', 'users.privilegio as privilegio',
+              'provincias.name as provincia', 'users.celular as celular',
+             'categorias.categoria as categoria')
+             ->first();
+
+         if (!empty($motorista)) {
+             return response(['msg' => $motorista]);
+         } else {
+             return response(['msg' => 'Ocorreu erro, tenta novamente!', 'error' => '500']);
+         }
+  }
+
+
+
   // public function criarAnuncio(Request $request){
   //
   //       $anuncio = new Anuncios();

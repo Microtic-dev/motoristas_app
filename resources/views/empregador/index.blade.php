@@ -182,7 +182,6 @@
                      </div><!-- /.modal -->
 
 
-
                   <div id="editarAnuncio" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
@@ -291,7 +290,13 @@
                         <div class="row mt-2">
                             <div class="col-md-12">
                               <p>Anúncios <span class="badge badge-warning float-right"> {{ $anuncios ->count() }}</span></p>
-
+                            </div>
+                            <hr>
+                            <div class="col-md-12">
+                              <button class="btn btn-outline-secondary btn-block waves-effect" data-toggle="modal" data-target="#denunciarMotorista">
+                                <i class="dripicons-warning"></i>&nbsp;
+                                Denunciar Motorista
+                              </button>
                             </div>
                         </div>
 
@@ -303,17 +308,164 @@
             <!-- end col -->
         </div>
         <!-- end row -->
+
+        <!-- /inicio modal denunciar motorista -->
+        <div id="denunciarMotorista" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <form class="form-horizontal m-t-20" action="{{ route('denunciar') }}" method="post" id="denunciar_form">
+                      @csrf
+                      <div class="modal-header">
+                          <h5 class="modal-title mt-0" id="myModalLabel">Denunciar Motorista</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="form-group row">
+                            <label for="example-text-input" class="col-sm-3 col-form-label">Procurar Motorista</label>
+                              <div class="col-sm-9">
+                                <div class="input-group">
+                                  <input type="text" class="form-control" name="nome_pesquisa" id="nome_pesquisa" type="text" placeholder="Nome completo do motorista" required>
+                                  <span class="input-group-btn">
+                                    <a class="btn btn-default">
+                                        <i class="fa fa-search"></i>
+                                    </a>
+                                  </span>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="example-text-input" class="col-sm-3 col-form-label">Seleccione o Motorista</label>
+                              <div class="col-sm-9">
+                                <select class="form-control" name="resul_pesquisa" id="resul_pesquisa" disabled required>
+                                  <option>Seleccione o motorista...</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="example-text-input" class="col-sm-3 col-form-label">Dados do motorista</label>
+                              <div class="col-sm-9">
+                                <div id="info_motorista" class="fundo-gray" id="fundo-gray">
+                                  <span id="seleted_motorista"></span>
+                                 </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="example-text-input" class="col-sm-3 col-form-label">Funções do motorista na empresa </label>
+                              <div class="col-sm-9">
+                               <input class="form-control" name="funcoes_do_candidato" id="funcoes_do_candidato" type="text" required>
+                            </div>
+                        </div>
+
+                          <div class="form-group row">
+                              <label for="example-text-input" class="col-sm-3 col-form-label">Descrição da infração</label>
+                                <div class="col-sm-9">
+                                  <textarea id="infracao" name="infracao" class="form-control" rows="6" placeholder="Ex: Detalhar a informação da infracção ou crime ..."></textarea>
+                              </div>
+                          </div>
+
+                          <div class="form-group row justify-content-end">
+                              <label for="example-text-input" class="col-sm-12 col-form-label">Acha que motorista merece outra oportunidade de trabalho? </label>
+                              <div class="col-sm-9 align-self-end">
+                                <label class="radio-inline">
+                                  <input type="radio" name="merece_portunidade" value="Sim" checked>&nbsp; Sim &nbsp;&nbsp;
+                                </label>
+                                <label class="radio-inline">
+                                  <input type="radio" name="merece_portunidade" value="Não">&nbsp; Não
+                                </label>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Cancelar</button>
+                          <button type="submit" class="btn btn-primary waves-effect waves-light">Enviar</button>
+                      </div>
+                    </form>
+                  </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+        </div><!-- /.modaldenunciar motorista -->
+
     </div> <!-- end container-fluid -->
 </div>
 <!-- end wrapper -->
+@section('scripts')
 <script>
+  $('#seleted_motorista').hide();
+  $('#nome_pesquisa').on('change', function(e) {
+        e.preventDefault();
+        var keyword = $(this).val();
+        var inscricao_id = $('#inscricao_id').val();
+        var data = 'keyword=' + keyword;
+        $.ajax({//create an ajax request to display.php
+            data: data,
+            url: '/procurar-motorista',
+            type: "get",
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            success: function (data) {
+                if (data.error === 'error') {
+                    console.log('error');
+                    $('#resul_pesquisa').prop("disabled", true);
+                }
+                $('.resul_class').remove();
+                $('#seleted_motorista').hide();
+                $.each(data.msg, function(key, value) {
+
+                     $('#resul_pesquisa').append($("<option></option>").attr("value", value.id).addClass("resul_class").text(value.name));
+                  });
+                  $('#resul_pesquisa').prop("disabled", false);
+            }
+        });
+
+  });
+
+  $('#resul_pesquisa').on('change', function (e) {
+      e.preventDefault();
+      var optionSelected = $("option:selected", this);
+      var valueSelected = this.value;
+
+      var data = 'id=' + valueSelected;
+      $.ajax({//create an ajax request to display.php
+          data: data,
+          url: '/get-motorista',
+          type: "get",
+          headers: {
+              'X-CSRF-TOKEN': '{{ csrf_token() }}'
+          },
+          success: function (data) {
+              if (data.error === 'error') {
+                  console.log('error');
+              }
+              $('#seleted_motorista').html(" ");
+              console.log(data.msg.nome);
+              var conteudo = '<p><b>Nome completo: </b>'+ data.msg.nome +'</p>'+
+               '<p><b>Data de nascimento: </b>' + data.msg.datanascimento + '</p>'+
+               '<p><b>Celular: </b>'+ data.msg.celular +'</p>'+
+               '<p><b>Endereço: </b>'+ data.msg.endereco +'</p>'+
+               '<p><b>Provincia: </b>'+ data.msg.provincia +'</p>'+
+               '<p><b>Categoria da carta de condução: </b>'+ data.msg.categoria +'</p>'+
+               '<p><b>Número da carta de condução: </b>'+ data.msg.numero_carta_conducao +'</p>';
+              $(conteudo).appendTo('#seleted_motorista');
+
+              $('#seleted_motorista').show();
+
+          }
+      });
+  });
+
+  $("div.id_100 select").val("val2").change();
+
+
 
 function loadData(json){
-
           var anuncio = JSON.parse(json)
-
           console.log(anuncio);
-
           $('#title').val(anuncio.titulo);
           $('#descriptionEdit').val(anuncio.descricao);
           $('#anuncioIdEdit').val(anuncio.id)
@@ -325,4 +477,5 @@ function loadData(json){
 
       }
 </script>
+@endsection
 @endsection
