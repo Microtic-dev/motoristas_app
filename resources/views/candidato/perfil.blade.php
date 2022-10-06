@@ -36,12 +36,18 @@ Perfil |
           <div class="col-md-12 mt-4 m_pefil_motorista">
             <div class="row">
               <div class="col-md-12">
-                <div class="card m-b-30">
+                <section class="col-md-12 navega">
+                  <span><a href="/admin"> Dashboard</a></span> |
+                  <span><a href="/bd-motoristas">Base de dados de Motoristas</a></span> |
+                  <span><a href="#">Perfil</a></span>
+                </section>
+
+                <div class="card mt-4 m-b-30">
                       <div class="card-body">
                         <div class="row perfil">
                           <div class="col-md-6">
                             <img src="{{asset('/assets/images/users/Ellipse.png')}}" class="rounded-circle"/>
-                            <span class="nome_motoritsa"><a href="#">{{$motorista->nome}}</a></span>
+                            <span class="nome_motoritsa"><a href="#">{{ $motorista->nome }}</a></span>
                           </div>
                           <div class="col-md-6">
                             <p>Contacto: <b> +258 84 64 ***** ; +258 87 64 ***** </b></p>

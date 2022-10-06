@@ -15,7 +15,7 @@ class AdminController extends Controller
     $motoristas = DB::table('candidatos')
                  ->join('users', 'candidatos.user_id', '=', 'users.id')
                   ->join('categorias', 'candidatos.categoria_id', '=', 'categorias.id')
-                 ->select('candidatos.*', 'users.name as name','users.celular as celular','categorias.categoria as categoria')
+                 ->select('candidatos.*','users.id as user_id', 'users.name as name','users.celular as celular','categorias.categoria as categoria')
                  ->get();
 
     $countMotoritas = DB::table('users')->where('privilegio', 'candidato')->count();
@@ -33,7 +33,9 @@ class AdminController extends Controller
     $motoristas = DB::table('candidatos')
                  ->join('users', 'candidatos.user_id', '=', 'users.id')
                  ->join('categorias', 'candidatos.categoria_id', '=', 'categorias.id')
-                 ->select('candidatos.*', 'users.name as name','users.celular as celular','categorias.categoria as categoria')
+                 ->join('provincias', 'candidatos.provincia_id', '=', 'provincias.id')
+                 ->select('candidatos.*', 'users.name as name','users.celular as celular','categorias.categoria as categoria',
+                 'provincias.name as provincia')
                  ->get();
 
 

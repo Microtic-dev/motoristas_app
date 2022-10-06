@@ -76,25 +76,23 @@ class CandidatoController extends Controller
     //  return view('candidato.candidato', array('candidato' => $candidato));
       }
 
-
-
       public function perfil($id){
-        $candidato = DB::table('candidatos')
+        $motorista = DB::table('candidatos')
                 ->join('provincias', 'candidatos.provincia_id', '=', 'provincias.id')
                 ->join('categorias', 'candidatos.categoria_id', '=', 'categorias.id')
                 ->join('users', 'candidatos.user_id', '=', 'users.id')
-                ->where('candidatos.user_id', $id)
+                ->where('users.id', $id)
                 ->select('candidatos.*', 'users.name as nome', 'users.email as email', 'users.privilegio as privilegio', 'provincias.name as provincia',
                 'categorias.categoria as categoria')
                 ->first();
 
-        print_r($candidato);
-        die();
-        return view('candidato.perfil', compact('candidato'));
+        // print_r($candidato);
+        // die();
+        return view('candidato.perfil', compact('motorista'));
 
       }
 
-      public function CV()
+      public function cv()
       {
 
 

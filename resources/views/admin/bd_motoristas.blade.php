@@ -83,7 +83,7 @@ Base de Dados de Motoristas |
                           <div class="col-md-4">
 
                               <p>Categoria de Carta: <b>{{$motorista->categoria}}</b></p>
-                              <p>Anos de Experiência: <b> 5</b></p>
+                              <p>Provincia: <b>{{$motorista->provincia}}</b></p>
                           </div>
 
                           <div class="col-md-4">
