@@ -19,7 +19,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('empregador_id')->unsigned();
             $table->bigInteger('candidato_id')->unsigned();
-            $table->string('funcoes_do_candidato')->nullable();
+            $table->text('funcoes_do_candidato')->nullable();
             $table->string('infracao')->nullable();
             $table->string('merece_portunidade')->nullable();
             $table->text('versao_motorista');
