@@ -13,16 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        campos tabela central de risco: id_motorita, id_empregador, infracao, merece_portunidade, status_denuncio, versao_motorista
 
-        Schema::create('candidatos', function (Blueprint $table) {
+
+        Schema::create('centralRisco', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('empregador_id')->unsigned();
             $table->bigInteger('candidato_id')->unsigned();
             $table->string('funcoes_do_candidato')->nullable();
             $table->string('infracao')->nullable();
             $table->string('merece_portunidade')->nullable();
-            $table->string('versao_motorista');
+            $table->text('versao_motorista');
 
             $table->timestamps();
 
