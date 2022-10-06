@@ -66,7 +66,7 @@ class CanditadoController extends Controller
      }
 
 
-   public function CV()
+   public function cv()
    {
 
      $candidato = DB::table('candidatos')
