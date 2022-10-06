@@ -133,6 +133,13 @@
                                     </a>
                                 </li>
                                 @endif
+                                @if(Auth::user()->privilegio == 'admin')
+                                <li class="list-inline-item dropdown notification-list">
+                                    <a class="nav-link" href="/admin">
+                                      <i class="mdi mdi-view-dashboard"></i>&nbsp; Dashboard
+                                    </a>
+                                </li>
+                                @endif
 
                               <li class="list-inline-item dropdown notification-list nav-user">
                                   <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button"
