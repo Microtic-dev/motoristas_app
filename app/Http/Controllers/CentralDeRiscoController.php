@@ -40,7 +40,7 @@ class CentralDeRiscoController extends Controller
               }
 
         }else {
-              return redirect()->back()->with('erro', 'Voce nao tem acesso a centralRisco!');
+              return redirect()->back()->with('erro', 'Voce nao tem acesso a central de risco!');
         }
     }
 
