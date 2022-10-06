@@ -68,7 +68,7 @@ class CentralDeRiscoController extends Controller
     }
 
 
-    public function updateDenunciaMotorista(Request $request){
+    public function updateCentralDeRisco(Request $request){
 
 
     //    if(Auth::user()->privilegio=="empregador"){
