@@ -187,6 +187,8 @@
                  </span>
              @enderror
 
+             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
+
 
             <br><button type="submit">  {{ __('Cadastrar') }}</button>
         </form>
