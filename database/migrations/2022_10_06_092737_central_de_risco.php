@@ -22,12 +22,11 @@ return new class extends Migration
             $table->text('funcoes_do_candidato')->nullable();
             $table->string('infracao')->nullable();
             $table->string('merece_portunidade')->nullable();
-            $table->text('versao_motorista');
-
+            $table->text('versao_motorista')->nullable();
             $table->timestamps();
 
             $table->foreign('candidato_id')
-                    ->references('id')->on('candidato')
+                    ->references('id')->on('candidatos')
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
 
