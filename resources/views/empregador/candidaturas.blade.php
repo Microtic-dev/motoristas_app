@@ -32,7 +32,7 @@ Base de Dados de Motoristas |
         <!-- Page-Title -->
         <div class="row">
           <section class="col-md-12 navega">
-            <span><a href="/empregador"> </a></span> |
+            <span><a href="/empregador"> </a></span> Meus Anuncios |
             <span><a href="#" class="active">Candidaturas</a></span>
           </section>
           <!-- fitros section -->
