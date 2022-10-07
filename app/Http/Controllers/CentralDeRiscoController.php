@@ -16,7 +16,7 @@ class CentralDeRiscoController extends Controller
               ->join('provincias', 'candidatos.provincia_id', '=', 'provincias.id')
               ->join('categorias', 'candidatos.categoria_id', '=', 'categorias.id')
               ->join('users', 'candidatos.user_id', '=', 'users.id')
-              ->select('candidatos.*', 'users.name as nome', 'users.email as email', 'users.privilegio as privilegio',
+              ->select('central_de_riscos.*', 'users.name as nome', 'users.email as email', 'users.privilegio as privilegio',
                'provincias.name as provincia', 'users.celular as celular',
               'categorias.categoria as categoria')
               ->get();
@@ -58,9 +58,8 @@ class CentralDeRiscoController extends Controller
                'provincias.name as provincia', 'users.celular as celular',
               'categorias.categoria as categoria')
               ->first();
-          print_r($denuncia);
-          die();
-           return view('admin.denuncia',compact('denuncia'));
+
+         return view('admin.denuncia',compact('denuncia'));
    }
 
 

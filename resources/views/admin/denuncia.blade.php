@@ -53,25 +53,46 @@ Denuncia |
             <div class="col-xl-3">
                 <div class="card">
                     <div class="card-body">
+                      <h4 class="mt-0 header-title mb-4 text-center">Motorista Denunciado </h4>
                         <div class="text-center">
                             <div class="social-source-icon lg-icon mb-3">
-                                <img src="assets/images/users/avatar-6.jpg" alt="user" class="rounded-circle width-100">
+                                <img src="/assets/images/users/avatar-6.jpg" alt="user" class="rounded-circle width-100">
                             </div>
-                            <h5 class="font-16"><a href="#" class="text-dark">{{ ucfirst($candidato->nome) }}</a></h5>
-                            <p class="text-center"><b>Celular: {{ $candidato->celular }}</b></p>
-                            <div class="progress">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: {{ $progress }}%;" aria-valuenow="{{ $progress }}" aria-valuemin="0" aria-valuemax="100">{{ $progress }}%</div>
-                            </div>
+                            <h5 class="font-16"><a href="#" class="text-dark">{{ ucfirst($denuncia->nome) }}</a></h5>
+                            <br>
                         </div>
                         <div class="row mt-2">
                             <div class="col-md-12">
-                              <p>Dados pessoais <span><i class="dripicons-checkmark float-right text-success"></i></span></p>
-                              <p>Contactos <span><i class="dripicons-checkmark float-right text-success"></i></span></p>
-                              <p>Experiências @if(sizeof($experiencias) < 1) <span><i class="dripicons-cross float-right text-danger"></i></span>  @else <span><i class="dripicons-checkmark float-right text-success"></i></span> @endif</p>
-                              <p>Idiomas @if(sizeof($idiomas) < 1) <span><i class="dripicons-cross float-right text-danger"></i></span>  @else <span><i class="dripicons-checkmark float-right text-success"></i></span> @endif</p>
-                              <p>Documentos @if(sizeof($documentos) < 1) <span><i class="dripicons-cross float-right text-danger"></i></span>  @else <span><i class="dripicons-checkmark float-right text-success"></i></span> @endif</p>
-
+                              <p><b>Género: </b>{{ $denuncia->sexo }}</p>
+                              <p><b>Celular: </b>{{ $denuncia->celular }}</p>
+                              <p><b>Email: </b>{{ $denuncia->email }}</p>
+                              <p><b>Grau académico: </b>{{ $denuncia->grau_academico }}</p>
+                              <p><b>Habilitacao de condução: </b>{{ $denuncia->categoria }}</p>
+                              <p><b>Número da carta de ondução: </b>{{ $denuncia->numero_carta_conducao }}</p>
+                              <p><b>Data de nascimento: </b>{{ Carbon\Carbon::parse($denuncia->datanascimento)->format('d-M-Y') }}</p>
+                              <p><b>Nacionalidade: </b>{{ $denuncia->nacionalidade }}</p>
+                              <p><b>Residência: </b>{{ $denuncia->endereco }}</p>
                             </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                      <h4 class="mt-0 header-title mb-4 text-center">Denunciante </h4>
+                        <div class="text-center">
+                            <div class="social-source-icon lg-icon mb-3">
+                                <img src="/assets/images/users/avatar-6.jpg" alt="user" class="rounded-circle width-100">
+                            </div>
+                            <h5 class="font-16"><a href="#" class="text-dark">{{ ucfirst($denuncia->nome) }}</a></h5>
+                            <br>
+                        </div>
+                        <div class="row mt-2">
+                          <div class="col-md-12">
+                            <p><b>Celular: </b>{{ $denuncia->celular }}</p>
+                            <p><b>Email: </b>{{ $denuncia->email }}</p>
+                          </div>
                         </div>
 
                     </div>
@@ -87,11 +108,10 @@ Denuncia |
                                 <h4 class="card-title font-16 mt-0">Perfil profissional
 
                                 </h4>
-                                <p><b>Nome completo: </b>{{ ucfirst($candidato->nome) }}</p>
-                                <p><b>Celular: </b>{{ $candidato->celular }}</p>
-                                <p><b>Grau Académico: </b>{{ $candidato->grau_academico }}</p>
-                                <p><b>Habilitacao de Condução: </b>{{ $candidato->categoria }}</p>
-
+                                <p><b>Nome completo: </b>{{ ucfirst($denuncia->nome) }}</p>
+                                <p><b>Celular: </b>{{ $denuncia->celular }}</p>
+                                <p><b>Grau Académico: </b>{{ $denuncia->grau_academico }}</p>
+                                <p><b>Habilitacao de Condução: </b>{{ $denuncia->categoria }}</p>
                             </div>
 
                           </div>
@@ -100,11 +120,10 @@ Denuncia |
                                 <h4 class="card-title font-16 mt-0">Dados pessoais
 
                                 </h4>
-                                <p><b>Data de nascimento: </b>{{ Carbon\Carbon::parse($candidato->datanascimento)->format('d-M-Y') }}</p>
-                                <p><b>Género: </b>{{ $candidato->sexo }}</p>
-                                <p><b>Nacionalidade: </b>{{ $candidato->nacionalidade }}</p>
-                                <p><b>Residência: </b>{{ $candidato->endereco }}</p>
-
+                                <p><b>Data de nascimento: </b>{{ Carbon\Carbon::parse($denuncia->datanascimento)->format('d-M-Y') }}</p>
+                                <p><b>Género: </b>{{ $denuncia->sexo }}</p>
+                                <p><b>Nacionalidade: </b>{{ $denuncia->nacionalidade }}</p>
+                                <p><b>Residência: </b>{{ $denuncia->endereco }}</p>
 
                             </div>
 
@@ -114,84 +133,9 @@ Denuncia |
                             <div class="card m-b-30 card-body">
                                 <h4 class="card-title font-16 mt-0">Contactos
                                 </h4>
-                                <p><b>N° Telefone: </b>{{ $candidato->celular }}</p>
-                                <p><b>N° Telefone Alternativo: </b>{{ $candidato->telefone_alt }}</p>
-                                <p><b>Email: </b>{{ $candidato->email }}</p>
-                            </div>
-
-
-                          </div>
-
-
-                          <div class="col-md-6">
-                            <div class="card m-b-30 card-body">
-                                <h4 class="card-title font-16 mt-0">Experiências
-                                </h4>
-                                @if(sizeof($experiencias) < 1)
-                                <p class="card-text text-warning">Nenhuma Experiência cadastrada</p>
-                                @else
-                                <ul>
-                                  @foreach ($experiencias as $key => $experiencia)
-                                    <li>
-                                      <div>
-                                        <h4 class="experiencia-empresa">{{ $experiencia->empresa }}</h4>
-                                          @php
-                                            $startDate = \Carbon\Carbon::parse($experiencia->inicio);
-                                            $endDate = \Carbon\Carbon::parse($experiencia->fim);
-                                            $diff = $startDate->diffInYears($endDate);
-                                          @endphp
-                                        <p class="text-muted">{{ $experiencia->cargo }} - {{ Carbon\Carbon::parse($experiencia->inicio)->format('M-Y') }}
-                                           @if($experiencia->trabalha_ate_agora == 'Sim')até agora @else até {{ Carbon\Carbon::parse($experiencia->fim)->format('M-Y') }} @endif
-                                           @if($diff <= 0)  @else ( {{ $diff }} anos ) @endif
-                                          </p>
-                                        <p>{{ $experiencia->actividades_exercidas }}</p>
-                                        <hr>
-                                      </div>
-
-                                    </li>
-                                  @endforeach
-
-                                </ul>
-                                @endif
-
-
-                            </div>
-                          </div>
-
-                          <div class="col-md-6">
-                            <div class="card m-b-30 card-body">
-                                <h4 class="card-title font-16 mt-0">Idiomas
-                                </h4>
-                                @if(sizeof($idiomas) < 1)
-                                <p class="card-text text-warning">Nenhum idioma cadastrado</p>
-                                @else
-                                <ul>
-                                  @foreach ($idiomas as $key => $idioma)
-                                    <li><span class="text-info">*</span> {{ $idioma->idioma }} - {{ $idioma->nivel }}</li>
-                                  @endforeach
-
-                                </ul>
-                                @endif
-
-                            </div>
-
-                          </div>
-
-                          <div class="col-md-6">
-                            <div class="card m-b-30 card-body">
-                                <h4 class="card-title font-16 mt-0">Documentos
-                                </h4>
-                                @if(sizeof($documentos) < 1)
-                                <p class="card-text text-warning">Nenhum documento carregado</p>
-                                @else
-                                <ul>
-                                  @foreach ($documentos as $key => $documento)
-                                    <li><span class="text-info">*</span> <a href="/{{ $documento->ficheiro }}" target="_blank"> {{ $documento->tipo }} </a></li>
-                                  @endforeach
-
-                                </ul>
-                                @endif
-
+                                <p><b>N° Telefone: </b>{{ $denuncia->celular }}</p>
+                                <p><b>N° Telefone Alternativo: </b>{{ $denuncia->telefone_alt }}</p>
+                                <p><b>Email: </b>{{ $denuncia->email }}</p>
                             </div>
                           </div>
 
