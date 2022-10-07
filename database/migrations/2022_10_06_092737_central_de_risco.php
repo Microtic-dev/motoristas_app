@@ -23,6 +23,7 @@ return new class extends Migration
             $table->text('infracao')->nullable();
             $table->string('merece_portunidade')->nullable();
             $table->text('versao_motorista')->nullable();
+            $table->string('estado_denuncia')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')

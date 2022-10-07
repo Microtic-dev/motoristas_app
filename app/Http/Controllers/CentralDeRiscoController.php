@@ -20,6 +20,7 @@ class CentralDeRiscoController extends Controller
           $centralRisco->infracao=$request->infracao;
           $centralRisco->merece_portunidade = $request->merece_portunidade;
           $centralRisco->versao_motorista = $request->versao_motorista;
+          $centralRisco->estado_denuncia = 'Não confirmada';
 
         if($centralRisco->save()){
 
