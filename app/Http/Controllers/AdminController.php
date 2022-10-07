@@ -59,7 +59,7 @@ class AdminController extends Controller
 
     $anunciosDentroDoPrazo = DB::table("anuncios")
                       ->select('id')
-                      ->where('validade', '>', now()->subDays(30)->endOfDay())
+                      ->where('validade', '>', now())
                       ->count();
 
     $countMotoritas = DB::table('users')->where('privilegio', 'candidato')->count();
