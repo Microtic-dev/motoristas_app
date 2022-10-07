@@ -69,6 +69,7 @@ class Kernel extends HttpKernel
         'admin' => \App\Http\Middleware\admin::class,
         'empregador' => \App\Http\Middleware\empregador::class,
         'anyone' => \App\Http\Middleware\anyone::class,
+        'bothCanSee' => \App\Http\Middleware\both::class,
 
     ];
 }

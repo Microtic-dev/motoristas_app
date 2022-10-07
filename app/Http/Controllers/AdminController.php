@@ -83,7 +83,8 @@ class AdminController extends Controller
                  ->select('candidatos.*', 'users.name as name','users.celular as celular','categorias.categoria as categoria',
                  'provincias.name as provincia')
                  ->get();
-
+   print_r($candidaturas);
+    die();
 
    return view('admin.bd_motoristas',compact('motoristas'));
 
