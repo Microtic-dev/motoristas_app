@@ -10,6 +10,21 @@ use Auth;
 class CentralDeRiscoController extends Controller
 {
 
+  public function index(){
+      $denuncias = DB::table('central_de_riscos')
+              ->join('candidatos', 'central_de_riscos.user_id', '=', 'candidatos.user_id')
+              ->join('provincias', 'candidatos.provincia_id', '=', 'provincias.id')
+              ->join('categorias', 'candidatos.categoria_id', '=', 'categorias.id')
+              ->join('users', 'candidatos.user_id', '=', 'users.id')
+              ->select('candidatos.*', 'users.name as nome', 'users.email as email', 'users.privilegio as privilegio',
+               'provincias.name as provincia', 'users.celular as celular',
+              'categorias.categoria as categoria')
+              ->get();
+          
+           return view('admin.central_risco',compact('denuncias'));
+    }
+
+
   public function create(Request $request){
 
 
@@ -30,6 +45,23 @@ class CentralDeRiscoController extends Controller
         }
 
     }
+
+    public function denuncia($id){
+
+      $denuncia = DB::table('central_de_riscos')
+              ->where('central_de_riscos.id', $id)
+              ->join('candidatos', 'central_de_riscos.user_id', '=', 'candidatos.user_id')
+              ->join('provincias', 'candidatos.provincia_id', '=', 'provincias.id')
+              ->join('categorias', 'candidatos.categoria_id', '=', 'categorias.id')
+              ->join('users', 'candidatos.user_id', '=', 'users.id')
+              ->select('candidatos.*', 'users.name as nome', 'users.email as email', 'users.privilegio as privilegio',
+               'provincias.name as provincia', 'users.celular as celular',
+              'categorias.categoria as categoria')
+              ->first();
+          print_r($denuncia);
+          die();
+           return view('admin.denuncia',compact('denuncia'));
+   }
 
 
   //   public function verCentralDeRisco(){
