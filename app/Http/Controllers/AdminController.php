@@ -21,13 +21,19 @@ class AdminController extends Controller
                  ->orderBy('id', 'DESC')
                  ->paginate(5);
 
+
+    $empregadores = DB::table('users')
+                ->where('privilegio', 'empregador')
+                ->orderBy('id', 'DESC')
+                ->paginate(5);
+
     $countMotoritas = DB::table('users')->where('privilegio', 'candidato')->count();
     $countCentralRisco = DB::table('central_de_riscos')->count();
     $countEmpregador = DB::table('users')->where('privilegio', 'empregador')->count();
     $countAnuncios = DB::table('anuncios')->count();
 
 
-   return view('admin.index',compact('motoristas', 'countMotoritas', 'countAnuncios', 'countEmpregador' , 'countCentralRisco'));
+   return view('admin.index',compact('motoristas','empregadores', 'countMotoritas', 'countAnuncios', 'countEmpregador' , 'countCentralRisco'));
 
   }
 
