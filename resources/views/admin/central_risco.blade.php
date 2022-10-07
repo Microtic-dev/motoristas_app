@@ -58,23 +58,20 @@ Central de Risco de Motoristas |
             <div class="row">
 
                 @foreach($denuncias as $denuncia)
-              <div class="col-md-12">
+              <div class="col-md-4">
                 <div class="card m-b-30">
                       <div class="card-body">
                         <div class="row perfil">
-                          <div class="col-md-4">
+                          <div class="col-md-8">
                             <img src="{{asset('/assets/images/users/user.png')}}" class="rounded-circle"/>
-                            <span class="nome_motoritsa"><a href="{{route('perfil', $denuncia->user_id )}}">{{ $denuncia->nome}}</a></span>
+                            <span class="nome_motoritsa"><a href="{{route('denuncia', $denuncia->id )}}">{{ $denuncia->nome}}</a></span>
                           </div>
                           <div class="col-md-4">
-
-                              <p>Categoria de Carta: <b>{{$denuncia->categoria}}</b></p>
-                              <p>Provincia: <b>{{$denuncia->provincia}}</b></p>
-                          </div>
-
-                          <div class="col-md-4">
-                            <p>Contacto: <b> {{$denuncia->celular}}</b></p>
-                            <p>Nacionalidade: <b> {{$denuncia->nacionalidade}}</b></p>
+                            @if($denuncia->estado_denuncia == 'Não confirmada')
+                            <span class="badge badge-warning mt-4 font-12">Não confirmada</span>
+                            @else
+                            <span class="badge badge-success mt-4 font-12">Confirmada</span>
+                            @endif
                           </div>
                         </div>
                     </div>
