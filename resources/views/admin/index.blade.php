@@ -57,7 +57,8 @@ Base de Dados de Motoristas |
                             <h4 class="mb-3 mt-0 float-right">{{ $countMotoritas }}</h4>
                         </div>
                         <div>
-                            <span class="badge badge-light text-info"> 0 </span> <span class="ml-2">Do período anterior</span>
+                            <span class="badge badge-light text-info"> {{$last30motoristas}} </span>
+                             <span class="ml-2">Inscritos nos últimos 30 dias</span>
                         </div>
                       </div>
                 </div>
@@ -71,7 +72,8 @@ Base de Dados de Motoristas |
                             <h4 class="mb-3 mt-0 float-right">{{ $countCentralRisco }}</h4>
                         </div>
                         <div>
-                            <span class="badge badge-light text-info"> 29 </span> <span class="ml-2">Do período anterior</span>
+                            <span class="badge badge-light text-info"> {{$last30denuncias}} </span>
+                             <span class="ml-2">Denúncias nos últimos 30 dias</span>
                         </div>
                     </div>
                 </div>
@@ -84,7 +86,8 @@ Base de Dados de Motoristas |
                             <h4 class="mb-3 mt-0 float-right">{{ $countEmpregador }}</h4>
                         </div>
                         <div>
-                            <span class="badge badge-light text-primary"> 0 </span> <span class="ml-2">Do período anterior</span>
+                            <span class="badge badge-light text-primary"> {{$last30empregador}} </span>
+                             <span class="ml-2">Inscritos nos últimos 30 dias</span>
                         </div>
                     </div>
                 </div>
@@ -98,7 +101,8 @@ Base de Dados de Motoristas |
                             <h4 class="mb-3 mt-0 float-right">{{ $countAnuncios }}</h4>
                         </div>
                         <div>
-                            <span class="badge badge-light text-info"> 8 </span> <span class="ml-2">Dentro de validade</span>
+                            <span class="badge badge-light text-info"> {{$anunciosDentroDoPrazo}} </span>
+                            <span class="ml-2">Dentro de validade</span>
                         </div>
                     </div>
                 </div>
@@ -124,14 +128,14 @@ Base de Dados de Motoristas |
                                         <p class="m-0 text-muted">{{ $motorista->provincia }}</p>
                                     </div>
                                     <div class="massage-desc">
+                                      <a href="{{route('perfil', $motorista->user_id )}}">
                                         <h5 class="font-14 mt-0 text-dark">{{$motorista->name}}</h5>
+                                      </a>
                                         <p class="text-muted">{{$motorista->categoria}}</p>
                                     </div>
                                 </div>
                             </a>
                             @endforeach
-
-
 
                         </div>
                         <hr>
@@ -160,7 +164,9 @@ Base de Dados de Motoristas |
                                         <p class="m-0 text-muted">Just Now</p>
                                     </div>
                                     <div class="massage-desc">
-                                        <h5 class="font-14 mt-0 text-dark">{{$denuncia->nome}}</h5>
+                                        <a href="{{route('denuncia', $denuncia->id )}}">
+                                          <h5 class="font-14 mt-0 text-dark">{{$denuncia->nome}}</h5>
+                                          </a>
                                         <p class="text-muted">{{$denuncia->infracao}}</p>
                                     </div>
                                 </div>

@@ -40,13 +40,37 @@ class AdminController extends Controller
                 ->paginate(5);
 
 
+    $last30motoristas = DB::table("users")
+                ->select('id')
+                ->where('privilegio', 'candidato')
+                ->where('created_at', '>', now()->subDays(30)->endOfDay())
+                ->count();
+
+    $last30empregador = DB::table("users")
+                      ->select('id')
+                      ->where('privilegio', 'empregador')
+                      ->where('created_at', '>', now()->subDays(30)->endOfDay())
+                      ->count();
+
+    $last30denuncias = DB::table("central_de_riscos")
+                      ->select('id')
+                      ->where('created_at', '>', now()->subDays(30)->endOfDay())
+                      ->count();
+
+    $anunciosDentroDoPrazo = DB::table("anuncios")
+                      ->select('id')
+                      ->where('validade', '>', now()->subDays(30)->endOfDay())
+                      ->count();
+
     $countMotoritas = DB::table('users')->where('privilegio', 'candidato')->count();
     $countCentralRisco = DB::table('central_de_riscos')->count();
     $countEmpregador = DB::table('users')->where('privilegio', 'empregador')->count();
     $countAnuncios = DB::table('anuncios')->count();
 
 
-   return view('admin.index',compact('motoristas','empregadores','denuncias', 'countMotoritas', 'countAnuncios', 'countEmpregador' , 'countCentralRisco'));
+   return view('admin.index',compact('motoristas','empregadores','denuncias',
+   'last30motoristas','last30empregador','last30denuncias','anunciosDentroDoPrazo',
+   'countMotoritas', 'countAnuncios', 'countEmpregador' , 'countCentralRisco'));
 
   }
 
