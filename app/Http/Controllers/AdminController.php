@@ -27,13 +27,26 @@ class AdminController extends Controller
                 ->orderBy('id', 'DESC')
                 ->paginate(5);
 
+
+    $denuncias = DB::table('central_de_riscos')
+                ->join('candidatos', 'central_de_riscos.user_id', '=', 'candidatos.user_id')
+                ->join('provincias', 'candidatos.provincia_id', '=', 'provincias.id')
+                ->join('categorias', 'candidatos.categoria_id', '=', 'categorias.id')
+                ->join('users', 'candidatos.user_id', '=', 'users.id')
+                ->select('central_de_riscos.*', 'users.name as nome', 'users.email as email',
+                 'users.privilegio as privilegio', 'provincias.name as provincia', 'users.celular as celular',
+                'categorias.categoria as categoria')
+                ->orderBy('id', 'DESC')
+                ->paginate(5);
+
+
     $countMotoritas = DB::table('users')->where('privilegio', 'candidato')->count();
     $countCentralRisco = DB::table('central_de_riscos')->count();
     $countEmpregador = DB::table('users')->where('privilegio', 'empregador')->count();
     $countAnuncios = DB::table('anuncios')->count();
 
 
-   return view('admin.index',compact('motoristas','empregadores', 'countMotoritas', 'countAnuncios', 'countEmpregador' , 'countCentralRisco'));
+   return view('admin.index',compact('motoristas','empregadores','denuncias', 'countMotoritas', 'countAnuncios', 'countEmpregador' , 'countCentralRisco'));
 
   }
 

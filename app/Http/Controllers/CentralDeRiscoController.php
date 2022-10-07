@@ -20,7 +20,7 @@ class CentralDeRiscoController extends Controller
                'provincias.name as provincia', 'users.celular as celular',
               'categorias.categoria as categoria')
               ->get();
-          
+
            return view('admin.central_risco',compact('denuncias'));
     }
 
