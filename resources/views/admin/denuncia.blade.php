@@ -85,13 +85,13 @@ Denuncia |
                             <div class="social-source-icon lg-icon mb-3">
                                 <img src="/assets/images/users/avatar-6.jpg" alt="user" class="rounded-circle width-100">
                             </div>
-                            <h5 class="font-16"><a href="#" class="text-dark">{{ ucfirst($denuncia->nome) }}</a></h5>
+                            <h5 class="font-16"><a href="#" class="text-dark">{{ ucfirst($denunciante->nome_empregador) }}</a></h5>
                             <br>
                         </div>
                         <div class="row mt-2">
                           <div class="col-md-12">
-                            <p><b>Celular: </b>{{ $denuncia->celular }}</p>
-                            <p><b>Email: </b>{{ $denuncia->email }}</p>
+                            <p><b>Celular: </b>{{ $denunciante->celular_empregador }}</p>
+                            <p><b>Email: </b>{{ $denunciante->email_empregador }}</p>
                           </div>
                         </div>
 
@@ -103,43 +103,56 @@ Denuncia |
                     <div class="card-body">
                         <!-- <h4 class="mt-0 header-title mb-4">Curriculum Vitae <span class="float-right"><button  class="btn btn-secondary btn-sm waves-effect waves-light"> CURRICULUM PDF &nbsp;<i class="dripicons-download"></i></button></span></h4>-->
                         <div class="row">
-                          <div class="col-md-6">
-                            <div class="card m-b-30 card-body">
-                                <h4 class="card-title font-16 mt-0">Perfil profissional
+                          <div class="col-md-12">
+                                <h4 class="title font-16 mt-0"><h4 class="page-title m-0 m-b-2">Informações da denuncia</h4>
+                                <hr>
+                                  <form class="form-horizontal mt-4" action="{{ route('updateDenuncia') }}" method="post" id="denunciar_form">
+                                    @csrf
+                                    <input name="id" value="{{ $denuncia->denuncia_id}}" type="hidden">
+                                      <div class="form-group row">
+                                          <label for="example-text-input" class="col-sm-12 col-form-label">Funções do motorista na empresa </label>
+                                            <div class="col-sm-12">
+                                             <input class="form-control" name="funcoes_do_candidato" id="funcoes_do_candidato" value="{{ $denuncia->funcoes_do_candidato}}" type="text" disabled required>
+                                          </div>
+                                      </div>
 
-                                </h4>
-                                <p><b>Nome completo: </b>{{ ucfirst($denuncia->nome) }}</p>
-                                <p><b>Celular: </b>{{ $denuncia->celular }}</p>
-                                <p><b>Grau Académico: </b>{{ $denuncia->grau_academico }}</p>
-                                <p><b>Habilitacao de Condução: </b>{{ $denuncia->categoria }}</p>
-                            </div>
+                                      <div class="form-group row">
+                                          <label for="example-text-input" class="col-sm-12 col-form-label">Descrição da infração</label>
+                                            <div class="col-sm-12">
+                                              <textarea id="infracao" name="infracao" class="form-control" rows="10" placeholder="Ex: Detalhar a informação da infracção ou crime ..." disabled>{{ $denuncia->infracao }}</textarea>
+                                          </div>
+                                      </div>
 
+                                      <div class="form-group row">
+                                          <label for="example-text-input" class="col-sm-12 col-form-label">Acha que motorista merece outra oportunidade de trabalho? </label>
+                                          <div class="col-sm-12">
+                                            <input class="form-control" name="merece_portunidade" value="{{ $denuncia->merece_portunidade }}" id="merece_portunidade" type="text"  disabled required>
+                                          </div>
+                                      </div>
+                                      <div class="form-group row">
+                                          <label for="example-text-input" class="col-sm-12 col-form-label">Versão do Motorista</label>
+                                            <div class="col-sm-12">
+                                              <textarea id="versao_motorista" name="versao_motorista" class="form-control" rows="10" placeholder="Ex: Escrever a versão da historia do motorista..." disabled>{{ $denuncia->versao_motorista }}</textarea>
+                                          </div>
+                                      </div>
+                                      <div class="form-group row">
+                                          <label for="example-text-input" class="col-sm-12 col-form-label">Confirma a denuncia?</label>
+                                          <div class="col-sm-9 align-self-end">
+                                            <label class="radio-inline">
+                                              <input type="radio" name="merece_portunidade" value="confirmada" @if($denuncia->estado_denuncia == "confirmada") checked @endif>&nbsp; Confirmar &nbsp;&nbsp;
+                                            </label>
+                                            <label class="radio-inline">
+                                              <input type="radio" name="merece_portunidade" value="Não confirmada" @if($denuncia->estado_denuncia == "Não confirmada") checked @endif> Não confirmar
+                                            </label>
+                                          </div>
+                                      </div>
+                                    <div class="float-right">
+                                      <button type="button" id="btn_editar" class="btn btn-primary waves-effect waves-light">Editar</button>
+                                        <button type="button" id="btn_cancel" class="btn btn-secondary waves-effect" data-dismiss="modal">Cancelar</button>
+                                        <button type="submit" id="btn_actualizar" class="btn btn-success waves-effect waves-light">Actualizar</button>
+                                    </div>
+                                  </form>
                           </div>
-                          <div class="col-md-6">
-                            <div class="card m-b-30 card-body">
-                                <h4 class="card-title font-16 mt-0">Dados pessoais
-
-                                </h4>
-                                <p><b>Data de nascimento: </b>{{ Carbon\Carbon::parse($denuncia->datanascimento)->format('d-M-Y') }}</p>
-                                <p><b>Género: </b>{{ $denuncia->sexo }}</p>
-                                <p><b>Nacionalidade: </b>{{ $denuncia->nacionalidade }}</p>
-                                <p><b>Residência: </b>{{ $denuncia->endereco }}</p>
-
-                            </div>
-
-                          </div>
-
-                          <div class="col-md-6">
-                            <div class="card m-b-30 card-body">
-                                <h4 class="card-title font-16 mt-0">Contactos
-                                </h4>
-                                <p><b>N° Telefone: </b>{{ $denuncia->celular }}</p>
-                                <p><b>N° Telefone Alternativo: </b>{{ $denuncia->telefone_alt }}</p>
-                                <p><b>Email: </b>{{ $denuncia->email }}</p>
-                            </div>
-                          </div>
-
-
                         </div>
 
                     </div>
@@ -152,5 +165,27 @@ Denuncia |
     </div> <!-- end container-fluid -->
 </div>
 <!-- end wrapper -->
+@section('scripts')
+  <script>
+    $('#btn_cancel').hide();
+    $('#btn_actualizar').hide();
 
+    $('#btn_editar').on('click', function(e) {
+          $('#btn_editar').hide();
+          $('#btn_cancel').show();
+          $('#btn_actualizar').show();
+          $('#versao_motorista').prop("disabled", false);
+    });
+    $('#btn_cancel').on('click', function(e) {
+          $('#btn_editar').show();
+          $('#btn_cancel').hide();
+          $('#btn_actualizar').hide();
+          $('#versao_motorista').prop("disabled", true);
+    });
+
+
+
+
+  </script>
+@endsection
 @endsection
