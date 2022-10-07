@@ -54,12 +54,19 @@ class CentralDeRiscoController extends Controller
               ->join('provincias', 'candidatos.provincia_id', '=', 'provincias.id')
               ->join('categorias', 'candidatos.categoria_id', '=', 'categorias.id')
               ->join('users', 'candidatos.user_id', '=', 'users.id')
-              ->select('candidatos.*', 'users.name as nome', 'users.email as email', 'users.privilegio as privilegio',
+              ->select('central_de_riscos.*', 'central_de_riscos.id as denuncia_id', 'candidatos.*', 'users.name as nome', 'users.email as email', 'users.privilegio as privilegio',
                'provincias.name as provincia', 'users.celular as celular',
               'categorias.categoria as categoria')
               ->first();
 
-         return view('admin.denuncia',compact('denuncia'));
+      $denunciante = DB::table('users')
+              ->where('users.id', $denuncia->empregador_id)
+              ->join('central_de_riscos', 'users.id', '=', 'central_de_riscos.empregador_id')
+              ->select('users.*', 'users.name as nome_empregador', 'users.email as email_empregador',
+              'users.celular as celular_empregador')
+              ->first();
+
+         return view('admin.denuncia',compact('denuncia', 'denunciante'));
    }
 
 
@@ -90,35 +97,22 @@ class CentralDeRiscoController extends Controller
   //   }
   //
   //
-  //   public function updateCentralDeRisco(Request $request){
-  //
-  //
-  //   //    if(Auth::user()->privilegio=="empregador"){
-  //
-  //               $user_id = Auth::user()->id;
-  //               $empregador = DB::table('empregadores')
-  //                           ->where('empregadores.*', 'empregadores.user_id',$user_id)
-  //                           ->first();
-  //
-  //               $centralRisco = CentralDeRisco::find($request->id);
-  //               $centralRisco->empregador_id=empregador_id;
-  //               $centralRisco->candidato_id=$request->candidato_id;
-  //               $centralRisco->funcoes_do_candidato=$request->funcoes_do_candidato;
-  //               $centralRisco->infracao=$request->infracao;
-  //               $centralRisco->merece_portunidade=$request->merece_portunidade;
-  //               $centralRisco->versao_motorista=$request->versao_motorista;
-  //
-  //             if($centralRisco->update()){
-  //
-  //              return redirect()->back()->with('success', 'Motorista denunciado, os Admininstradores cuidaram do resto!');
-  //            }else{
-  //             return redirect()->back()->with('erro', 'Ocorreu erro, tenta novamente!');
-  //             }
-  //
-  // //      }else {
-  //   //          return redirect()->back()->with('erro', 'Voce nao tem acesso a central de risco!');
-  //   //    }
-  //   }
+    public function updateCentralDeRisco(Request $request){
+
+          $centralRisco = CentralDeRisco::find($request->id);
+          $centralRisco->merece_portunidade=$request->merece_portunidade;
+          $centralRisco->versao_motorista=$request->versao_motorista;
+          $centralRisco->estado_denuncia=$request->estado_denuncia;
+
+
+        if($centralRisco->update()){
+
+         return redirect()->back()->with('success', 'Denuncia actualizada!');
+       }else{
+        return redirect()->back()->with('erro', 'Ocorreu erro, tenta novamente!');
+        }
+
+    }
 
 
 }
