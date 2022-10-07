@@ -15,9 +15,11 @@ class AdminController extends Controller
     $motoristas = DB::table('candidatos')
                  ->join('users', 'candidatos.user_id', '=', 'users.id')
                   ->join('categorias', 'candidatos.categoria_id', '=', 'categorias.id')
-                 ->select('candidatos.*','users.id as user_id', 'users.name as name','users.celular as celular','categorias.categoria as categoria')
+                  ->join('provincias',  'candidatos.provincia_id', '=', 'provincias.id')
+                 ->select('candidatos.*','users.id as user_id', 'users.name as name','users.celular as celular',
+                 'categorias.categoria as categoria','provincias.name as provincia')
                  ->orderBy('id', 'DESC')
-                 ->paginate(1);
+                 ->paginate(5);
 
     $countMotoritas = DB::table('users')->where('privilegio', 'candidato')->count();
     $countCentralRisco = DB::table('central_de_riscos')->count();
