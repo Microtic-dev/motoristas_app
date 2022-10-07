@@ -158,10 +158,10 @@ Base de Dados de Motoristas |
                             <a href="#" class="latest-message-list">
                                 <div class="border-bottom position-relative mt-3">
                                     <div class="float-left user mr-3">
-                                        <h5 class="bg-pink text-center rounded-circle text-white mt-0">v</h5>
+                                        <h5 class="bg-pink text-center rounded-circle text-white mt-0">{{$denuncia->nome[0]}}</h5>
                                     </div>
                                     <div class="message-time">
-                                        <p class="m-0 text-muted">Just Now</p>
+                                        <p class="m-0 text-muted">{{ $denuncia->estado_denuncia }}</p>
                                     </div>
                                     <div class="massage-desc">
                                         <a href="{{route('denuncia', $denuncia->id )}}">
