@@ -29,13 +29,13 @@ Route::get('/concluir', function () {
      }elseif (Auth::user()->privilegio == 'admin') {
        return redirect('/admin');
      }
-    return redirect('/');
+     return redirect('/');
 });
 
 
 //auth
 Auth::routes();
-Route::get('/centras', function (){
+Route::get('/test', function (){
   return view('test');
 });
 Route::get('/ ', [App\Http\Controllers\InicioController::class, 'index'])->name('index');
@@ -51,7 +51,7 @@ Route::get('/bd-motoristas', [App\Http\Controllers\AdminController::class, 'moto
 Route::get('/perfil/{id}', [App\Http\Controllers\CandidatoController::class, 'perfil'])->name('perfil')->middleware('bothCanSee');
 //Route::get('/login2', [App\Http\Controllers\CanditadoController::class, 'login'])->name('login');
 
-Route::get('/empregador', [App\Http\Controllers\EmpregadorController::class, 'index'])->name('empregador')->middleware('empregador');
+Route::get('/empregador', [App\Http\Controllers\EmpregadorController::class, 'index'])->name('empregador')->middleware('bothCanSee');
 
 Route::get('/procurar-motorista', [App\Http\Controllers\EmpregadorController::class, 'procurarMotorista'])->name('procurarMotorista')->middleware('empregador');
 Route::get('/get-motorista', [App\Http\Controllers\EmpregadorController::class, 'getMotorista'])->name('getMotorista')->middleware('empregador');

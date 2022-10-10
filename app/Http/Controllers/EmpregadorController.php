@@ -6,15 +6,16 @@ use Illuminate\Http\Request;
 use App\Models\Provincias;
 use App\Models\categorias;
 use App\Models\Anuncios;
+use App\Models\User;
+use App\Models\Empregador;
 use Illuminate\Support\Facades\DB;
 use Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class EmpregadorController extends Controller
 {
-  public function __construct()
-  {
-      $this->middleware('auth');
-  }
+
 
   /**
    * Show the application dashboard.
@@ -37,8 +38,7 @@ class EmpregadorController extends Controller
   }
 
 public function registarEmpregador(Request $request)
-    {print_r('entrei');
-    die();
+    {
         $password;
         if($request->password == $request->password_confirmation){
           $password = $request->password;
@@ -49,14 +49,14 @@ public function registarEmpregador(Request $request)
         $user = new User;
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->celular = $request->celular;
+        $user->celular = $request->telefone;
         $user->privilegio = $request->privilegio;
         $user->password = Hash::make($password);
 
         if($user->save()){
 
             $empregador = new Empregador;
-            $empregador->user_id = Auth::user()->id;
+            $empregador->user_id =$user->id;
 
             $empregador->telefone = $request->telefone;
             $empregador->telefone_alt = $request->telefone_alt;
@@ -69,11 +69,10 @@ public function registarEmpregador(Request $request)
             $empregador->empresa = $request->empresa;
 
 
-            print_r($empregador);
-            die();
+
          if ($empregador->save()) {
 
-             return redirect('/empregador');
+             return redirect('/empregador')->with('success', 'Conta criada com sucesso!');
 
           }else{
 
