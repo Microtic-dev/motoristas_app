@@ -23,7 +23,7 @@ Titulo de anuncio |
           <div class="col-md-12 mt-4 m_anunicios_home">
             <div class="row">
 
-              <form action="/denunciarMotorista" method="post">
+              <form action="/newempregador" method="post">
                   @csrf
                 <button type="submit" class="btn primary">Cadastrar</button
               </form>

@@ -6,15 +6,16 @@ use Illuminate\Http\Request;
 use App\Models\Provincias;
 use App\Models\categorias;
 use App\Models\Anuncios;
+use App\Models\User;
+use App\Models\Empregador;
 use Illuminate\Support\Facades\DB;
 use Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class EmpregadorController extends Controller
 {
-  public function __construct()
-  {
-      $this->middleware('auth');
-  }
+
 
   /**
    * Show the application dashboard.
@@ -24,16 +25,66 @@ class EmpregadorController extends Controller
   public function index()
   {
 
-    $categorias = Categorias::all();
-    $provincias = Provincias::all();
-     $anuncios = DB::table('anuncios')
-         //    ->join('recrutadores', 'anuncios.user_id', '=', 'recrutadores.id')
-             ->join('users', 'anuncios.user_id', '=', 'users.id')
-             ->select('anuncios.*', 'users.name as recrutador')
-             ->orderBy('created_at', 'DESC')
-             ->paginate(10);
+    $user = Auth::user();
 
-     return view('empregador.index', array( 'anuncios' => $anuncios, 'categorias' => $categorias, 'provincias' => $provincias ));
+    if($user->privilegio=='empregador'){
+
+       $categorias = Categorias::all();
+       $provincias = Provincias::all();
+       $anuncios = DB::table('anuncios')
+               ->join('empregadors', 'anuncios.user_id', '=', 'empregadors.user_id')
+               ->join('users', 'anuncios.user_id', '=', 'users.id')
+               ->select('anuncios.*', 'users.name as recrutador')
+               ->where('anuncios.user_id', $user->id)
+               ->orderBy('id', 'DESC')
+               ->paginate(10);
+
+       return view('empregador.index', array( 'anuncios' => $anuncios, 'categorias' => $categorias, 'provincias' => $provincias ));
+   }
+  }
+
+public function registarEmpregador(Request $request)
+    {
+        $password;
+        if($request->password == $request->password_confirmation){
+          $password = $request->password;
+        } else {
+          return redirect()->back()->with('erro', 'Ocorreu erro, password diferente!');
+        }
+
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->celular = $request->telefone;
+        $user->privilegio = $request->privilegio;
+        $user->password = Hash::make($password);
+
+        if($user->save()){
+
+            $empregador = new Empregador;
+            $empregador->user_id =$user->id;
+
+            $empregador->telefone = $request->telefone;
+            $empregador->telefone_alt = $request->telefone_alt;
+            $empregador->website = $request->website;
+            $empregador->endereco = $request->endereco;
+            $empregador->provincia_id = $request->provincia_id;
+
+            $empregador->sobre = $request->sobre;;
+            $empregador->estado = 'Aberto';
+            $empregador->empresa = $request->empresa;
+
+
+
+         if ($empregador->save()) {
+
+             return redirect('/empregador')->with('success', 'Conta criada com sucesso!');
+
+          }else{
+
+             return redirect()->back()->with('erro', 'Ocorreu erro, tenta novamente!');
+     }
+   }
   }
 
   public function procurarMotorista(Request $request)
@@ -50,6 +101,9 @@ class EmpregadorController extends Controller
              return response(['msg' => 'Ocorreu erro, tenta novamente!', 'error' => '500']);
          }
   }
+
+
+
 
   public function getMotorista(Request $request)
   {

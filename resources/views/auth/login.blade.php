@@ -156,9 +156,10 @@
     		</form>
         @else
 
-            <form method="POST" action="{{ route('register') }}">
+            <form method="POST" action="{{route('newempregador')}}">
+               @csrf
               <h1>Criar conta Empregador!</h1><br>
-             @csrf
+
              <input type="hidden" name="privilegio" value="empregador"/>
              <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Nome Completo">
              @error('name')
@@ -166,21 +167,69 @@
                        <strong>{{ $message }}</strong>
                  </span>
              @enderror
-             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email">
+
+             <input id="newemail" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email">
              @error('email')
                  <span class="invalid-feedback" role="alert">
                      <strong>{{ $message }}</strong>
                  </span>
              @enderror
 
-             <input id="celular" type="number" class="form-control @error('celular') is-invalid @enderror" name="celular" value="{{ old('celular') }}" required autocomplete="email" placeholder="Celular">
+             <input id="empresa" type="text" class="form-control @error('empresa') is-invalid @enderror" name="empresa" value="{{ old('empresa') }}" required autocomplete="empresa" autofocus placeholder="Empresa">
+             @error('empresa')
+                 <span class="invalid-feedback" role="alert">
+                       <strong>{{ $message }}</strong>
+                 </span>
+             @enderror
+
+             <input id="telefone" type="number" class="form-control @error('telefone') is-invalid @enderror" name="telefone" value="{{ old('celular') }}" required autocomplete="celular" placeholder="Telefone">
              @error('celular')
                  <span class="invalid-feedback" role="alert">
                      <strong>{{ $message }}</strong>
                  </span>
              @enderror
 
-             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Senha">
+             <input id="telefone_alt" type="number" class="form-control @error('telefone_alt') is-invalid @enderror" name="telefone_alt" value="{{ old('telefone_alt') }}"  autocomplete="telefone_alt" placeholder="Telefone altermativo">
+             @error('telefone_alt')
+                 <span class="invalid-feedback" role="alert">
+                     <strong>{{ $message }}</strong>
+                 </span>
+             @enderror
+
+
+             <input id="website" type="text" class="form-control @error('website') is-invalid @enderror" name="website" value="{{ old('website') }}"  autocomplete="website" placeholder="Website">
+             @error('website')
+                 <span class="invalid-feedback" role="alert">
+                     <strong>{{ $message }}</strong>
+                 </span>
+             @enderror
+
+             <input id="endereco" type="text" class="form-control @error('Endereco') is-invalid @enderror" name="endereco" value="{{ old('endereco') }}" required autocomplete="Endereco" placeholder="Endereço">
+             @error('Endereco')
+                 <span class="invalid-feedback" role="alert">
+                     <strong>{{ $message }}</strong>
+                 </span>
+             @enderror
+
+             <select class="form-control" name="provincia_id" id="provincia" required>
+               @php
+                 $provincias = App\Models\Provincias::all();
+               @endphp
+                 <option selected>Seleccione a Provincia</option>
+                 @foreach ($provincias as $key => $provincia)
+                   <option value="{{ $provincia->id }}">{{ $provincia->name }}</option>
+                 @endforeach
+             </select>
+
+
+             <input id="sobre" type="textarea" class="form-control @error('sobre') is-invalid @enderror" name="sobre" value="{{ old('sobre') }}"  autocomplete="sobre" placeholder="Sobre">
+             @error('sobre')
+                 <span class="invalid-feedback" role="alert">
+                     <strong>{{ $message }}</strong>
+                 </span>
+             @enderror
+
+             <input id="newpassword" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Senha">
              @error('password')
                  <span class="invalid-feedback" role="alert">
                      <strong>{{ $message }}</strong>
@@ -188,10 +237,9 @@
              @enderror
 
              <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
+             <br><button type="submit">  {{ __('Cadaastrar') }}</button>
+           </form>
 
-
-            <br><button type="submit">  {{ __('Cadastrar') }}</button>
-        </form>
 
         @endif
 
