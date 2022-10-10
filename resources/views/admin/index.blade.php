@@ -192,14 +192,14 @@ Base de Dados de Motoristas |
                             <a href="#" class="latest-message-list">
                                 <div class="border-bottom position-relative mt-3">
                                     <div class="float-left user mr-3">
-                                        <h5 class="bg-info text-center rounded-circle text-white mt-0">{{$empregador->name[0]}}</h5>
+                                        <h5 class="bg-info text-center rounded-circle text-white mt-0">{{$empregador->empresa[0]}}</h5>
                                     </div>
                                     <div class="message-time">
-                                        <p class="m-0 text-muted">Empresa</p>
+                                        <p class="m-0 text-muted">{{$empregador->celular}}</p>
                                     </div>
                                     <div class="massage-desc">
-                                        <h5 class="font-14 mt-0 text-dark">{{$empregador->name}}</h5>
-                                        <p class="text-muted">{{$empregador->celular}}</p>
+                                        <h5 class="font-14 mt-0 text-dark">{{$empregador->empresa}}</h5>
+                                        <p class="text-muted">{{$empregador->email}}</p>
                                     </div>
                                 </div>
                             </a>

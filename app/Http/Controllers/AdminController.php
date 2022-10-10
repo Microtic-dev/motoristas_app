@@ -22,8 +22,9 @@ class AdminController extends Controller
                  ->paginate(5);
 
 
-    $empregadores = DB::table('users')
-                ->where('privilegio', 'empregador')
+    $empregadores = DB::table('empregadors')
+                ->join('users', 'empregadors.user_id','=','users.id')
+                ->select('empregadors.*','users.name as name','users.email as email','users.celular as celular')
                 ->orderBy('id', 'DESC')
                 ->paginate(5);
 
@@ -46,9 +47,8 @@ class AdminController extends Controller
                 ->where('created_at', '>', now()->subDays(30)->endOfDay())
                 ->count();
 
-    $last30empregador = DB::table("users")
+    $last30empregador = DB::table("empregadors")
                       ->select('id')
-                      ->where('privilegio', 'empregador')
                       ->where('created_at', '>', now()->subDays(30)->endOfDay())
                       ->count();
 
