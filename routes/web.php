@@ -52,6 +52,7 @@ Route::get('/perfil/{id}', [App\Http\Controllers\CandidatoController::class, 'pe
 //Route::get('/login2', [App\Http\Controllers\CanditadoController::class, 'login'])->name('login');
 
 Route::get('/empregador', [App\Http\Controllers\EmpregadorController::class, 'index'])->name('empregador')->middleware('empregador');
+Route::post('/newempregador', [App\Http\Controllers\EmpregadorController::class, 'registarEmpregador'])->name('newempregador');
 Route::get('/procurar-motorista', [App\Http\Controllers\EmpregadorController::class, 'procurarMotorista'])->name('procurarMotorista')->middleware('empregador');
 Route::get('/get-motorista', [App\Http\Controllers\EmpregadorController::class, 'getMotorista'])->name('getMotorista')->middleware('empregador');
 
