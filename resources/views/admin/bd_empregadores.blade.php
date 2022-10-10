@@ -62,7 +62,7 @@ Base de Dados de Motoristas |
                         <div class="row perfil">
                           <div class="col-md-4">
                             <img src="{{asset('/assets/images/users/user.png')}}" class="rounded-circle"/>
-                            <span class="nome_motoritsa"><a href="{{route('perfil', $empregador->id )}}">{{ $empregador ->empresa}}</a></span>
+                            <span class="nome_motoritsa"><a href="#">{{ $empregador ->empresa}}</a></span>
                           </div>
                           <div class="col-md-4">
 
