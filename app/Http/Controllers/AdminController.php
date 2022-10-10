@@ -64,7 +64,7 @@ class AdminController extends Controller
 
     $countMotoritas = DB::table('users')->where('privilegio', 'candidato')->count();
     $countCentralRisco = DB::table('central_de_riscos')->count();
-    $countEmpregador = DB::table('users')->where('privilegio', 'empregador')->count();
+    $countEmpregador = DB::table('empregadors')->count();
     $countAnuncios = DB::table('anuncios')->count();
 
 
@@ -83,11 +83,23 @@ class AdminController extends Controller
                  ->select('candidatos.*', 'users.name as name','users.celular as celular','categorias.categoria as categoria',
                  'provincias.name as provincia')
                  ->get();
-   print_r($candidaturas);
-    die();
+
 
    return view('admin.bd_motoristas',compact('motoristas'));
 
-  }
+ }
+
+ public function empregadores()
+ {
+   $empregadores = DB::table('empregadors')
+               ->join('users', 'empregadors.user_id','=','users.id')
+               ->select('empregadors.*','users.name as name','users.email as email','users.celular as celular')
+               ->orderBy('id', 'DESC')
+               ->paginate(5);
+
+
+  return view('admin.bd_empregadores',compact('empregadores'));
+
+ }
 
 }

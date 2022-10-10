@@ -48,6 +48,7 @@ Route::get('/anuncio/{id}', [App\Http\Controllers\AnunciosController::class, 've
 Route::get('/search', [App\Http\Controllers\AnunciosController::class, 'search'])->name('search');
 
 Route::get('/bd-motoristas', [App\Http\Controllers\AdminController::class, 'motoristas'])->name('bd-motoristas')->middleware('admin');
+Route::get('/bd-empregadores', [App\Http\Controllers\AdminController::class, 'empregadores'])->name('bd-empregadores')->middleware('admin');
 Route::get('/perfil/{id}', [App\Http\Controllers\CandidatoController::class, 'perfil'])->name('perfil')->middleware('bothCanSee');
 //Route::get('/login2', [App\Http\Controllers\CanditadoController::class, 'login'])->name('login');
 
