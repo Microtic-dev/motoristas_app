@@ -648,7 +648,7 @@ code {
 }
 
 #topnav .topbar-main {
-  background: #0C99C5;
+  background: #04c512;
 }
 
 #topnav .topbar-main .logo {
@@ -1266,7 +1266,7 @@ body {
     footer
 ===================*/
 .footer {
-  background-color: #0C99C5;
+  background-color: #04c512;
   font-size: 13px;
   bottom: 0;
   color: #ffffff;
@@ -1321,7 +1321,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #0C99C5;
+  background-color: #04c512;
   z-index: 9999999;
 }
 
@@ -3633,7 +3633,7 @@ ul.content-payment li {
 /* Inicio CSS Motoristas  */
 
 .m_filtro_nav {
-  background-color: #0C99C5;
+  background-color: #04c512;
   border-radius: 3px;
 }
 
