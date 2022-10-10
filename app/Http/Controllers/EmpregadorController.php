@@ -36,6 +36,50 @@ class EmpregadorController extends Controller
      return view('empregador.index', array( 'anuncios' => $anuncios, 'categorias' => $categorias, 'provincias' => $provincias ));
   }
 
+public function registarEmpregador(Request $request)
+    {
+        $password;
+        if($request->password == $request->password_confirmation){
+          $password = $request->password;
+        } else {
+          return redirect()->back()->with('erro', 'Ocorreu erro, password diferente!');
+        }
+
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;;
+        $user->celular = $request->celular;
+        $user->privilegio = $request->privilegio;
+        $user->password = Hash::make($password);
+
+        if($user->save()){
+
+            $empregador = new Empregador;
+            $empregador->user_id = Auth::user()->id;
+
+            $empregador->telefone = $request->telefone;
+            $empregador->telefone_alt = $request->telefone_alt;
+            $empregador->website = $request->website;
+            $empregador->endereco = $request->endereco;
+            $empregador->provincia_id = $request->provincia_id;
+
+            $empregador->sobre = $request->sobre;;
+            $empregador->estado = 'Aberto';
+            $empregador->empresa = $request->empresa;
+
+
+
+         if ($empregador->save()) {
+
+             return redirect('/empregador');
+
+          }else{
+
+             return redirect()->back()->with('erro', 'Ocorreu erro, tenta novamente!');
+     }
+   }
+  }
+
   public function procurarMotorista(Request $request)
   {
      $motorista = DB::table('users')
@@ -50,6 +94,9 @@ class EmpregadorController extends Controller
              return response(['msg' => 'Ocorreu erro, tenta novamente!', 'error' => '500']);
          }
   }
+
+
+
 
   public function getMotorista(Request $request)
   {
