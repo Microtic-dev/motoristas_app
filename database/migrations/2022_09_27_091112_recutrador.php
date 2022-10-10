@@ -13,15 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('recrutadores', function (Blueprint $table) {
+        Schema::create('empregadores', function (Blueprint $table) {
              $table->bigIncrements('id');
              $table->bigInteger('user_id')->unsigned();
              $table->string('telefone');
              $table->string('telefone_alt')->nullable();
-             $table->string('website');
+             $table->string('website')->nullable();
              $table->string('endereco');
              $table->bigInteger('provincia_id')->unsigned();
              $table->text('sobre')->nullable();
+             $table->text('empresa');
              $table->string('estado')->nullable(); //activo ou desativo
              $table->timestamps();
 
