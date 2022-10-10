@@ -37,7 +37,8 @@ class EmpregadorController extends Controller
   }
 
 public function registarEmpregador(Request $request)
-    {
+    {print_r('entrei');
+    die();
         $password;
         if($request->password == $request->password_confirmation){
           $password = $request->password;
@@ -47,7 +48,7 @@ public function registarEmpregador(Request $request)
 
         $user = new User;
         $user->name = $request->name;
-        $user->email = $request->email;;
+        $user->email = $request->email;
         $user->celular = $request->celular;
         $user->privilegio = $request->privilegio;
         $user->password = Hash::make($password);
@@ -68,7 +69,8 @@ public function registarEmpregador(Request $request)
             $empregador->empresa = $request->empresa;
 
 
-
+            print_r($empregador);
+            die();
          if ($empregador->save()) {
 
              return redirect('/empregador');
