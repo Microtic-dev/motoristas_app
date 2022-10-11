@@ -53,9 +53,12 @@ public function verAnuncio($id){
     $anuncio = DB::table('anuncios')
               ->join('anuncios_provincias','anuncios.id', 'anuncios_provincias.anuncio_id')
               ->join('provincias','anuncios_provincias.provincia_id','provincias.id')
+              ->join('empregadors', 'anuncios.user_id', '=', 'empregadors.user_id')
+              ->join('users', 'anuncios.user_id', '=', 'users.id')
               ->join('categorias','anuncios.categoria_id','categorias.id')
               ->where('anuncios.id',$id)
-              ->select('anuncios.*','provincias.name as provincia','categorias.categoria as categoria')
+              ->select('anuncios.*','provincias.name as provincia','categorias.categoria as categoria',
+               'users.name as nome', 'users.email as email','empregadors.empresa as empresa')
               ->first();
     return view('anuncio', compact('anuncio','provincias' ,'categorias','anuncios_provincias'));
 

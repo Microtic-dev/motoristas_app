@@ -48,7 +48,7 @@ Titulo de anuncio |
               </section>
 
               <h2>{{$anuncio->titulo}} </h2>
-              <p class="nomeInst">Anonimo</p>
+              <p class="nomeInst">{{$anuncio->empresa}}</p>
               <section class="infoJob clearfix">
                 <p>
                   <span class="badge badge-default">{{ Carbon::parse($anuncio->created_at)->format('d-M-Y') }} </span>
@@ -80,7 +80,7 @@ Titulo de anuncio |
             <h2 class="detalhesC">Informação Adcional</h2>
             <p><b>Data da Publicação: </b><span class="float-right">{{ Carbon::parse($anuncio->created_at)->format('d-M-Y') }}</span></p>
             <p><b>Válido até:  </b><span class="float-right">{{ Carbon::parse($anuncio->validade)->format('d-M-Y') }}</span></p>
-            <p><b>Email:  </b><span class="float-right"><a href="mailto:motorista@motorista.co.mz"> motorista@motorista.co.mz </a></span></p>
+            <p><b>Email:  </b><span class="float-right"><a href="{{$anuncio->email}}">{{$anuncio->email}} </a></span></p>
 
             <hr>
 
@@ -122,7 +122,7 @@ Titulo de anuncio |
 
           <div class="card m-b-30 card-body">
             <h2 class="detalhesC">Sobre o Recrutador</h2>
-            <p>Anonimo</p>
+            <p>{{$anuncio->empresa}}</p>
           </div>
         </div>
           <!-- end anuncios section -->
