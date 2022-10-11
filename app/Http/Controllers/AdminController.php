@@ -86,8 +86,8 @@ class AdminController extends Controller
 
 
    return view('admin.bd_motoristas',compact('motoristas'));
-
  }
+
 
  public function empregadores()
  {
@@ -99,7 +99,6 @@ class AdminController extends Controller
 
 
   return view('admin.bd_empregadores',compact('empregadores'));
-
  }
 
 }

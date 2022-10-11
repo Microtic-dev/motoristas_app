@@ -37,17 +37,22 @@ Central de Risco de Motoristas |
           </section>
           <!-- fitros section -->
           <div class="col-md-12 m_filtro_nav mt-4">
+            <form method="GET" action="{{ route('searchDenuncias') }}">
+            @csrf
             <div class="form-group mt-3 row">
+
                 <div class="col-sm-6">
-                    <input class="form-control" type="text" id="nome_motoritsa"  name="nome_motoritsa" placeholder="Nome do motorista">
+                    <input class="form-control" type="text" id="keyword"  name="keyword" @if(isset($_GET['keyword'])) value="{{$_GET['keyword']}}"  @endif placeholder="Nome de motorista..." >
                 </div>
                 <div class="col-sm-4">
                     <input class="form-control" type="text" id="numero_carta_conducao"  name="numero_carta_conducao" placeholder="Número da carta de condução">
                 </div>
                 <div class="col-sm-2">
-                    <button type="button" class="btn btn-info waves-effect waves-light w-100">Filtrar</button>
+                    <button type="submit" class="btn btn-info waves-effect waves-light w-100">Filtrar</button>
                 </div>
+
             </div>
+            </from>
           </div>
           <!-- end fitros section -->
           <!-- anuncios section -->
