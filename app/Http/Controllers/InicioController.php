@@ -17,10 +17,10 @@ class InicioController extends Controller
       $anuncios_provincias = DB::table('anuncios_provincias')->get();
 
       $anuncios = DB::table('anuncios')
-          //    ->join('recrutadores', 'anuncios.user_id', '=', 'recrutadores.id')
+              ->join('empregadors', 'anuncios.user_id', '=', 'empregadors.user_id')
               ->join('users', 'anuncios.user_id', '=', 'users.id')
-              ->select('anuncios.*', 'users.name as recrutador')
-              ->orderBy('created_at', 'DESC')
+              ->select('anuncios.*', 'users.name as nome','empregadors.empresa as empresa')
+              ->orderBy('id', 'DESC')
               ->paginate(10);
 
 

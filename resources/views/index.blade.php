@@ -114,6 +114,7 @@ Motoristas |
                           <img src="{{ asset('/assets/images/logoRectangle.png' )}}" class="img-fluid"/>
                         </div>
                         <h4 class="mt-4"><a href="/anuncio/{{$anuncio->id}}">{{ $anuncio->titulo }}</a></h4>
+                          <p>{{$anuncio->empresa}}</>
                           <p>
 
                             @php
