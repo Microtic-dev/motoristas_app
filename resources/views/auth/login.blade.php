@@ -221,8 +221,7 @@
                  @endforeach
              </select>
 
-
-             <input id="sobre" type="textarea" class="form-control @error('sobre') is-invalid @enderror" name="sobre" value="{{ old('sobre') }}"  autocomplete="sobre" placeholder="Sobre">
+              <textarea class="form-control" name="sobre" id="sobre" rows="3"  class="form-control @error('sobre') is-invalid @enderror" name="sobre" value="{{ old('sobre') }}"  autocomplete="sobre"placeholder="Sobre a empresa..."></textarea>
              @error('sobre')
                  <span class="invalid-feedback" role="alert">
                      <strong>{{ $message }}</strong>
