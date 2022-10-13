@@ -39,7 +39,7 @@ Denuncia |
                           <div class="direita">
                             <span><a href="/admin" >Dashboard</a></span> |
                             <span><a href="/centralRisco" >Central de Rsico de Motoristas</a></span> |
-                            <span><a href="#">{{ ucfirst($denuncia->nome) }}</a><span>
+                            <span><a href="#">{{ ucfirst($denuncia->nome_motorista) }}</a><span>
                            </div>
                           </section>
                       </div>
@@ -58,20 +58,17 @@ Denuncia |
                             <div class="social-source-icon lg-icon mb-3">
                                 <img src="/assets/images/users/avatar-6.jpg" alt="user" class="rounded-circle width-100">
                             </div>
-                            <h5 class="font-16"><a href="#" class="text-dark">{{ ucfirst($denuncia->nome) }}</a></h5>
+                            <h5 class="font-16"><a href="#" class="text-dark">{{ ucfirst($denuncia->nome_motorista) }}</a></h5>
                             <br>
                         </div>
                         <div class="row mt-2">
                             <div class="col-md-12">
-                              <p><b>Género: </b>{{ $denuncia->sexo }}</p>
-                              <p><b>Celular: </b>{{ $denuncia->celular }}</p>
-                              <p><b>Email: </b>{{ $denuncia->email }}</p>
-                              <p><b>Grau académico: </b>{{ $denuncia->grau_academico }}</p>
-                              <p><b>Habilitacao de condução: </b>{{ $denuncia->categoria }}</p>
-                              <p><b>Número da carta de ondução: </b>{{ $denuncia->numero_carta_conducao }}</p>
-                              <p><b>Data de nascimento: </b>{{ Carbon\Carbon::parse($denuncia->datanascimento)->format('d-M-Y') }}</p>
-                              <p><b>Nacionalidade: </b>{{ $denuncia->nacionalidade }}</p>
-                              <p><b>Residência: </b>{{ $denuncia->endereco }}</p>
+                              <p><b>Celular: </b>{{ $denuncia->celular_motorista }}</p>
+                              <p><b>Habilitacao de condução: </b>{{ $denuncia->Categoria_motorista }}</p>
+                              <p><b>Número da carta de ondução: </b>{{ $denuncia->cartadeconducao_motorista }}</p>
+                              <p><b>Data de nascimento: </b>{{ Carbon\Carbon::parse($denuncia->datanascismento_motorista)->format('d-M-Y') }}</p>
+                              <p><b>Nacionalidade: </b>{{ $denuncia->nacionalidade_motorista }}</p>
+                              <p><b>Residência: </b>{{ $denuncia->endereco_motorista }}</p>
                             </div>
                         </div>
 
@@ -108,7 +105,7 @@ Denuncia |
                                 <hr>
                                   <form class="form-horizontal mt-4" action="{{ route('updateDenuncia') }}" method="post" id="denunciar_form">
                                     @csrf
-                                    <input name="id" value="{{ $denuncia->denuncia_id}}" type="hidden">
+                                    <input name="id" value="{{ $denuncia->id}}" type="hidden">
                                       <div class="form-group row">
                                           <label for="example-text-input" class="col-sm-12 col-form-label">Funções do motorista na empresa </label>
                                             <div class="col-sm-12">

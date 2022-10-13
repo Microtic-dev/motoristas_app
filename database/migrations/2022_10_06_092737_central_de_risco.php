@@ -18,7 +18,18 @@ return new class extends Migration
         Schema::create('central_de_riscos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('empregador_id')->unsigned();
-            $table->bigInteger('user_id')->unsigned();
+
+
+            $table->string('nome_motorista');
+            $table->date('datanascismento_motorista')->nullable();
+            $table->integer('celular_motorista')->nullable();
+            $table->string('endereco_motorista')->nullable();
+            $table->string('provincia_motorista')->nullable();
+            $table->string('Categoria_motorista')->nullable();
+            $table->string('cartadeconducao_motorista')->nullable();
+            $table->string('nacionalidade_motorista')->nullable();
+
+
             $table->string('funcoes_do_candidato')->nullable();
             $table->text('infracao')->nullable();
             $table->string('merece_portunidade')->nullable();
@@ -26,10 +37,7 @@ return new class extends Migration
             $table->string('estado_denuncia')->nullable();
             $table->timestamps();
 
-            $table->foreign('user_id')
-                    ->references('id')->on('users')
-                    ->onDelete('cascade')
-                    ->onUpdate('cascade');
+
 
             $table->foreign('empregador_id')
                     ->references('id')->on('users')

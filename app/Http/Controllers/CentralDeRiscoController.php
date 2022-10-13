@@ -12,13 +12,6 @@ class CentralDeRiscoController extends Controller
 
   public function index(){
       $denuncias = DB::table('central_de_riscos')
-              ->join('candidatos', 'central_de_riscos.user_id', '=', 'candidatos.user_id')
-              ->join('provincias', 'candidatos.provincia_id', '=', 'provincias.id')
-              ->join('categorias', 'candidatos.categoria_id', '=', 'categorias.id')
-              ->join('users', 'candidatos.user_id', '=', 'users.id')
-              ->select('central_de_riscos.*', 'users.name as nome', 'users.email as email', 'users.privilegio as privilegio',
-               'provincias.name as provincia', 'users.celular as celular',
-              'categorias.categoria as categoria')
               ->get();
 
            return view('admin.central_risco',compact('denuncias'));
@@ -31,48 +24,28 @@ class CentralDeRiscoController extends Controller
 
         if($request->keyword!=""){
 
-          $denuncias = DB::table('central_de_riscos')
-                  ->join('candidatos', 'central_de_riscos.user_id', '=', 'candidatos.user_id')
-                  ->join('provincias', 'candidatos.provincia_id', '=', 'provincias.id')
-                  ->join('categorias', 'candidatos.categoria_id', '=', 'categorias.id')
-                  ->join('users', 'candidatos.user_id', '=', 'users.id')
-                  ->where('users.name', $request->keyword)
-                  ->orWhere('users.name', 'like', '%' .$request->keyword . '%')
-                  ->select('central_de_riscos.*', 'users.name as nome', 'users.email as email', 'users.privilegio as privilegio',
-                   'provincias.name as provincia', 'users.celular as celular', 'candidatos.numero_carta_conducao as carta',
-                  'categorias.categoria as categoria')
-                  ->get();
 
+
+          $denuncias = DB::table('central_de_riscos')
+                  ->where('central_de_riscos.nome_motorista', $request->keyword)
+                  ->orWhere('central_de_riscos.nome_motorista', 'like', '%' .$request->keyword . '%')
+                  ->get();
 
 
      }elseif($request->numero_carta_conducao!=""){
 
           $denuncias = DB::table('central_de_riscos')
-                  ->join('candidatos', 'central_de_riscos.user_id', '=', 'candidatos.user_id')
-                  ->join('provincias', 'candidatos.provincia_id', '=', 'provincias.id')
-                  ->join('categorias', 'candidatos.categoria_id', '=', 'categorias.id')
-                  ->join('users', 'candidatos.user_id', '=', 'users.id')
-                  ->where('candidatos.numero_carta_conducao', $request->numero_carta_conducao)
-                  ->orWhere('candidatos.numero_carta_conducao', 'like', '%' .$request->numero_carta_conducao . '%')
-                  ->select('central_de_riscos.*', 'users.name as nome', 'users.email as email', 'users.privilegio as privilegio',
-                   'provincias.name as provincia', 'users.celular as celular','candidatos.numero_carta_conducao as carta',
-                  'categorias.categoria as categoria')
+                  ->where('central_de_riscos.cartadeconducao_motorista', $request->numero_carta_conducao)
+                  ->orWhere('central_de_riscos.cartadeconducao_motorista', 'like', '%' .$request->numero_carta_conducao . '%')
                   ->get();
 
 
        }else{
 
-          $denuncias = DB::table('central_de_riscos')
-                  ->join('candidatos', 'central_de_riscos.user_id', '=', 'candidatos.user_id')
-                  ->join('provincias', 'candidatos.provincia_id', '=', 'provincias.id')
-                  ->join('categorias', 'candidatos.categoria_id', '=', 'categorias.id')
-                  ->join('users', 'candidatos.user_id', '=', 'users.id')
-                  ->select('central_de_riscos.*', 'users.name as nome', 'users.email as email', 'users.privilegio as privilegio',
-                   'provincias.name as provincia', 'users.celular as celular',
-                  'categorias.categoria as categoria')
-                  ->get();
+         $denuncias = DB::table('central_de_riscos')
+                 ->get();
 
-                
+
      }
 
              return view('admin.central_risco',compact('denuncias'));
@@ -83,8 +56,17 @@ class CentralDeRiscoController extends Controller
 
 
           $centralRisco = new CentralDeRisco;
-          $centralRisco->empregador_id = Auth::user()->id;;
-          $centralRisco->user_id = $request->candidato_id;
+          $centralRisco->empregador_id = Auth::user()->id;
+
+          $centralRisco->nome_motorista = $request->nome_motorista;
+          $centralRisco->datanascismento_motorista = $request->datanascismento_motorista;
+          $centralRisco->celular_motorista = $request->celular_motorista;
+          $centralRisco->endereco_motorista = $request->endereco_motorista;
+          $centralRisco->provincia_motorista = $request->provincia_motorista;
+          $centralRisco->Categoria_motorista = $request->Categoria_motorista;
+          $centralRisco->cartadeconducao_motorista = $request->cartadeconducao_motorista;
+          $centralRisco->nacionalidade_motorista = $request->nacionalidade_motorista;
+
           $centralRisco->funcoes_do_candidato=$request->funcoes_do_candidato;
           $centralRisco->infracao=$request->infracao;
           $centralRisco->merece_portunidade = $request->merece_portunidade;
@@ -104,13 +86,6 @@ class CentralDeRiscoController extends Controller
 
       $denuncia = DB::table('central_de_riscos')
               ->where('central_de_riscos.id', $id)
-              ->join('candidatos', 'central_de_riscos.user_id', '=', 'candidatos.user_id')
-              ->join('provincias', 'candidatos.provincia_id', '=', 'provincias.id')
-              ->join('categorias', 'candidatos.categoria_id', '=', 'categorias.id')
-              ->join('users', 'candidatos.user_id', '=', 'users.id')
-              ->select('central_de_riscos.*', 'central_de_riscos.id as denuncia_id', 'candidatos.*', 'users.name as nome', 'users.email as email', 'users.privilegio as privilegio',
-               'provincias.name as provincia', 'users.celular as celular',
-              'categorias.categoria as categoria')
               ->first();
 
       $denunciante = DB::table('users')

@@ -310,7 +310,7 @@
         <!-- end row -->
 
         <!-- /inicio modal denunciar motorista -->
-        <div id="denunciarMotorista" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <!--  <div id="denunciarMotorista" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
               <div class="modal-dialog modal-lg">
                   <div class="modal-content">
                     <form class="form-horizontal m-t-20" action="{{ route('denunciar') }}" method="post" id="denunciar_form">
@@ -359,6 +359,148 @@
                             <label for="example-text-input" class="col-sm-3 col-form-label">Funções do motorista na empresa </label>
                               <div class="col-sm-9">
                                <input class="form-control" name="funcoes_do_candidato" id="funcoes_do_candidato" type="text" required>
+                            </div>
+                        </div>
+
+                          <div class="form-group row">
+                              <label for="example-text-input" class="col-sm-3 col-form-label">Descrição da infração</label>
+                                <div class="col-sm-9">
+                                  <textarea id="infracao" name="infracao" class="form-control" rows="6" placeholder="Ex: Detalhar a informação da infracção ou crime ..."></textarea>
+                              </div>
+                          </div>
+
+                          <div class="form-group row justify-content-end">
+                              <label for="example-text-input" class="col-sm-12 col-form-label">Acha que motorista merece outra oportunidade de trabalho? </label>
+                              <div class="col-sm-9 align-self-end">
+                                <label class="radio-inline">
+                                  <input type="radio" name="merece_portunidade" value="Sim" checked>&nbsp; Sim &nbsp;&nbsp;
+                                </label>
+                                <label class="radio-inline">
+                                  <input type="radio" name="merece_portunidade" value="Não">&nbsp; Não
+                                </label>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Cancelar</button>
+                          <button type="submit" class="btn btn-primary waves-effect waves-light">Enviar</button>
+                      </div>
+                    </form>
+                  </div><!-- /.modal-content -->
+              <!--</div>--><!-- /.modal-dialog -->
+        <!--</div>-->
+        <!--fim modal denunciar motorista-->
+
+
+        <!-- /inicio modal denunciar motorista  2-->
+        <div id="denunciarMotorista" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <form class="form-horizontal m-t-20" action="{{ route('denunciar') }}" method="post" id="denunciar_form">
+                      @csrf
+                      <div class="modal-header">
+                          <h5 class="modal-title mt-0" id="myModalLabel">Denunciar Motorista</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      <div class="modal-body">
+                        <div class="form-group row">
+                            <label for="example-text-input" class="col-sm-3 col-form-label">Dado do Motorista</label>
+                              <div class="col-sm-9">
+                                <div class="input-group">
+
+                                  <input type="text" class="form-control" name="nome_motorista" id="nome_motorista" type="text" placeholder="Nome completo do motorista" required>
+                                </div>
+                              </div>
+                        </div>
+
+                        <div class="form-group row">
+                              <div class="col-sm-9" style="margin-left:200px">
+                                <div class="input-group ">
+                                  <label for="example-text-input" class="col-sm-3 col-form-label" style="min-width:160px;color:gray">Data de nascimento:</label>
+
+                                  <input type="date" class="form-control" name="datanascismento_motorista" id="datanascismento_motorista"  required >
+                                </div>
+                              </div>
+                        </div>
+
+                        <div class="form-group row">
+                              <div class="col-sm-9" style="margin-left:200px">
+                                <div class="input-group ">
+                                  <input type="number" class="form-control" name="celular_motorista"
+                                  id="celular_motorista" placeholder="Celular" >
+                                </div>
+                              </div>
+                        </div>
+
+                        <div class="form-group row">
+                              <div class="col-sm-9" style="margin-left:200px">
+                                <div class="input-group ">
+                                  <input type="text" class="form-control" name="nacionalidade_motorista"
+                                  id="nacionalidade_motorista" placeholder="Nacionalidade" >
+                                </div>
+                              </div>
+                        </div>
+
+                        <div class="form-group row">
+                              <div class="col-sm-9" style="margin-left:200px">
+                                <div class="input-group ">
+                                  <select class="form-control" name="provincia_motorista" id="provincia" required>
+                                    @php
+                                      $provincias = App\Models\Provincias::all();
+                                    @endphp
+                                      <option selected>Seleccione a Provincia</option>
+                                      @foreach ($provincias as $key => $provincia)
+                                        <option value="{{ $provincia->name }}">{{ $provincia->name }}</option>
+                                      @endforeach
+                                  </select>
+                                </div>
+                              </div>
+                        </div>
+
+                        <div class="form-group row">
+                              <div class="col-sm-9" style="margin-left:200px">
+                                <div class="input-group ">
+                                  <input type="text" class="form-control" name="endereco_motorista"
+                                  id="endereco_motorista" placeholder="Endereço" >
+                                </div>
+                              </div>
+                        </div>
+
+                        <div class="form-group row">
+                              <div class="col-sm-9" style="margin-left:200px">
+                                <div class="input-group ">
+                                  <select class="form-control" name="Categoria_motorista" id="categoria" required>
+                                    @php
+                                      $provincias = App\Models\Categorias::all();
+                                    @endphp
+                                      <option selected>Seleccione a Provincia</option>
+                                      @foreach ($categorias as $key => $categoria)
+                                        <option value="{{ $categoria->categoria }}">{{ $categoria->categoria }}</option>
+                                      @endforeach
+                                  </select>
+                                </div>
+                              </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                              <div class="col-sm-9" style="margin-left:200px">
+                                <div class="input-group ">
+                                  <input type="text" class="form-control" name="cartadeconducao_motorista"
+                                  id="cartadeconducao_motorista" placeholder="Carta de condução" >
+                                </div>
+                              </div>
+                        </div>
+
+
+
+
+                        <div class="form-group row">
+                            <label for="example-text-input" class="col-sm-3 col-form-label">Funções do motorista na empresa</label>
+                              <div class="col-sm-9">
+                               <input class="form-control" name="funcoes_do_candidato" id="funcoes_do_candidato" type="text" placeholder="Ex: transporte de mercadorias..." required>
                             </div>
                         </div>
 
