@@ -54,7 +54,7 @@ public function registarEmpregador(Request $request)
 
         $user = new User;
         $user->name = $request->name;
-        $user->email = $request->email;
+        $user->email = $request->newemail;
         $user->celular = $request->telefone;
         $user->privilegio = $request->privilegio;
         $user->password = Hash::make($password);
@@ -69,10 +69,10 @@ public function registarEmpregador(Request $request)
             $empregador->website = $request->website;
             $empregador->endereco = $request->endereco;
             $empregador->provincia_id = $request->provincia_id;
-
-            $empregador->sobre = $request->sobre;;
+            $empregador->representante = $request->representante;
+            $empregador->sobre = $request->sobre;
             $empregador->estado = 'Aberto';
-            $empregador->empresa = $request->empresa;
+            $empregador->empresa = $request->name;
 
 
 
