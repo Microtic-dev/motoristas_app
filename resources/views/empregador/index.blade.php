@@ -5,6 +5,7 @@
 @section('content')
 
 <div class="wrapper">
+
     <div class="container-fluid">
       @if (session('success'))
       <div class="mt-4 alert alert-success alert-dismissible">
@@ -279,7 +280,12 @@
                     <div class="card-body">
                         <div class="text-center">
                             <div class="social-source-icon lg-icon mb-3">
-                                <img src="assets/images/users/avatar-6.jpg" alt="user" class="rounded-circle width-100">
+                               @if(Auth::user()->foto_url=="none")
+                                   <img src="assets/images/users/avatar-6.jpg" alt="user" class="rounded-circle width-100" id="image-profile" data-toggle="modal" data-target="#logo">
+                                @else
+
+                                   <img src="{{ Auth::user()->foto_url }}" alt="user" class="rounded-circle width-100" id="image-profile" data-toggle="modal" data-target="#logo">
+                                @endif
                             </div>
                             <h5 class="font-16"><a href="#" class="text-dark">{{ ucfirst(Auth::user()->name) }}</a></h5>
                             <p class="text-center"><b><a href="mailto:{{ Auth::user()->email }}">{{ Auth::user()->email }}</a></b></p>
@@ -532,6 +538,52 @@
               </div><!-- /.modal-dialog -->
         </div><!-- /.modaldenunciar motorista -->
         <!--fim modal denunciar motorista-->
+
+        <div id="logo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                  <form class="form-horizontal m-t-20" action="/fotoPerfil" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <input name="user_id" type="hidden" value="{{ Auth::user()->id }}">
+                    <div class="modal-header">
+                        <h5 class="modal-title mt-0" id="myModalLabel">Documentos</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="form-group row">
+                          <label for="example-text-input" class="col-sm-3 col-form-label">Tipo</label>
+                            <div class="col-sm-9">
+                              <select class="form-control" name="tipo">
+                                <option value="Curriculum Vitae">Curriculum Vitae</option>
+                                <option value="Carta de Condução">Carta de Condução</option>
+                                <option value="Carta de Recomendação">Carta de Recomendação</option>
+                                <option value="Certificado">Certificado</option>
+                                <option value="Diploma">Diploma</option>
+                                <option value="Outro">Outro</option>
+                              </select>
+                            </div>
+                      </div>
+                      <div class="form-group row">
+                          <label for="example-text-input" class="col-sm-3 col-form-label">Documento</label>
+                          <div class="col-sm-9">
+                            <input class="form-control" name="documento" type="file" onchange="readURL(this);" accept="application/pdf" required>
+                          </div>
+                      </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary waves-effect waves-light">Guardar</button>
+                    </div>
+                  </form>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+
+
     </div> <!-- end container-fluid -->
 </div>
 <!-- end wrapper -->

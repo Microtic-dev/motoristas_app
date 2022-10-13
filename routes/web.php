@@ -63,6 +63,7 @@ Route::get('/meu-cv', [App\Http\Controllers\CandidatoController::class, 'cv'])->
 
 Route::post('/add-idioma', [App\Http\Controllers\IdiomasController::class, 'create'])->name('addIdioma')->middleware('candidato');
 Route::post('/add-documento', [App\Http\Controllers\DocumentosController::class, 'create'])->name('addDocumento')->middleware('candidato');
+Route::post('/fotoPerfil', [App\Http\Controllers\DocumentosController::class, 'fotoPerfil'])->name('fotoPerfil')->middleware('empregador');
 Route::post('/add-conhecimento', [App\Http\Controllers\ConhecimentosController::class, 'create'])->name('addConhecimento')->middleware('candidato');
 Route::post('/add-experiencia', [App\Http\Controllers\ExperienciasController::class, 'create'])->name('addExperiencia')->middleware('candidato');
 

@@ -861,6 +861,8 @@ Meu Curriculum Vitae - {{ Auth::user()->name }} |
                                       </div><!-- /.modal-content -->
                                   </div><!-- /.modal-dialog -->
                               </div><!-- /.modal -->
+
+
                           </div>
 
 

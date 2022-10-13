@@ -20,7 +20,8 @@ return new class extends Migration
             $table->string('celular')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-              $table->string('privilegio');
+            $table->string('privilegio');
+            $table->string('foto_url')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Provincias;
 use App\Models\categorias;
 use App\Models\Anuncios;
+use App\Models\fotoUrl;
 use App\Models\User;
 use App\Models\Empregador;
 use Illuminate\Support\Facades\DB;
@@ -29,12 +30,14 @@ class EmpregadorController extends Controller
 
     if($user->privilegio=='empregador'){
 
+
+
        $categorias = Categorias::all();
        $provincias = Provincias::all();
        $anuncios = DB::table('anuncios')
                ->join('empregadors', 'anuncios.user_id', '=', 'empregadors.user_id')
                ->join('users', 'anuncios.user_id', '=', 'users.id')
-               ->select('anuncios.*', 'users.name as recrutador')
+               ->select('anuncios.*', 'users.name as recrutador', 'users.foto_url as foto')
                ->where('anuncios.user_id', $user->id)
                ->orderBy('id', 'DESC')
                ->paginate(10);
@@ -55,6 +58,7 @@ public function registarEmpregador(Request $request)
         $user = new User;
         $user->name = $request->name;
         $user->email = $request->newemail;
+        $user->foto_url="none";
         $user->celular = $request->telefone;
         $user->privilegio = $request->privilegio;
         $user->password = Hash::make($password);
@@ -62,7 +66,7 @@ public function registarEmpregador(Request $request)
         if($user->save()){
 
 
-            
+
 
             $empregador = new Empregador;
             $empregador->user_id =$user->id;
@@ -70,7 +74,6 @@ public function registarEmpregador(Request $request)
             $empregador->sector_actividade=$request->sector_actividade;
             if($request->sector_actividade=='Outro')
             $empregador->sector_actividade=$request->sector_especificado;
-
             $empregador->telefone = $request->telefone;
             $empregador->telefone_alt = $request->telefone_alt;
             $empregador->website = $request->website;

@@ -12,6 +12,9 @@ class InicioController extends Controller
 
     public function index()
     {
+
+
+
       $categorias = DB::table('categorias')->get();
       $provincias = DB::table('provincias')->get();
       $anuncios_provincias = DB::table('anuncios_provincias')->get();
@@ -19,7 +22,7 @@ class InicioController extends Controller
       $anuncios = DB::table('anuncios')
               ->join('empregadors', 'anuncios.user_id', '=', 'empregadors.user_id')
               ->join('users', 'anuncios.user_id', '=', 'users.id')
-              ->select('anuncios.*', 'users.name as nome','empregadors.empresa as empresa')
+              ->select('anuncios.*', 'users.name as nome','empregadors.empresa as empresa', 'users.foto_url as foto')
               ->orderBy('id', 'DESC')
               ->paginate(10);
 

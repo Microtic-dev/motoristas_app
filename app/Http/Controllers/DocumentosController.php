@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Documentos;
+use App\Models\fotoUrl;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Auth;
 
@@ -23,11 +25,44 @@ class DocumentosController extends Controller
 
     if ($upload_success) {
         if ($novoDocumento->save()) {
+
             return redirect()->back()->with(array('success' => 'Documento adicionado com sucesso!'));
         } else {
             return redirect()->back()->with(array('erro' => 'Ocorreu um erro, tenta novamente!'));
         }
 
+    } else {
+        return redirect()->back()->with(array('erro' => 'Ocorreu um erro, tenta novamente!'));
+    }
+
+  }
+
+  public function fotoPerfil(Request $request)
+  {
+    $foto = $request->file('documento');
+
+    $fotoName =  $request->user_id . '.' . $foto->getClientOriginalExtension();
+    $upload_success = $foto->move(public_path('uploads'), $fotoName);
+
+    $foto_urls = new fotoUrl;
+    $foto_urls->user_id = $request->user_id;
+    $foto_urls->tipo = $foto->getClientOriginalExtension();
+    $foto_urls->ficheiro = 'uploads/' . $fotoName; //endereco do file no servidor
+
+    if ($upload_success) {
+        if ($foto_urls->save()) {
+
+            $user = User::find($request->user_id);
+            $user->foto_url = $foto_urls->ficheiro;
+
+            if($user->update()){
+                return redirect()->back()->with(array('success' => 'Documento adicionado com sucesso!'));
+            }else {
+                return redirect()->back()->with(array('erro' => 'Ocorreu um erro, tenta novamente!'));
+            }
+        } else {
+            return redirect()->back()->with(array('erro' => 'Ocorreu um erro, tenta novamente!'));
+        }
     } else {
         return redirect()->back()->with(array('erro' => 'Ocorreu um erro, tenta novamente!'));
     }

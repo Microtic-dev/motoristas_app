@@ -111,7 +111,7 @@ Motoristas |
                 <div class="card m-b-30">
                       <div class="card-body">
                         <div class="imagem">
-                          <img src="{{ asset('/assets/images/logoRectangle.png' )}}" class="img-fluid"/>
+                          <img src="{{ $anuncio->foto }}" class="img-fluid"/>
                         </div>
                         <h4 class="mt-4"><a href="/anuncio/{{$anuncio->id}}">{{ $anuncio->titulo }}</a></h4>
                           <p>{{$anuncio->empresa}}</>
