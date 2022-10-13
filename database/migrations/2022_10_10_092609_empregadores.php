@@ -23,6 +23,7 @@ return new class extends Migration
            $table->bigInteger('provincia_id')->unsigned();
            $table->text('sobre')->nullable();
            $table->text('empresa');
+           $table->string('representante')->nullable();
            $table->string('estado')->nullable(); //activo ou desativo
            $table->timestamps();
 
