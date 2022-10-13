@@ -69,16 +69,16 @@
                             <li class="list-inline-item dropdown notification-list nav-user">
                                 @guest
                                     <a class="nav-link" href="#" data-toggle="modal" data-target=".bs-base-dados-modal-center">
-                                      <i class="bi bi-car-front"></i> Base de dados de Motorista
+                                      <i class="bi bi-car-front"></i> Base de dados de Motoristas
                                     </a>
                                 @else
                                     @if(Auth::user()->privilegio == 'admin')
                                       <a class="nav-link" href="/bd-motoristas">
-                                        <i class="bi bi-car-front"></i> Base de dados de Motorista
+                                        <i class="bi bi-car-front"></i> Base de dados de Motoristas
                                       </a>
                                     @else
                                       <a class="nav-link" href="#" data-toggle="modal" data-target=".bs-base-dados-modal-center">
-                                        <i class="bi bi-car-front"></i> Base de dados de Motorista
+                                        <i class="bi bi-car-front"></i> Base de dados de Motoristas
                                       </a>
                                     @endif
 
@@ -109,7 +109,7 @@
                               @guest
                               <li class="list-inline-item dropdown notification-list">
                                   <a class="nav-link" href="{{route('login','candidato')}}">
-                                    <i class="dripicons-user"></i> Candidato
+                                    <i class="dripicons-user"></i> Candidato Motorista
                                   </a>
                               </li>
                               <li class="list-inline-item dropdown notification-list nav-user">
@@ -122,14 +122,14 @@
                                 @if(Auth::user()->privilegio == 'empregador')
                                   <li class="list-inline-item dropdown notification-list nav-user">
                                       <a class="nav-link" href="/empregador">
-                                        <i class="fas fa-hospital"></i>&nbsp;Empregador
+                                        <i class="fas fa-hospital"></i>&nbsp; Perfil
                                       </a>
                                   </li>
                                 @endif
                                 @if(Auth::user()->privilegio == 'candidato')
                                 <li class="list-inline-item dropdown notification-list">
                                     <a class="nav-link" href="/candidato">
-                                      <i class="dripicons-user"></i>&nbsp; Candidato
+                                      <i class="dripicons-user"></i>&nbsp; Perfil
                                     </a>
                                 </li>
                                 @endif
@@ -153,7 +153,7 @@
                                       <a class="dropdown-item" href="#"><span class="badge badge-success float-right m-t-5">5</span><i class="dripicons-gear text-muted"></i> Settings</a>
                                       <a class="dropdown-item" href="#"><i class="dripicons-lock text-muted"></i> Lock screen</a>
                                       <div class="dropdown-divider"></div> -->
-                                      <a class="dropdown-item" href="/logout"><i class="dripicons-exit text-muted"></i> Logout</a>
+                                      <a class="dropdown-item" href="/logout"><i class="dripicons-exit text-muted"></i>Logout</a>
                                   </div>
                               </li>
 
@@ -199,7 +199,7 @@
                         </button>
                     </div>
                     <div class="modal-body mb-4">
-                        <h4 class="mb-4">Base de dados de Motorista</h4>
+                        <h4 class="mb-4">Base de dados de Motoristas</h4>
                         <p>A base de dados de motorista , é uma rede com mais de 3000+ motoristas e está reservada ao administrador. <br>Para ter acesso a estes dados, contacte o administrador.</p>
                         <a href="tel:+258875474495" class="mt-4 btn btn-primary waves-effect waves-light">Ligar Agora</a>
                     </div>

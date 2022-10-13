@@ -54,7 +54,7 @@
                     <h4 class="mt-0 header-title mb-4">Anúncios de vaga <span class="float-right">
                       <button class="btn btn-success btn-sm waves-effect waves-light" data-toggle="modal" data-target="#anuncio"
                       <i class="dripicons-plus">
-                      </i>&nbsp;Novo </button>
+                      </i>&nbsp;Nova vaga</button>
                     </span></h4>
                     <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                          <thead>
@@ -76,7 +76,7 @@
                                  <td>{{ Carbon\Carbon::parse($anuncio->validade)->format('d-M-Y') }}</td>
                                  <td>{{ $anuncio->estado_anuncio }}</td>
                                  <td class="text-center">
-                                   <a href="/candidatos-anuncio/{{ $anuncio->id }}" class="btn btn-sm btn-success waves-effect waves-light"><i class="fa fa-users"></i> Candidaturas</a>
+                                   <a href="/candidatos-anuncio/{{ $anuncio->id }}" class="btn btn-sm btn-success waves-effect waves-light"><i class="fa fa-users"></i> Candidaturas recebidas</a>
 
                                         @php
                                             $anuncio_obj =  json_encode((array) $anuncio);
@@ -389,7 +389,7 @@
                   </div><!-- /.modal-content -->
               </div><!-- /.modal-dialog -->
         </div><!-- /.modaldenunciar motorista -->
-
+        <!--fim modal denunciar motorista-->
     </div> <!-- end container-fluid -->
 </div>
 <!-- end wrapper -->
