@@ -168,6 +168,23 @@
                  </span>
              @enderror
 
+             <select class="form-control" id="sector_actividade" name="sector_actividade" required>
+                 <option selected value="null">Sector de actividade</option>
+                 <option value="transporte">Transporte </option>
+                 <option value="comercio">Comercio </option>
+                 <option value="industria">Industria </option>
+                 <option value="turismo">Turismo </option>
+                 <option value="agricultura">Agricultura </option>
+                 <option value="mineração">Mineração </option>
+                 <option value="ONG">ONG</option>
+                 <option value="instituição publica">Instituição pública</option>
+                 <option value="Outro">Outro...</option>
+             </select>
+
+               <input class="form-control" name="sector_especificado" id="sector_especificado"
+               placeholder="Especifique o seu sector de actividade...">
+
+
              <input id="newemail" type="email" class="form-control @error('email') is-invalid @enderror" name="newemail" value="{{ old('newemail') }}" required autocomplete="email" placeholder="Email">
              @error('email')
                  <span class="invalid-feedback" role="alert">
@@ -335,6 +352,14 @@
         $('#email_login').val(email+"@motoristas.co.mz");
     });
 
+    $('#sector_especificado').hide();
+
+    $('#sector_actividade').on('change', function(){
+          if(this.value === 'Outro')
+          $('#sector_especificado').show().val();
+          else
+          $('#sector_especificado').hide();
+    });
 
     $(".escolar").hide();
     $(".tecnico").hide();

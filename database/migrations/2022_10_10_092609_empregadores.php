@@ -20,6 +20,8 @@ return new class extends Migration
            $table->string('telefone_alt')->nullable();
            $table->string('website')->nullable();
            $table->string('endereco');
+           $table->string('sector_actividade');
+           $table->string('sector_especificado')->nullable();
            $table->bigInteger('provincia_id')->unsigned();
            $table->text('sobre')->nullable();
            $table->text('empresa');

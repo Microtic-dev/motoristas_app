@@ -88,10 +88,10 @@ class CentralDeRiscoController extends Controller
               ->where('central_de_riscos.id', $id)
               ->first();
 
-      $denunciante = DB::table('users')
-              ->where('users.id', $denuncia->empregador_id)
-              ->join('central_de_riscos', 'users.id', '=', 'central_de_riscos.empregador_id')
-              ->select('users.*', 'users.name as nome_empregador', 'users.email as email_empregador',
+      $denunciante = DB::table('empregadors')
+              ->join('users', 'empregadors.user_id', '=', 'users.id')
+              ->join('central_de_riscos', 'empregadors.user_id', '=', 'central_de_riscos.empregador_id')
+              ->select('empregadors.*',  'users.email as email_empregador',
               'users.celular as celular_empregador')
               ->first();
 

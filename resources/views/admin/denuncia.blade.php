@@ -82,13 +82,20 @@ Denuncia |
                             <div class="social-source-icon lg-icon mb-3">
                                 <img src="/assets/images/users/avatar-6.jpg" alt="user" class="rounded-circle width-100">
                             </div>
-                            <h5 class="font-16"><a href="#" class="text-dark">{{ ucfirst($denunciante->nome_empregador) }}</a></h5>
+                            <h5 class="font-16"><a href="#" class="text-dark">{{ ucfirst($denunciante->empresa) }}</a></h5>
                             <br>
                         </div>
                         <div class="row mt-2">
                           <div class="col-md-12">
-                            <p><b>Celular: </b>{{ $denunciante->celular_empregador }}</p>
+                            <p><b>Celular: </b>{{ $denunciante->telefone }}</p>
                             <p><b>Email: </b>{{ $denunciante->email_empregador }}</p>
+                            @if($denunciante->sector_actividade=="Outro")
+                                @if( $denunciante->sector_especificado==null || $denunciante->sector_especificado=="" )
+                                  <p><b>Sector: </b>{{ $denunciante->sector_especificado }}</p>
+                                @endif
+                            @else
+                                <p><b>Sector: </b>{{ $denunciante->sector_actividade }}</p>
+                            @endif
                           </div>
                         </div>
 

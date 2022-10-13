@@ -61,8 +61,15 @@ public function registarEmpregador(Request $request)
 
         if($user->save()){
 
+
+            
+
             $empregador = new Empregador;
             $empregador->user_id =$user->id;
+
+            $empregador->sector_actividade=$request->sector_actividade;
+            if($request->sector_actividade=='Outro')
+            $empregador->sector_actividade=$request->sector_especificado;
 
             $empregador->telefone = $request->telefone;
             $empregador->telefone_alt = $request->telefone_alt;
