@@ -546,27 +546,14 @@
                     @csrf
                     <input name="user_id" type="hidden" value="{{ Auth::user()->id }}">
                     <div class="modal-header">
-                        <h5 class="modal-title mt-0" id="myModalLabel">Documentos</h5>
+                        <h5 class="modal-title mt-0" id="myModalLabel">Logotipo</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                       <div class="form-group row">
-                          <label for="example-text-input" class="col-sm-3 col-form-label">Tipo</label>
-                            <div class="col-sm-9">
-                              <select class="form-control" name="tipo">
-                                <option value="Curriculum Vitae">Curriculum Vitae</option>
-                                <option value="Carta de Condução">Carta de Condução</option>
-                                <option value="Carta de Recomendação">Carta de Recomendação</option>
-                                <option value="Certificado">Certificado</option>
-                                <option value="Diploma">Diploma</option>
-                                <option value="Outro">Outro</option>
-                              </select>
-                            </div>
-                      </div>
-                      <div class="form-group row">
-                          <label for="example-text-input" class="col-sm-3 col-form-label">Documento</label>
+                          <label for="example-text-input" class="col-sm-3 col-form-label">Logotipo</label>
                           <div class="col-sm-9">
                             <input class="form-control" name="documento" type="file" onchange="readURL(this);" accept="application/pdf" required>
                           </div>
