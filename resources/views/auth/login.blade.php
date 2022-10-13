@@ -110,7 +110,7 @@
               @endforeach
           </select>
 
-          <input id="numero_carta_conducao" type="text" class="form-control" name="numero_carta_conducao" placeholder="Número da Carta de Condução ">
+          <input id="numero_carta_conducao" type="text" class="form-control" name="numero_carta_conducao" placeholder="Número da Carta de Condução (opcional) ">
           <div class="form-check">
             <label class="form-check-label margin-left-20">A sua carta de condução está dentro da validade? </label><br>
               <div class="form-check form-check-inline">
@@ -161,22 +161,22 @@
               <h1>Criar conta Empregador!</h1><br>
 
              <input type="hidden" name="privilegio" value="empregador"/>
-             <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Nome Completo">
+             <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Empresa">
              @error('name')
                  <span class="invalid-feedback" role="alert">
                        <strong>{{ $message }}</strong>
                  </span>
              @enderror
 
-             <input id="newemail" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email">
+             <input id="newemail" type="email" class="form-control @error('email') is-invalid @enderror" name="newemail" value="{{ old('newemail') }}" required autocomplete="email" placeholder="Email">
              @error('email')
                  <span class="invalid-feedback" role="alert">
                      <strong>{{ $message }}</strong>
                  </span>
              @enderror
 
-             <input id="empresa" type="text" class="form-control @error('empresa') is-invalid @enderror" name="empresa" value="{{ old('empresa') }}" required autocomplete="empresa" autofocus placeholder="Empresa">
-             @error('empresa')
+             <input id="representante" type="text" class="form-control @error('representante') is-invalid @enderror" name="representante" value="{{ old('representante') }}" required autocomplete="representante" autofocus placeholder="Representante">
+             @error('representante')
                  <span class="invalid-feedback" role="alert">
                        <strong>{{ $message }}</strong>
                  </span>
