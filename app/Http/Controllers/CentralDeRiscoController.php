@@ -91,7 +91,7 @@ class CentralDeRiscoController extends Controller
       $denunciante = DB::table('empregadors')
               ->join('users', 'empregadors.user_id', '=', 'users.id')
               ->join('central_de_riscos', 'empregadors.user_id', '=', 'central_de_riscos.empregador_id')
-              ->select('empregadors.*',  'users.email as email_empregador',
+              ->select('empregadors.*','users.foto_url as foto_url' ,'users.name as empresa', 'users.email as email_empregador',
               'users.celular as celular_empregador')
               ->first();
 

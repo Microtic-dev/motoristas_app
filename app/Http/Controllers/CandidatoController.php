@@ -95,7 +95,7 @@ class CandidatoController extends Controller
                 ->join('users', 'candidatos.user_id', '=', 'users.id')
                 ->where('candidatos.user_id', $id)
                 ->select('candidatos.*', 'candidatos.id as candidato_id', 'users.name as nome', 'users.email as email', 'users.privilegio as privilegio',
-                 'provincias.name as provincia', 'users.celular as celular',
+                 'provincias.name as provincia','users.foto_url as foto_url', 'users.celular as celular',
                 'categorias.categoria as categoria')
                 ->first();
 
@@ -132,7 +132,7 @@ class CandidatoController extends Controller
                 ->join('categorias', 'candidatos.categoria_id', '=', 'categorias.id')
                 ->join('users', 'candidatos.user_id', '=', 'users.id')
                 ->where('candidatos.user_id', Auth::user()->id)
-                ->select('candidatos.*', 'users.name as nome', 'users.email as email', 'users.privilegio as privilegio', 'provincias.name as provincia',
+                ->select('candidatos.*', 'users.name as nome', 'users.foto_url as foto_url','users.email as email', 'users.privilegio as privilegio', 'provincias.name as provincia',
                 'categorias.categoria as categoria')
                 ->first();
 
@@ -220,39 +220,18 @@ class CandidatoController extends Controller
       }
 
 
+    public function candidaturaEspontanea(){
+      $empregadores = DB::table('empregadors')
+                  ->join('users', 'empregadors.user_id','=','users.id')
+                  ->join('provincias', 'empregadors.provincia_id','=','provincias.id')
+                  ->select('empregadors.*','users.name as name','users.foto_url as foto_url','provincias.name as provincia', 'users.email as email','users.celular as celular')
+                  ->orderBy('id', 'DESC')
+                  ->paginate(5);
 
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+     return view('admin.bd_empregadores_candidatura',compact('empregadores'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.

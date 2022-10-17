@@ -54,8 +54,13 @@ Perfil do Motorista - {{ $candidato->nome }} |
                 <div class="card">
                     <div class="card-body">
                         <div class="text-center">
+
                             <div class="social-source-icon lg-icon mb-3">
-                                <img src="assets/images/users/avatar-6.jpg" alt="user" class="rounded-circle width-100">
+                              @if($candidato->foto_url=="none" || $candidato->foto_url==null)
+                               <img src="assets/images/users/avatar-6.jpg" alt="user" class="rounded-circle width-100" />
+                             @else
+                               <img src="{{ $candidato->foto_url }}" alt="user" class="rounded-circle width-100" id="image-profile" />
+                             @endif
                             </div>
                             <h5 class="font-16"><a href="#" class="text-dark">{{ ucfirst($candidato->nome) }}</a></h5>
                             <p class="text-center"><b>Celular: {{ $candidato->celular }}</b></p>
@@ -207,6 +212,9 @@ Perfil do Motorista - {{ $candidato->nome }} |
         <!-- end row -->
     </div> <!-- end container-fluid -->
 </div>
+
+
+
 <!-- end wrapper -->
 
 @endsection

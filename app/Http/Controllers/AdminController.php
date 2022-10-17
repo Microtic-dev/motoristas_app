@@ -30,13 +30,6 @@ class AdminController extends Controller
 
 
     $denuncias = DB::table('central_de_riscos')
-                ->join('candidatos', 'central_de_riscos.user_id', '=', 'candidatos.user_id')
-                ->join('provincias', 'candidatos.provincia_id', '=', 'provincias.id')
-                ->join('categorias', 'candidatos.categoria_id', '=', 'categorias.id')
-                ->join('users', 'candidatos.user_id', '=', 'users.id')
-                ->select('central_de_riscos.*', 'users.name as nome', 'users.email as email',
-                 'users.privilegio as privilegio', 'provincias.name as provincia', 'users.celular as celular',
-                'categorias.categoria as categoria')
                 ->orderBy('id', 'DESC')
                 ->paginate(5);
 
@@ -80,7 +73,7 @@ class AdminController extends Controller
                  ->join('users', 'candidatos.user_id', '=', 'users.id')
                  ->join('categorias', 'candidatos.categoria_id', '=', 'categorias.id')
                  ->join('provincias', 'candidatos.provincia_id', '=', 'provincias.id')
-                 ->select('candidatos.*', 'users.name as name','users.celular as celular','categorias.categoria as categoria',
+                 ->select('candidatos.*', 'users.name as name','users.foto_url as foto_url','users.celular as celular','categorias.categoria as categoria',
                  'provincias.name as provincia')
                  ->get();
 
@@ -93,7 +86,7 @@ class AdminController extends Controller
  {
    $empregadores = DB::table('empregadors')
                ->join('users', 'empregadors.user_id','=','users.id')
-               ->select('empregadors.*','users.name as name','users.email as email','users.celular as celular')
+               ->select('empregadors.*','users.name as name','users.foto_url as foto_url','users.email as email','users.celular as celular')
                ->orderBy('id', 'DESC')
                ->paginate(5);
 

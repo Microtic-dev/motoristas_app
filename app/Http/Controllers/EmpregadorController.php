@@ -123,7 +123,7 @@ public function registarEmpregador(Request $request)
              ->join('provincias', 'candidatos.provincia_id', '=', 'provincias.id')
              ->join('categorias', 'candidatos.categoria_id', '=', 'categorias.id')
              ->join('users', 'candidatos.user_id', '=', 'users.id')
-             ->select('candidatos.*', 'users.name as nome', 'users.email as email', 'users.privilegio as privilegio',
+             ->select('candidatos.*', 'users.name as nome','users.foto_url as foto_url', 'users.email as email', 'users.privilegio as privilegio',
               'provincias.name as provincia', 'users.celular as celular',
              'categorias.categoria as categoria')
              ->first();

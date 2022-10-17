@@ -4,6 +4,7 @@
 @endsection
 @section('content')
 <div class="wrapper">
+
     <div class="container-fluid">
         @if (session('success'))
         <div class="mt-4 alert alert-success alert-dismissible">
@@ -45,10 +46,14 @@
           <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="mt-0 header-title mb-4">Estado do meu CV <span class="float-right"><a href="/meu-cv" class="btn btn-info btn-sm waves-effect waves-light">Editar</a></span></h4>
+                    <h4 class="mt-0 header-title mb-4">Estado do meu CV <span class="float-right"><a href="/meu-cv" class="btn btn-info btn-sm waves-effect waves-light">Editar Perfil</a> <a href="/candidatura-espontanea" class="btn btn-info btn-sm waves-effect waves-light"> Fazer Candidatura expontania</a></span></h4>
                     <div class="text-center">
                         <div class="social-source-icon lg-icon mb-3">
-                            <img src="assets/images/users/avatar-6.jpg" alt="user" class="rounded-circle width-100">
+                          @if(Auth::user()->foto_url=="none" || Auth::user()->foto_url==null)
+                         <img src="assets/images/users/avatar-6.jpg" alt="user" class="rounded-circle width-100" data-toggle="modal" data-target="#fotoperfil">
+                         @else
+                         <img src="{{ Auth::user()->foto_url }}" alt="user" class="rounded-circle width-100" id="image-profile" data-toggle="modal" data-target="#fotoperfil">
+                         @endif
                         </div>
                         <h5 class="font-16"><a href="#" class="text-dark">{{ ucfirst(Auth::user()->name) }}</a></h5>
                         <p class="text-center"><b>Celular: {{ Auth::user()->celular }}</b></p>
@@ -73,6 +78,36 @@
             </div>
         </div>
         <!-- end col -->
+
+        <div id="fotoperfil" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                  <form class="form-horizontal m-t-20" action="/fotoPerfil" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <input name="user_id" type="hidden" value="{{ Auth::user()->id }}">
+                    <div class="modal-header">
+                        <h5 class="modal-title mt-0" id="myModalLabel">Logotipo</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="form-group row">
+                          <label for="example-text-input" class="col-sm-3 col-form-label">Logotipo</label>
+                          <div class="col-sm-9">
+                            <input class="form-control" name="documento" type="file" onchange="readURL(this);" accept="application/pdf" required>
+                          </div>
+                      </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary waves-effect waves-light">Guardar</button>
+                    </div>
+                  </form>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
         <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
@@ -110,6 +145,8 @@
     </div> <!-- end container-fluid -->
 </div>
 <!-- end wrapper -->
+
+
 
 
 @endsection

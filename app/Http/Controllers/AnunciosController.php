@@ -58,7 +58,7 @@ public function verAnuncio($id){
               ->join('categorias','anuncios.categoria_id','categorias.id')
               ->where('anuncios.id',$id)
               ->select('anuncios.*','provincias.name as provincia','categorias.categoria as categoria',
-               'users.name as nome', 'users.email as email','empregadors.empresa as empresa')
+               'users.name as nome', 'users.email as email','users.foto_url as foto_url','empregadors.empresa as empresa')
               ->first();
     return view('anuncio', compact('anuncio','provincias' ,'categorias','anuncios_provincias'));
 
@@ -120,7 +120,7 @@ public function search(Request $request){
       $anuncios = DB::table('anuncios')
               ->join('users', 'anuncios.user_id', '=', 'users.id')
               ->join('empregadors', 'anuncios.user_id', '=', 'empregadors.user_id')
-              ->select('anuncios.*','users.name as nome', 'users.email as email','empregadors.empresa as empresa')
+              ->select('anuncios.*','users.name as nome','users.foto_url as foto_url', 'users.email as email','empregadors.empresa as empresa')
               ->orderBy('created_at', 'DESC')
               ->paginate(10);
    } else if($request->keyword!="" && $request->categoria=="null"  && $request->provincia=="null"){//keyword
@@ -130,7 +130,7 @@ public function search(Request $request){
                 ->orWhere('titulo', 'like', '%' .$request->keyword . '%')
                 ->join('empregadors', 'anuncios.user_id', '=', 'empregadors.user_id')
                 ->join('users', 'anuncios.user_id', '=', 'users.id')
-                ->select('anuncios.*','users.name as nome', 'users.email as email','empregadors.empresa as empresa')
+                ->select('anuncios.*','users.name as nome','users.foto_url as foto_url', 'users.email as email','empregadors.empresa as empresa')
                 ->orderBy('created_at', 'DESC')
                 ->paginate(10);
   }  else if ($request->keyword=="" && $request->categoria!="null"  && $request->provincia!="null") { //categoria e localizacao
@@ -143,7 +143,7 @@ public function search(Request $request){
                        ->join('empregadors', 'anuncios.user_id', '=', 'empregadors.user_id')
                        ->join('users', 'anuncios.user_id', '=', 'users.id')
                        ->where('provincias.id',$request->provincia)
-                       ->select('anuncios.*','provincias.name as provincia','users.name as nome', 'users.email as email','empregadors.empresa as empresa')
+                       ->select('anuncios.*','provincias.name as provincia','users.foto_url as foto_url','users.name as nome', 'users.email as email','empregadors.empresa as empresa')
                        ->orderBy('created_at', 'DESC')
                        ->paginate(10);
 
@@ -154,7 +154,7 @@ public function search(Request $request){
                  ->where('categorias.id',$request->categoria)
                  ->join('empregadors', 'anuncios.user_id', '=', 'empregadors.user_id')
                  ->join('users', 'anuncios.user_id', '=', 'users.id')
-                 ->select('anuncios.*','categorias.categoria as categoria','users.name as nome', 'users.email as email','empregadors.empresa as empresa')
+                 ->select('anuncios.*','categorias.categoria as categoria','users.foto_url as foto_url','users.name as nome', 'users.email as email','empregadors.empresa as empresa')
                  ->orderBy('created_at', 'DESC')
                  ->paginate(10);
   } elseif ($request->keyword=="" && $request->categoria=="null"  && $request->provincia!="null") { // localizacao
@@ -164,7 +164,7 @@ public function search(Request $request){
                       ->join('empregadors', 'anuncios.user_id', '=', 'empregadors.user_id')
                       ->join('users', 'anuncios.user_id', '=', 'users.id')
                       ->where('provincias.id',$request->provincia)
-                      ->select('anuncios.*','provincias.name as provincia','users.name as nome', 'users.email as email','empregadors.empresa as empresa')
+                      ->select('anuncios.*','provincias.name as provincia','users.foto_url as foto_url','users.name as nome', 'users.email as email','empregadors.empresa as empresa')
                       ->orderBy('created_at', 'DESC')
                       ->paginate(10);
 

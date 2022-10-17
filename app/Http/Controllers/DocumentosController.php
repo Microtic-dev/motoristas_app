@@ -39,6 +39,7 @@ class DocumentosController extends Controller
 
   public function fotoPerfil(Request $request)
   {
+    
     $foto = $request->file('documento');
 
     $fotoName =  $request->user_id . '.' . $foto->getClientOriginalExtension();
@@ -48,6 +49,8 @@ class DocumentosController extends Controller
     $foto_urls->user_id = $request->user_id;
     $foto_urls->tipo = $foto->getClientOriginalExtension();
     $foto_urls->ficheiro = 'uploads/' . $fotoName; //endereco do file no servidor
+
+
 
     if ($upload_success) {
         if ($foto_urls->save()) {

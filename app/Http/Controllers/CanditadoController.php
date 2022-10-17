@@ -15,7 +15,7 @@ class CanditadoController extends Controller
                ->join('provincias', 'candidatos.provincia_id', '=', 'provincias.id')
                ->join('users', 'candidatos.user_id', '=', 'users.id')
                ->where('user_id', Auth::user()->id)
-               ->select('candidatos.*', 'users.name as nome', 'users.email as email', 'users.privilegio as privilegio', 'provincias.provincia as provincia')
+               ->select('candidatos.*', 'users.name as nome','users.foto_url as foto_url', 'users.email as email', 'users.privilegio as privilegio', 'provincias.provincia as provincia')
                ->first();
 
        $formacoes = DB::table('formacoes')
@@ -73,7 +73,7 @@ class CanditadoController extends Controller
              ->join('provincias', 'candidatos.provincia_id', '=', 'provincias.id')
              ->join('users', 'candidatos.user_id', '=', 'users.id')
              ->where('user_id', Auth::user()->id)
-             ->select('candidatos.*', 'users.name as nome', 'users.email as email', 'users.privilegio as privilegio', 'provincias.provincia as provincia')
+             ->select('candidatos.*', 'users.name as nome','users.foto_url as foto_url', 'users.email as email', 'users.privilegio as privilegio', 'provincias.provincia as provincia')
              ->first();
 
      $formacoes = DB::table('formacoes')

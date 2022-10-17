@@ -77,7 +77,11 @@ Base de Dados de Motoristas |
                       <div class="card-body">
                         <div class="row perfil">
                           <div class="col-md-4">
-                            <img src="{{asset('/assets/images/users/user.png')}}" class="rounded-circle"/>
+                            @if($motorista->foto_url=="none" || $motorista->foto_url==null)
+                           <img src="assets/images/users/avatar-6.jpg" alt="user" class="rounded-circle width-100" >
+                           @else
+                           <img src="{{ $motorista->foto_url }}" alt="user" class="rounded-circle width-100" id="image-profile" >
+                           @endif
                             <span class="nome_motoritsa"><a href="{{route('perfil', $motorista->user_id )}}">{{ $motorista ->name}}</a></span>
                           </div>
                           <div class="col-md-4">

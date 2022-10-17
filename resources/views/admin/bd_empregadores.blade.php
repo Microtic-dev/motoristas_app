@@ -61,8 +61,15 @@ Base de Dados de Motoristas |
                       <div class="card-body">
                         <div class="row perfil">
                           <div class="col-md-4">
-                            <img src="{{asset('/assets/images/users/user.png')}}" class="rounded-circle"/>
-                            <span class="nome_motoritsa"><a href="#">{{ $empregador ->empresa}}</a></span>
+                            @if($empregador->foto_url=="none" || $empregador->foto_url==null)
+                           <img src="assets/images/users/avatar-6.jpg" alt="user" class="rounded-circle width-100" >
+                           <span class="nome_motoritsa"><a href="#">{{ $empregador ->empresa}}</a></span>
+                           @else
+
+                           <img src="{{ $empregador->foto_url }}" alt="user" class="rounded-circle width-300" id="image-profile" style="margin-top:20px">
+                           <span class="nome_motoritsa" ><a href="#" >{{ $empregador ->empresa}}</a></span>
+                           @endif
+
                           </div>
                           <div class="col-md-4">
 

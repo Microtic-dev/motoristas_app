@@ -5,6 +5,7 @@ Denuncia |
 @section('content')
 
 <div class="wrapper">
+
     <div class="container-fluid">
       @if (session('success'))
       <div class="mt-4 alert alert-success alert-dismissible">
@@ -80,7 +81,11 @@ Denuncia |
                       <h4 class="mt-0 header-title mb-4 text-center">Denunciante </h4>
                         <div class="text-center">
                             <div class="social-source-icon lg-icon mb-3">
-                                <img src="/assets/images/users/avatar-6.jpg" alt="user" class="rounded-circle width-100">
+                            @if($denunciante->foto_url!="none" || $denunciante->foto_url==null)
+                               <img src="/assets/images/users/avatar-6.jpg" alt="user" class="rounded-circle width-100">
+                             @else
+                             <img src="{{ $denunciante->foto_url }}" alt="user" class="rounded-circle width-100" id="image-profile" >
+                             @endif
                             </div>
                             <h5 class="font-16"><a href="#" class="text-dark">{{ ucfirst($denunciante->empresa) }}</a></h5>
                             <br>
