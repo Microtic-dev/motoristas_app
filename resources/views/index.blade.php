@@ -110,8 +110,12 @@ Motoristas |
               <div class="col-md-3">
                 <div class="card m-b-30">
                       <div class="card-body">
-                        <div class="imagem">
+                        <div class="imagem" >
+                          @if($anuncio->foto!="none")
                           <img src="{{ $anuncio->foto }}" class="img-fluid" style="max-width:100px"/>
+                          @else
+                          <img src="assets/images/2.png" class="img-fluid" style="margin-top: 35px;" />
+                          @endif
                         </div>
                         <h4 class="mt-4"><a href="/anuncio/{{$anuncio->id}}">{{ $anuncio->titulo }}</a></h4>
                           <p>{{$anuncio->empresa}}</>

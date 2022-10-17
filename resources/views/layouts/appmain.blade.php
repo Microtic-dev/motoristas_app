@@ -56,7 +56,7 @@
                       <!-- Logo-->
                       <div>
                           <a href="/" class="logo" >
-                            <img src="{{asset('assets/images/logo.png')}}" alt="logo motoristas" height="48">
+                            <img src="{{asset('assets/images/1.png')}}" alt="logo motoristas" height="23">
                           </a>
                       </div>
                       <!-- End Logo-->
