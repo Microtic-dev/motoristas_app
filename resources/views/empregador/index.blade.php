@@ -283,7 +283,6 @@
                                @if(Auth::user()->foto_url=="none")
                                    <img src="assets/images/users/avatar-6.jpg" alt="user" class="rounded-circle width-100" id="image-profile" data-toggle="modal" data-target="#logo">
                                 @else
-
                                    <img src="{{ Auth::user()->foto_url }}" alt="user" class="rounded-circle width-100" id="image-profile" data-toggle="modal" data-target="#logo">
                                 @endif
                             </div>
@@ -301,7 +300,12 @@
                             <div class="col-md-12">
                               <button class="btn btn-outline-secondary btn-block waves-effect" data-toggle="modal" data-target="#denunciarMotorista">
                                 <i class="dripicons-warning"></i>&nbsp;
-                                Denunciar Motorista
+                                Denunciar Motorista Para Central de Risco
+                              </button>
+
+                              <button class="btn btn-outline-secondary btn-block waves-effect" data-toggle="modal" data-target="#denunciarMotorista" data-toggle="modal" data-target=".bs-central-risco-modal-center">
+                                <i class="dripicons-warning"></i>&nbsp;
+                                Ver Central de Risco de Motoristas
                               </button>
                             </div>
                         </div>
@@ -481,7 +485,7 @@
                                     @php
                                       $provincias = App\Models\Categorias::all();
                                     @endphp
-                                      <option selected>Seleccione a Provincia</option>
+                                      <option selected>Seleccione a Categoria</option>
                                       @foreach ($categorias as $key => $categoria)
                                         <option value="{{ $categoria->categoria }}">{{ $categoria->categoria }}</option>
                                       @endforeach
@@ -495,7 +499,7 @@
                               <div class="col-sm-9" style="margin-left:200px">
                                 <div class="input-group ">
                                   <input type="text" class="form-control" name="cartadeconducao_motorista"
-                                  id="cartadeconducao_motorista" placeholder="Carta de condução" >
+                                  id="cartadeconducao_motorista" placeholder="Numero de carta de condução (opicional)" >
                                 </div>
                               </div>
                         </div>
@@ -531,7 +535,7 @@
                       </div>
                       <div class="modal-footer">
                           <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Cancelar</button>
-                          <button type="submit" class="btn btn-primary waves-effect waves-light">Enviar</button>
+                          <button type="submit" class="btn btn-primary waves-effect waves-light">Enviar para Central de Risco</button>
                       </div>
                     </form>
                   </div><!-- /.modal-content -->
@@ -542,7 +546,7 @@
         <div id="logo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                  <form class="form-horizontal m-t-20" action="/fotoPerfil" method="post" enctype="multipart/form-data">
+                  <form class="form-horizontal m-t-20" action="/logotipo" method="post" enctype="multipart/form-data">
                     @csrf
                     <input name="user_id" type="hidden" value="{{ Auth::user()->id }}">
                     <div class="modal-header">
@@ -569,7 +573,22 @@
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
 
-
+        <div class="modal fade bs-central-risco-modal-center" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered text-center">
+                <div class="modal-content">
+                    <div class="btn-especial-close">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body mb-4">
+                        <h4 class="mb-4">Central de Risco de Motoristas</h4>
+                        <p>Central de risco de motoristas, é uma lista de motoristas que cometeram crimes rodoviários, acidentes com culpa, desvio de mercadoria /combustível, condução danosa etc. <br>Para ter acesso contacte o administrador.</p>
+                        <a href="tel:+258875474495" class="mt-4 btn btn-primary waves-effect waves-light">Ligar Agora</a>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
 
     </div> <!-- end container-fluid -->
 </div>

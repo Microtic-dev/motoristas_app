@@ -33,7 +33,7 @@ class CandidaturasAnunciosController extends Controller
                   ->join('candidatos','candidatos.user_id','=','users.id')
                   ->join('provincias','provincias.id','=','candidatos.provincia_id')
                   ->join('categorias', 'candidatos.categoria_id', '=', 'categorias.id')
-                  ->select('candidaturas_anuncios.*','candidatos.nacionalidade as nacionalidade','users.name as nome','users.celular as celular','categorias.categoria as categoria', 'provincias.name as provincia')
+                  ->select('candidaturas_anuncios.*','candidatos.nacionalidade as nacionalidade','users.foto_url as foto_url','users.name as nome','users.celular as celular','categorias.categoria as categoria', 'provincias.name as provincia')
                   ->orderBy('id', 'DESC')
                   ->get();
 
