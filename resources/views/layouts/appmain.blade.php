@@ -66,6 +66,8 @@
 
                           <ul class="list-inline ml-auto mb-0">
 
+
+
                             <li class="list-inline-item dropdown notification-list nav-user">
                                 @guest
                                     <a class="nav-link" href="#" data-toggle="modal" data-target=".bs-base-dados-modal-center">
@@ -104,7 +106,24 @@
                               @endguest
                             </li>
 
+                            <li class="list-inline-item dropdown notification-list nav-user">
+                                @guest
+                                    <a class="nav-link" href="#" data-toggle="modal" data-target=".lista-formacao-center">
+                                      <i class="bi bi-car-front"></i> Formação de motoristas
+                                    </a>
+                                @else
+                                    @if(Auth::user()->privilegio == 'admin')
+                                      <a class="nav-link" data-toggle="modal" data-target=".lista-formacao-center">
+                                        <i class="bi bi-car-front"></i> Formação de motoristas
+                                      </a>
+                                    @else
+                                      <a class="nav-link" href="#" data-toggle="modal" data-target=".lista-formacao-center">
+                                        <i class="bi bi-car-front"></i> Formação de motoristas
+                                      </a>
+                                    @endif
 
+                                @endguest
+                            </li>
                               <!-- User-->
                               @guest
                               <li class="list-inline-item dropdown notification-list">
@@ -201,6 +220,23 @@
                     <div class="modal-body mb-4">
                         <h4 class="mb-4">Base de dados de Motoristas</h4>
                         <p>A base de dados de motorista , é uma rede com mais de 3000+ motoristas e está reservada ao administrador. <br>Para ter acesso a estes dados, contacte o administrador.</p>
+                        <a href="tel:+258875474495" class="mt-4 btn btn-primary waves-effect waves-light">Ligar Agora</a>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div class="modal fade lista-formacao-center" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered text-center">
+                <div class="modal-content">
+                    <div class="btn-especial-close">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body mb-4">
+                        <h4 class="mb-4">Formação de Motorista</h4>
+                        <p>Lista de motorista com Formação Complementada e aperfeçoada em condução defensiva, nos ramos de transportes de mercadorias e passageiros. <br>Para ter acesso a estes dados, contacte o administrador.</p>
                         <a href="tel:+258875474495" class="mt-4 btn btn-primary waves-effect waves-light">Ligar Agora</a>
                     </div>
                 </div><!-- /.modal-content -->
