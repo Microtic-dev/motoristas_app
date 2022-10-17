@@ -63,11 +63,13 @@ Route::get('/meu-cv', [App\Http\Controllers\CandidatoController::class, 'cv'])->
 
 Route::post('/add-idioma', [App\Http\Controllers\IdiomasController::class, 'create'])->name('addIdioma')->middleware('candidato');
 Route::post('/add-documento', [App\Http\Controllers\DocumentosController::class, 'create'])->name('addDocumento')->middleware('candidato');
-Route::post('/fotoPerfil', [App\Http\Controllers\DocumentosController::class, 'fotoPerfil'])->name('fotoPerfil')->middleware('empregador');
+Route::post('/logotipo', [App\Http\Controllers\DocumentosController::class, 'fotoPerfil'])->name('fotoPerfil')->middleware('empregador');
+Route::post('/fotoPerfil', [App\Http\Controllers\DocumentosController::class, 'fotoPerfil'])->name('fotoPerfil')->middleware('candidato');
 Route::post('/add-conhecimento', [App\Http\Controllers\ConhecimentosController::class, 'create'])->name('addConhecimento')->middleware('candidato');
 Route::post('/add-experiencia', [App\Http\Controllers\ExperienciasController::class, 'create'])->name('addExperiencia')->middleware('candidato');
 
 Route::post('/candidatar', [App\Http\Controllers\CandidaturasAnunciosController::class, 'create'])->name('candidatar')->middleware('candidato');
+Route::get('/candidatura-espontanea', [App\Http\Controllers\CandidatoController::class, 'candidaturaEspontanea'])->name('candidatura-espontanea')->middleware('candidato');
 Route::get('/candidatos-anuncio/{anuncioId}', [App\Http\Controllers\CandidaturasAnunciosController::class, 'verCandidatosDeUmAnuncio'])->name('verCandidatosDeUmAnuncio')->middleware('empregador');
 Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index'])->name('admin')->middleware('admin');
 
