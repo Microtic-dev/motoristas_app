@@ -78,3 +78,7 @@ Route::get('/denuncia/{id}', [App\Http\Controllers\CentralDeRiscoController::cla
 Route::get('/centralRisco', [App\Http\Controllers\CentralDeRiscoController::class, 'index'])->name('centralRisco')->middleware('admin');
 Route::get('/searchDenuncias', [App\Http\Controllers\CentralDeRiscoController::class, 'search'])->name('searchDenuncias')->middleware('admin');
 Route::post('/updateDenuncia', [App\Http\Controllers\CentralDeRiscoController::class, 'updateCentralDeRisco'])->name('updateDenuncia')->middleware('admin');
+
+Route::get('/premium',[App\Http\Controllers\premiumController::class,'getUsers'])->name('premium')->middleware('bothCanSee');
+Route::post('/activarcontapremium',[App\Http\Controllers\premiumController::class,'activatePremium'])->name('activarcontapremium')->middleware('bothCanSee');
+Route::post('/destivarpremiumconta',[App\Http\Controllers\premiumController::class,'desactivePremium'])->name('destivarpremiumconta')->middleware('bothCanSee');

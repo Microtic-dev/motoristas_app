@@ -94,4 +94,6 @@ class AdminController extends Controller
   return view('admin.bd_empregadores',compact('empregadores'));
  }
 
+ 
+
 }

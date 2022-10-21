@@ -180,6 +180,7 @@ class CandidatoController extends Controller
         $user->email = $email;
         $user->celular = $request->celular;
         $user->privilegio = $request->privilegio;
+        $user->is_premium = "no";
         $user->password = Hash::make($password);
 
         if ($user->save()) {

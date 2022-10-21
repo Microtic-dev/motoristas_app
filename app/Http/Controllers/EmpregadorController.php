@@ -61,6 +61,7 @@ public function registarEmpregador(Request $request)
         $user->foto_url="none";
         $user->celular = $request->telefone;
         $user->privilegio = $request->privilegio;
+        $user->is_premium = "no";
         $user->password = Hash::make($password);
 
         if($user->save()){
