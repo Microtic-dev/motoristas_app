@@ -121,6 +121,7 @@ class CanditadoController extends Controller
      $user->name = $request->nome;
      $user->email = $request->email;
      $user->privilegio = $request->privilegio;
+       $user->premium_count=0;
      $user->password = Hash::make($request->password);
 
      if ($user->save()) {

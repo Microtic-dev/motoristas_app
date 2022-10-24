@@ -59,6 +59,7 @@ public function registarEmpregador(Request $request)
         $user->name = $request->name;
         $user->email = $request->newemail;
         $user->foto_url="none";
+        $user->premium_count=0;
         $user->celular = $request->telefone;
         $user->privilegio = $request->privilegio;
         $user->is_premium = "no";

@@ -24,9 +24,11 @@ class AdminController extends Controller
 
     $empregadores = DB::table('empregadors')
                 ->join('users', 'empregadors.user_id','=','users.id')
-                ->select('empregadors.*','users.name as name','users.email as email','users.celular as celular')
+                ->select('empregadors.*','users.name as name' ,'users.is_premium as accounttype', 'users.premium_count as premium_count','users.email as email','users.celular as celular')
                 ->orderBy('id', 'DESC')
                 ->paginate(5);
+
+    
 
 
     $denuncias = DB::table('central_de_riscos')
@@ -94,6 +96,6 @@ class AdminController extends Controller
   return view('admin.bd_empregadores',compact('empregadores'));
  }
 
- 
+
 
 }

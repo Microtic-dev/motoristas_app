@@ -71,8 +71,9 @@ Central de Risco de Motoristas |
                                 <span class="nome_motoritsa"><a >{{ $user->name}}</a></span>
                               </div>
 
-                              <form method="post"action="{{ route('activarcontapremium') }}">
+                              <form method="post" action=" @if($user->is_premium=='no') {{ route('activarcontapremium') }} @else {{ route('desativarpremiumconta') }} @endif">
                               @csrf
+                                  <input hidden value="{{$user->id}}" name="id"/>
                                   <div class="col-md-4">
                                       @if($user->is_premium == 'no')
                                         <button  class="badge badge-warning mt-4 font-12" type="submit" id="btnChangeState" >Free plan</button>

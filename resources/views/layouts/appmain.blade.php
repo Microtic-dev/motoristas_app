@@ -93,7 +93,7 @@
                                     <i class="bi bi-car-front"></i> Central de Risco de Motoristas
                                   </a>
                               @else
-                                  @if(Auth::user()->privilegio == 'admin')
+                                  @if(Auth::user()->privilegio == 'admin' || Auth::user()->is_premium == 'yes')
                                   <a class="nav-link" href="/centralRisco">
                                     <i class="bi bi-sign-stop-fill"></i> Central de Risco de Motoristas
                                   </a>

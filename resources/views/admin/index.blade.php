@@ -195,7 +195,14 @@ Base de Dados de Motoristas |
                                         <h5 class="bg-info text-center rounded-circle text-white mt-0">{{$empregador->empresa[0]}}</h5>
                                     </div>
                                     <div class="message-time">
-                                        <p class="m-0 text-muted">{{$empregador->celular}}</p>
+                                      @if($empregador->accounttype == "no")
+                                      <span class="badge badge-warning mt-4 font-12">Free Plan</span>
+                                      @else
+                                      @php
+                                        $days =30 - $empregador->premium_count;
+                                      @endphp
+                                      <span class="badge badge-success mt-4 font-12">  {{$days}} dias de Premium</span>
+                                      @endif
                                     </div>
                                     <div class="massage-desc">
                                         <h5 class="font-14 mt-0 text-dark">{{$empregador->empresa}}</h5>
@@ -209,7 +216,7 @@ Base de Dados de Motoristas |
                         </div>
                         <hr>
                         <div class="text-center mt-3">
-                          <a href="/bd-empregadores">ver mais</a>
+                          <a href="/premium">ver mais</a>
                         </div>
                     </div>
                 </div>

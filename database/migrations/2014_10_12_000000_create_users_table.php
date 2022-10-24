@@ -21,6 +21,8 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('is_premium');
+            $table->integer('premium_count')->nullable();
+            $table->datetime('premium_date')->nullable(); 
             $table->string('privilegio');
             $table->string('foto_url')->nullable();
             $table->rememberToken();

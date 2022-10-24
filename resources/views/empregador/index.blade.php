@@ -535,13 +535,35 @@
                       </div>
                       <div class="modal-footer">
                           <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Cancelar</button>
+                            @if(Auth::user()->privilegio == 'admin' || Auth::user()->is_premium == 'yes')
                           <button type="submit" class="btn btn-primary waves-effect waves-light">Enviar para Central de Risco</button>
+                            @else
+                              <button  class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target=".bs-central-risco-modal-center">Enviar para Central de Risco</button>
+                              @endif
                       </div>
                     </form>
                   </div><!-- /.modal-content -->
               </div><!-- /.modal-dialog -->
         </div><!-- /.modaldenunciar motorista -->
         <!--fim modal denunciar motorista-->
+
+        <!-- /.modal-content central de risco-->
+        <div style="backgroundColor:white"class="modal fade bs-central-risco-modal-center" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered text-center">
+                <div class="modal-content">
+                    <div class="btn-especial-close">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body mb-4">
+                        <h4 class="mb-4">Central de Risco de Motoristas</h4>
+                        <p>Central de risco de motoristas, é uma lista de motoristas que cometeram crimes rodoviários, acidentes com culpa, desvio de mercadoria /combustível, condução danosa etc. <br>Para ter acesso contacte o administrador.</p>
+                        <a href="tel:+258875474495" class="mt-4 btn btn-primary waves-effect waves-light">Ligar Agora</a>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
 
         <div id="logo" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
