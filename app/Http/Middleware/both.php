@@ -21,7 +21,10 @@ class both
 
       $user = Auth::user();
 
-      if($user->privilegio=='admin' || $user->privilegio=='empregador' )
+      if($user->privilegio=='admin')
+          return $next($request);
+
+      if ($user->privilegio=='empregador' && $user->is_premium=='yes' )
           return $next($request);
 
     return redirect('/');
