@@ -36,24 +36,23 @@ Central de Risco de Motoristas |
             <span><a href="#" class="active">Contas</a></span>
           </section>
           <!-- fitros section -->
+
           <div class="col-md-12 m_filtro_nav mt-4">
-            <form method="GET" action="{{ route('searchDenuncias') }}">
+            <form method="GET" action="{{ route('searchEmpresas') }}">
             @csrf
             <div class="form-group mt-3 row">
 
-                <div class="col-sm-6">
-                    <input class="form-control" type="text" id="keyword"  name="keyword" @if(isset($_GET['keyword'])) value="{{$_GET['keyword']}}"  @endif placeholder="Nome de motorista..." >
-                </div>
-                <div class="col-sm-4">
-                    <input class="form-control" type="text" id="numero_carta_conducao"  name="numero_carta_conducao" placeholder="Número da carta de condução">
+                <div class="col-sm-10">
+                    <input class="form-control" type="text" id="keyword" style="" name="keyword" @if(isset($_GET['keyword'])) value="{{$_GET['keyword']}}"  @endif placeholder="Empresa..." >
                 </div>
                 <div class="col-sm-2">
                     <button type="submit" class="btn btn-info waves-effect waves-light w-100">Filtrar</button>
                 </div>
 
             </div>
-            </from>
+              </from>
           </div>
+
           <!-- end fitros section -->
           <!-- anuncios section -->
 
@@ -73,7 +72,7 @@ Central de Risco de Motoristas |
 
                               <form method="post" action=" @if($user->is_premium=='no') {{ route('activarcontapremium') }} @else {{ route('desativarpremiumconta') }} @endif">
                               @csrf
-                                  <input hidden value="{{$user->id}}" name="id"/>
+                                  <input hidden value="{{$user->user_id}}" name="id"/>
                                   <div class="col-md-4">
                                       @if($user->is_premium == 'no')
                                         <button  class="badge badge-warning mt-4 font-12" type="submit" id="btnChangeState" >Free plan</button>

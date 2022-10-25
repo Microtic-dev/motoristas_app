@@ -56,9 +56,38 @@ class premiumController extends Controller
 
     public function getUsers(Request $request){
 
-        $users = User::all();
-
+        $users = DB::table('users')
+                ->join('empregadors', 'users.id','=','empregadors.user_id')
+                ->get();
 
         return view('admin.premium',compact('users'));
     }
+
+
+    public function search(Request $request){
+
+        $users;
+
+        if($request->keyword!=""){
+
+
+
+          $users = DB::table('users')
+                  ->where('users.name', $request->keyword)
+                  ->orWhere('users.name', 'like', '%' .$request->keyword . '%')
+                  ->join('empregadors', 'users.id','=','empregadors.user_id')
+                  ->get();
+
+
+     }else{
+
+         $users = DB::table('users')
+                 ->join('empregadors', 'users.id','=','empregadors.user_id')
+                 ->get();
+
+
+     }
+
+             return view('admin.premium',compact('users'));
+      }
 }
