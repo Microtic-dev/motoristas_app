@@ -145,20 +145,41 @@ Denuncia |
                                           </div>
                                       </div>
                                       <div class="form-group row">
-                                          <label for="example-text-input" class="col-sm-12 col-form-label">Confirma a denuncia?</label>
-                                          <div class="col-sm-9 align-self-end">
-                                            <label class="radio-inline">
-                                              <input type="radio" name="merece_portunidade" value="confirmada" @if($denuncia->estado_denuncia == "confirmada") checked @endif>&nbsp; Confirmar &nbsp;&nbsp;
-                                            </label>
-                                            <label class="radio-inline">
-                                              <input type="radio" name="merece_portunidade" value="Não confirmada" @if($denuncia->estado_denuncia == "Não confirmada") checked @endif> Não confirmar
-                                            </label>
-                                          </div>
+
+                                            @if(Auth::user()->privilegio=="admin")
+                                            <label for="example-text-input" class="col-sm-12 col-form-label">Confirma a denuncia?</label>
+                                            <div class="col-sm-9 align-self-end">
+                                                <label class="radio-inline">
+                                                  <input type="radio" name="merece_portunidade" value="confirmada" @if($denuncia->estado_denuncia == "confirmada") checked @endif>&nbsp; Confirmar &nbsp;&nbsp;
+                                                </label>
+
+                                                <label class="radio-inline">
+                                                  <input type="radio" name="merece_portunidade" value="Não confirmada" @if($denuncia->estado_denuncia == "Não confirmada") checked @endif> Não confirmar
+                                                </label>
+                                              </div>
+
+                                            @else
+                                             <label for="example-text-input" class="col-sm-12 col-form-label">Estado da denuncia?</label>
+                                             <div class="col-sm-9 align-self-end">
+                                                @if($denuncia->estado_denuncia == "confirmada")
+                                                <label class="radio-inline">
+                                                  <input type="radio" name="merece_portunidade" value="confirmada" @if($denuncia->estado_denuncia == "confirmada") checked @endif>&nbsp; Confirmada &nbsp;&nbsp;
+                                                </label>
+                                                @else
+                                                <label class="radio-inline">
+                                                  <input type="radio" name="merece_portunidade" value="Não confirmada" @if($denuncia->estado_denuncia == "Não confirmada") checked @endif> Não confirmada
+                                                </label>
+                                                @endif
+                                              </div>
+                                            @endif
+
                                       </div>
                                     <div class="float-right">
-                                      <button type="button" id="btn_editar" class="btn btn-primary waves-effect waves-light">Editar</button>
+                                        @if(Auth::user()->privilegio=="admin")
+                                        <button type="button" id="btn_editar" class="btn btn-primary waves-effect waves-light">Editar</button>
                                         <button type="button" id="btn_cancel" class="btn btn-secondary waves-effect" data-dismiss="modal">Cancelar</button>
                                         <button type="submit" id="btn_actualizar" class="btn btn-success waves-effect waves-light">Actualizar</button>
+                                        @endif
                                     </div>
                                   </form>
                           </div>
