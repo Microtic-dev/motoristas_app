@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Documentos;
+use App\Models\Candidatos;
 use App\Models\fotoUrl;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -25,7 +26,9 @@ class DocumentosController extends Controller
 
     if ($upload_success) {
         if ($novoDocumento->save()) {
-
+            $candidato= Candidatos::find($request->candidato_id);
+            $candidato->cv = $novoDocumento->ficheiro;
+            $candidato->update();
             return redirect()->back()->with(array('success' => 'Documento adicionado com sucesso!'));
         } else {
             return redirect()->back()->with(array('erro' => 'Ocorreu um erro, tenta novamente!'));
@@ -39,7 +42,7 @@ class DocumentosController extends Controller
 
   public function fotoPerfil(Request $request)
   {
-    
+
     $foto = $request->file('documento');
 
     $fotoName =  $request->user_id . '.' . $foto->getClientOriginalExtension();

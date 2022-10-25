@@ -28,7 +28,7 @@ class AdminController extends Controller
                 ->orderBy('id', 'DESC')
                 ->paginate(5);
 
-    
+
 
 
     $denuncias = DB::table('central_de_riscos')
@@ -74,7 +74,7 @@ class AdminController extends Controller
     $motoristas = DB::table('candidatos')
                  ->join('users', 'candidatos.user_id', '=', 'users.id')
                  ->join('categorias', 'candidatos.categoria_id', '=', 'categorias.id')
-                 ->join('provincias', 'candidatos.provincia_id', '=', 'provincias.id')
+                 ->join('provincias', 'candidatos.provincia_id', '=', 'provincias.id')          
                  ->select('candidatos.*', 'users.name as name','users.foto_url as foto_url','users.celular as celular','categorias.categoria as categoria',
                  'provincias.name as provincia')
                  ->get();

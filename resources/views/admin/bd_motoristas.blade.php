@@ -36,7 +36,7 @@ Base de Dados de Motoristas |
             <span><a href="#" class="active">Base de dados de Motoristas</a></span>
           </section>
           <!-- fitros section -->
-          <div class="col-md-12 m_filtro_nav mt-4">
+          <!-- <div class="col-md-12 m_filtro_nav mt-4">
             <div class="form-group mt-3 row">
                 <div class="col-sm-4">
                     <input class="form-control" type="text" id="keyword"  name="keyword" placeholder="Pesquisa...">
@@ -62,7 +62,7 @@ Base de Dados de Motoristas |
                     <button type="button" class="btn btn-info waves-effect waves-light w-100">Filtrar</button>
                 </div>
             </div>
-          </div>
+          </div> -->
           <!-- end fitros section -->
           <!-- anuncios section -->
 
@@ -70,9 +70,60 @@ Base de Dados de Motoristas |
           <div class="col-md-12 mt-4 m_bd_motoristas">
 
             <div class="row">
+              <div class="card">
+                  <div class="card-body">
+                    <h4 class="mt-0 header-title mb-4">Motoristas<span class="float-right">
+                      <button class="btn btn-success btn-sm waves-effect waves-light" data-toggle="modal" data-target="#anuncio"
+                      <i class="dripicons-plus">
+                      </i>&nbsp;Nova vaga</button>
+                    </span></h4>
 
-                @foreach($motoristas as $motorista)
-              <div class="col-md-12">
+              <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; min-width: 100%;">
+                   <thead>
+                   <tr>
+                       <th>Nome</th>
+                       <th>Habilitacao de conducao</th>
+                       <th>Grau Acadêmico</th>
+                       <th>Contacto</th>
+                       <th>Curriculum</th>
+                      <th>Accoes</th>
+                   </tr>
+                   </thead>
+
+                   <tbody>
+
+                     @foreach ($motoristas as $key => $motorista)
+                       <tr>
+                           <td><a href="{{route('perfil', $motorista->user_id )}}">{{ $motorista->name }}</a></td>
+                           <td>{{$motorista->categoria}}</td>
+                           <td>{{$motorista->grau_academico}}</td>
+                           <td>{{ $motorista->celular }}</td>
+                            <td><a href="/{{ $motorista->cv }}"><button class="btn btn-info waves-effect waves-light w-100">ver CV</button></a></td>
+                           <td class="text-center">
+
+                             <form method="post" style="display: inline; color: white;" action="{{ route('apagarAnuncio', $motorista->id) }}">
+                               {{ csrf_field() }}
+                               <a onclick="confirm('{{ __("Tem certeza que pretende eliminar este anuncio?") }}') ? this.parentElement.submit() : ''" class="btn btn-sm btn-danger waves-effect waves-light white">
+                                 <i class="far fa-trash-alt"></i>
+                               </a>
+                            </form>
+                           </td>
+                       </tr>
+
+                    @endforeach
+
+                   </tbody>
+               </table>
+
+
+
+             </div>
+           </div>
+
+                <!-- @foreach($motoristas as $motorista)
+
+
+             <div class="col-md-12">
                 <div class="card m-b-30">
                       <div class="card-body">
                         <div class="row perfil">
@@ -98,7 +149,7 @@ Base de Dados de Motoristas |
                     </div>
                 </div>
               </div>
-              @endforeach
+              @endforeach -->
 
 
 

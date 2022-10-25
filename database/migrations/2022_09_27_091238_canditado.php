@@ -30,6 +30,7 @@ return new class extends Migration
           $table->text('acidente_descricao')->nullable(); //descricao do acidente
           $table->string('grau_academico')->nullable();
           $table->string('nacionalidade')->nullable();
+          $table->string('cv')->nullable();
           $table->timestamps();
 
           $table->foreign('user_id')
