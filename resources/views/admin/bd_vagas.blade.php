@@ -35,7 +35,7 @@ Base de Dados de Motoristas |
             <span><a href="/admin"> Dashboard</a></span> |
             <span><a href="#" class="active">Vagas disponiveis</a></span>
           </section>
-        
+
 
 
           <div class="col-md-12 mt-4 m_bd_motoristas">
