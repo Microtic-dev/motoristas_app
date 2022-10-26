@@ -74,7 +74,7 @@ class AdminController extends Controller
     $motoristas = DB::table('candidatos')
                  ->join('users', 'candidatos.user_id', '=', 'users.id')
                  ->join('categorias', 'candidatos.categoria_id', '=', 'categorias.id')
-                 ->join('provincias', 'candidatos.provincia_id', '=', 'provincias.id')          
+                 ->join('provincias', 'candidatos.provincia_id', '=', 'provincias.id')
                  ->select('candidatos.*', 'users.name as name','users.foto_url as foto_url','users.celular as celular','categorias.categoria as categoria',
                  'provincias.name as provincia')
                  ->get();
@@ -83,6 +83,21 @@ class AdminController extends Controller
    return view('admin.bd_motoristas',compact('motoristas'));
  }
 
+ public function anuncios(){
+
+   
+
+     $anuncios = DB::table('anuncios')
+                ->join('empregadors', 'empregadors.user_id','=','anuncios.user_id')
+                ->join('users', 'anuncios.user_id','=','users.id')
+                ->select('anuncios.*', 'users.name as empresa', 'users.celular as celular',)
+                ->get();
+
+      $candidaturas = DB::table('candidaturas_anuncios')
+                      ->get();
+
+      return view ('admin.bd_vagas', compact('anuncios','candidaturas'));
+ }
 
  public function empregadores()
  {

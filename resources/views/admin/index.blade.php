@@ -95,16 +95,18 @@ Base de Dados de Motoristas |
 
             <div class="col-xl-3 col-md-6">
                 <div class="card bg-success mini-stat text-white">
+                  <a href="/anuncios">
                     <div class="p-3 mini-stat-desc">
                         <div class="clearfix">
                             <h6 class="text-uppercase mt-0 float-left text-white-50">Vagas</h6>
-                            <h4 class="mb-3 mt-0 float-right">{{ $countAnuncios }}</h4>
+                            <h4 class="mb-3 mt-0 float-right" style="color:#fff">{{ $countAnuncios }}</h4>
                         </div>
                         <div>
                             <span class="badge badge-light text-info"> {{$anunciosDentroDoPrazo}} </span>
-                            <span class="ml-2">Dentro de validade</span>
+                            <span class="ml-2" style="color:#fff">Dentro de validade</span>
                         </div>
                     </div>
+                  </a>
                 </div>
             </div>
 
