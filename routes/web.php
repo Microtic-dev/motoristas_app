@@ -91,7 +91,8 @@ Route::get('/premium',[App\Http\Controllers\premiumController::class,'getUsers']
 Route::post('/activarcontapremium',[App\Http\Controllers\premiumController::class,'activatePremium'])->name('activarcontapremium')->middleware('admin');
 Route::post('/desativarpremiumconta',[App\Http\Controllers\premiumController::class,'desactivatePremium'])->name('desativarpremiumconta')->middleware('admin');
 Route::get('/searchEmpresas',[App\Http\Controllers\premiumController::class,'search'])->name('searchEmpresas')->middleware('admin');
-
+Route::post('/deleteCandidato/{id}',[App\Http\Controllers\CanditadoController::class,'deleteCandidato'])->name('deleteCandidato')->middleware('admin');
+Route::get('/anuncios',[App\Http\Controllers\AdminController::class,'anuncios'])->name('anuncios')->middleware('admin');
 
 //@TODO bothCanSee - Privilegios para admin e empregador
 Route::get('/denuncia/{id}', [App\Http\Controllers\CentralDeRiscoController::class, 'denuncia'])->name('denuncia')->middleware('bothCanSee');

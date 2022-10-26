@@ -101,7 +101,7 @@ Base de Dados de Motoristas |
                             <td><a href="/{{ $motorista->cv }}"><button class="btn btn-info waves-effect waves-light w-100">ver CV</button></a></td>
                            <td class="text-center">
 
-                             <form method="post" style="display: inline; color: white;" action="{{ route('apagarAnuncio', $motorista->id) }}">
+                             <form method="post" style="display: inline; color: white;" action="{{ route('deleteCandidato', $motorista->user_id) }}">
                                {{ csrf_field() }}
                                <a onclick="confirm('{{ __("Tem certeza que pretende eliminar este anuncio?") }}') ? this.parentElement.submit() : ''" class="btn btn-sm btn-danger waves-effect waves-light white">
                                  <i class="far fa-trash-alt"></i>

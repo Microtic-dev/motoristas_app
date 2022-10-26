@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class CanditadoController extends Controller
 {
@@ -149,6 +150,16 @@ class CanditadoController extends Controller
            return redirect()->back()->with('erro', 'Ocorreu erro, tenta novamente!');
        }
 
+ }
+
+
+ public function deleteCandidato($id){
+    $user = User::find($id);
+    if($user->delete()){
+         return redirect()->back()->with('success', 'candidato removido do sistema com sucesso!');
+    }else{
+        return redirect()->back()->with('erro', 'Ocorreu erro, tenta novamente!');
+    }
  }
 
 
