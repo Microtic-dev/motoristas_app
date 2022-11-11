@@ -16,6 +16,13 @@ Route::get('/home', function () {
     return redirect('/');
 });
 
+use App\Mail\UserNotification;
+use Illuminate\Support\Facades\Mail;
+Route::get('/send-mail', function () {
+    Mail::to('inaciosacataria@gmail.com')->send(new UserNotification());
+    return 'A message has been sent to Mailtrap!';
+});
+
 Route::get('/logout', function () {
     Auth::logout();
     return redirect('/');

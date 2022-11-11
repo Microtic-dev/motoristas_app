@@ -170,7 +170,7 @@
 
              <select class="form-control" id="sector_actividade" name="sector_actividade" required>
                  <option selected value="null">Sector de actividade</option>
-                 <option value="transporte">Transporte </option>
+                 <option value="transporte">Transporte e Logística</option>
                  <option value="comercio">Comercio </option>
                  <option value="industria">Industria </option>
                  <option value="turismo">Turismo </option>
@@ -184,6 +184,12 @@
                <input class="form-control" name="sector_especificado" id="sector_especificado"
                placeholder="Especifique o seu sector de actividade...">
 
+               <input id="nuit" type="number" class="form-control @error('nuit') is-invalid @enderror" name="nuit" value="{{ old('nuit') }}" required autocomplete="nuit" placeholder="nuit">
+               @error('nuit')
+                   <span class="invalid-feedback" role="alert">
+                       <strong>{{ $message }}</strong>
+                   </span>
+               @enderror
 
              <input id="newemail" type="email" class="form-control @error('email') is-invalid @enderror" name="newemail" value="{{ old('newemail') }}" required autocomplete="email" placeholder="Email">
              @error('email')

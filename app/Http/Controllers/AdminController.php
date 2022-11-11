@@ -85,7 +85,7 @@ class AdminController extends Controller
 
  public function anuncios(){
 
-   
+
 
      $anuncios = DB::table('anuncios')
                 ->join('empregadors', 'empregadors.user_id','=','anuncios.user_id')
