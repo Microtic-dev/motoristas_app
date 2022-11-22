@@ -6,5 +6,5 @@ Click below to start working right now
 Go to your inbox
 @endcomponent
 Sincerely,
-Mailtrap team. 
+Mailtrap team.
 @endcomponent

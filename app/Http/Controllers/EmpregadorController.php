@@ -16,8 +16,6 @@ use Illuminate\Support\Facades\Validator;
 
 class EmpregadorController extends Controller
 {
-
-
   /**
    * Show the application dashboard.
    *
@@ -137,6 +135,10 @@ public function registarEmpregador(Request $request)
          }
   }
 
+
+  public function documents (){
+    return view('empregador.documents');
+  }
 
 
   // public function criarAnuncio(Request $request){

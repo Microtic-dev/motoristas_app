@@ -29,7 +29,7 @@ class AdminController extends Controller
                 ->paginate(5);
 
 
-
+u
 
     $denuncias = DB::table('central_de_riscos')
                 ->orderBy('id', 'DESC')

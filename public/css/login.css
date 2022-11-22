@@ -47,8 +47,8 @@ margin: 15px 0;
 
 button {
 border-radius: 20px;
-border: 1px solid #0C99C5;
-background-color: #0C99C5;
+border: 1px solid #46cd93;
+background-color: #46cd93;
 color: #FFFFFF;
 font-size: 12px;
 font-weight: bold;
@@ -161,8 +161,8 @@ transform: translateX(-100%);
 
 .overlay {
 background: #FF416C;
-background: -webkit-linear-gradient(to right, #0C99C5,#63A4FF);
-background: linear-gradient(to right, #0C99C5,#63A4FF);
+background: -webkit-linear-gradient(to right, #46cd93,#46cd93);
+background: linear-gradient(to right, #46cd93,#46cd93);
 background-repeat: no-repeat;
 background-size: cover;
 background-position: 0 0;
@@ -247,7 +247,7 @@ footer i {
 }
 
 footer a {
-  color: #3c97bf;
+  color: #46cd93;
   text-decoration: none;
 }
 .form-check-label {

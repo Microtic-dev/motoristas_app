@@ -16,6 +16,10 @@ Route::get('/home', function () {
     return redirect('/');
 });
 
+Route::get('/command',function(){
+  $exitcode = Artisan::call('make:model Poxa');
+});
+
 use App\Mail\UserNotification;
 use Illuminate\Support\Facades\Mail;
 Route::get('/send-mail', function () {
@@ -55,9 +59,10 @@ Route::get('/search', [App\Http\Controllers\AnunciosController::class, 'search']
 
 // @TODO empregador
 Route::post('/newempregador', [App\Http\Controllers\EmpregadorController::class, 'registarEmpregador'])->name('newempregador');
-Route::get('/empregador', [App\Http\Controllers\EmpregadorController::class, 'index'])->name('empregador')->middleware('bothCanSee');
+Route::get('/empregador', [App\Http\Controllers\EmpregadorController::class, 'index'])->name('empregador')->middleware('empregador');
 Route::post('/logotipo', [App\Http\Controllers\DocumentosController::class, 'fotoPerfil'])->name('fotoPerfil')->middleware('empregador');
-
+Route::get('/documents', [App\Http\Controllers\EmpregadorController::class, 'documents'])->name('documents')->middleware('empregador');
+Route::post('/upload-documents', [App\Http\Controllers\EmpregadorController::class, 'documentUpload'])->name('documentUpload')->middleware('empregador');
 
 // @TODO empregador previlegios
 Route::get('/procurar-motorista', [App\Http\Controllers\EmpregadorController::class, 'procurarMotorista'])->name('procurarMotorista')->middleware('empregador');
