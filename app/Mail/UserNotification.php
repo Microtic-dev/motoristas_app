@@ -61,7 +61,7 @@ class UserNotification extends Mailable
      */
     public function attachments()
     {
-        return ["https://bit.ly/inacio-resume, "];
+
     }
 
     public function build()

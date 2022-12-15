@@ -20,10 +20,6 @@ Route::get('/command',function(){
   $exitcode = Artisan::call('make:model Poxa');
 });
 
-Route::get('/forgot-password', function () {
-    return view('auth.forgot-password');
-})->name('password.request');
-
 
 
 
@@ -54,6 +50,13 @@ Route::get('/test', function (){
   return view('test');
 });
 Route::get('/ ', [App\Http\Controllers\InicioController::class, 'index'])->name('index');
+
+
+
+Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
+Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
+Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
+Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 
 
 //@TODO anyone
