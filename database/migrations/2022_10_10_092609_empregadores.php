@@ -27,6 +27,9 @@ return new class extends Migration
            $table->text('empresa');
            $table->string('representante')->nullable();
            $table->string('estado')->nullable(); //activo ou desativo
+           $table->string('documento_nuit')->nullable();
+           $table->string('documento_certidao')->nullable();
+           $table->string('documento_inicio_actividade')->nullable();
            $table->timestamps();
 
            $table->foreign('provincia_id')

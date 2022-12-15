@@ -5,6 +5,10 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Anuncios;
 use App\Models\Candidatos;
 use Auth;
+use App\Mail\AcountActivate;
+use App\Mail\UserNotification;
+use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 
 use Illuminate\Http\Request;
 
@@ -24,12 +28,12 @@ class AdminController extends Controller
 
     $empregadores = DB::table('empregadors')
                 ->join('users', 'empregadors.user_id','=','users.id')
-                ->select('empregadors.*','users.name as name' ,'users.is_premium as accounttype', 'users.premium_count as premium_count','users.email as email','users.celular as celular')
+                ->select('empregadors.*','users.name as name' ,'users.active as active' ,'users.is_premium as accounttype', 'users.premium_count as premium_count','users.email as email','users.celular as celular')
                 ->orderBy('id', 'DESC')
                 ->paginate(5);
 
 
-u
+
 
     $denuncias = DB::table('central_de_riscos')
                 ->orderBy('id', 'DESC')
@@ -103,12 +107,44 @@ u
  {
    $empregadores = DB::table('empregadors')
                ->join('users', 'empregadors.user_id','=','users.id')
-               ->select('empregadors.*','users.name as name','users.foto_url as foto_url','users.email as email','users.celular as celular')
+               ->select('empregadors.*','users.name as name','users.active as active','users.foto_url as foto_url','users.email as email','users.celular as celular')
                ->orderBy('id', 'DESC')
                ->paginate(5);
 
 
   return view('admin.bd_empregadores',compact('empregadores'));
+ }
+
+
+ public function activeEmpregador($id){
+   $user = User::find($id);
+   $user->active="activo";
+   if($user->update()){
+      return redirect()->back()->with('success', 'Conta Activada');
+   }else{
+      return redirect()->back()->with('error', 'Ocorreu um erro');
+   }
+ }
+
+
+ public function desativeEmpregador($id){
+   $user = User::find($id);
+   $user->active="desativado";
+   if($user->update()){
+      return redirect()->back()->with('success', 'Conta Desativada');
+   }else{
+      return redirect()->back()->with('error', 'Ocorreu um erro');
+   }
+ }
+
+
+ public function sendAdminNotification($id){
+
+   $user = User::find($id);
+   $link = "http://127.0.0.1:8000/empregador-perfil/".$user->id;
+   Mail::to('inaciosacataria@gmail.com')->send(new AcountActivate($user->name, $link));
+   Mail::to($user->email)->send(new UserNotification($user->name));
+   return redirect()->route('aguarde');
  }
 
 

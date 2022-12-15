@@ -197,6 +197,11 @@ Base de Dados de Motoristas |
                                         <h5 class="bg-info text-center rounded-circle text-white mt-0">{{$empregador->empresa[0]}}</h5>
                                     </div>
                                     <div class="message-time">
+                                      @if($empregador->active == "desativado")
+                                      <span class="badge badge-warning mt-4 font-12">Activo</span>
+                                      @elseif($empregador->active != "desativado")
+                                      <span class="badge badge-warning mt-4 font-12">Desativo</span>
+                                      @endif
                                       @if($empregador->accounttype == "no")
                                       <span class="badge badge-warning mt-4 font-12">Free Plan</span>
                                       @else

@@ -67,14 +67,14 @@ Central de Risco de Motoristas |
                             <div class="row perfil">
                               <div class="col-md-8">
                                 <img src="{{asset('/assets/images/users/user.png')}}" class="rounded-circle"/>
-                                <span class="nome_motoritsa"><a >{{ $user->name}}</a></span>
+                                <span class="nome_motoritsa"><a href="{{route('empregador-perfil',$user->user_id)}}">{{ $user->name}}</a></span>
                               </div>
 
                               <form method="post" action=" @if($user->is_premium=='no') {{ route('activarcontapremium') }} @else {{ route('desativarpremiumconta') }} @endif">
                               @csrf
                                   <input hidden value="{{$user->user_id}}" name="id"/>
                                   <div class="col-md-4">
-                                      @if($user->is_premium == 'no')
+                                    @if($user->is_premium == 'no')
                                         <button  class="badge badge-warning mt-4 font-12" type="submit" id="btnChangeState" >Free plan</button>
                                       @else
                                          <button class="badge badge-success mt-4 font-12" type="submit" id="btnChangeState"  >Premium</button>

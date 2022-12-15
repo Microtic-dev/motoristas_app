@@ -19,10 +19,11 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('celular')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('active');
             $table->string('password');
             $table->string('is_premium');
             $table->integer('premium_count')->nullable();
-            $table->datetime('premium_date')->nullable(); 
+            $table->datetime('premium_date')->nullable();
             $table->string('privilegio');
             $table->string('foto_url')->nullable();
             $table->rememberToken();

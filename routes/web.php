@@ -20,12 +20,12 @@ Route::get('/command',function(){
   $exitcode = Artisan::call('make:model Poxa');
 });
 
-use App\Mail\UserNotification;
-use Illuminate\Support\Facades\Mail;
-Route::get('/send-mail', function () {
-    Mail::to('inaciosacataria@gmail.com')->send(new UserNotification());
-    return 'A message has been sent to Mailtrap!';
-});
+Route::get('/forgot-password', function () {
+    return view('auth.forgot-password');
+})->name('password.request');
+
+
+
 
 Route::get('/logout', function () {
     Auth::logout();
@@ -34,7 +34,11 @@ Route::get('/logout', function () {
 
 Route::get('/concluir', function () {
      if(Auth::user()->privilegio == 'empregador'){
-        return redirect('/empregador');
+       if(Auth::user()->active == 'desativado'){
+           return redirect('/aguarde');
+       }else{
+          return redirect('/empregador');
+       }
      }elseif (Auth::user()->privilegio == 'candidato') {
        return redirect('/candidato');
      }elseif (Auth::user()->privilegio == 'admin') {
@@ -57,12 +61,15 @@ Route::get('/anuncio/{id}', [App\Http\Controllers\AnunciosController::class, 've
 Route::get('/search', [App\Http\Controllers\AnunciosController::class, 'search'])->name('search');
 
 
+
 // @TODO empregador
 Route::post('/newempregador', [App\Http\Controllers\EmpregadorController::class, 'registarEmpregador'])->name('newempregador');
 Route::get('/empregador', [App\Http\Controllers\EmpregadorController::class, 'index'])->name('empregador')->middleware('empregador');
+Route::get('/empregador-perfil/{id}', [App\Http\Controllers\EmpregadorController::class, 'getEmpregador'])->name('empregador-perfil');
 Route::post('/logotipo', [App\Http\Controllers\DocumentosController::class, 'fotoPerfil'])->name('fotoPerfil')->middleware('empregador');
-Route::get('/documents', [App\Http\Controllers\EmpregadorController::class, 'documents'])->name('documents')->middleware('empregador');
-Route::post('/upload-documents', [App\Http\Controllers\EmpregadorController::class, 'documentUpload'])->name('documentUpload')->middleware('empregador');
+Route::get('/documents/{id}', [App\Http\Controllers\EmpregadorController::class, 'documents'])->name('documents');
+Route::post('/upload-documents', [App\Http\Controllers\DocumentosController::class, 'uploadAlldocuments'])->name('uploadAlldocuments');
+Route::get('/aguarde', [App\Http\Controllers\EmpregadorController::class, 'aguarde'])->name('aguarde');
 
 // @TODO empregador previlegios
 Route::get('/procurar-motorista', [App\Http\Controllers\EmpregadorController::class, 'procurarMotorista'])->name('procurarMotorista')->middleware('empregador');
@@ -96,7 +103,10 @@ Route::get('/bd-motoristas', [App\Http\Controllers\AdminController::class, 'moto
 Route::get('/bd-empregadores', [App\Http\Controllers\AdminController::class, 'empregadores'])->name('bd-empregadores')->middleware('admin');
 Route::get('/perfil/{id}', [App\Http\Controllers\CandidatoController::class, 'perfil'])->name('perfil')->middleware('bothCanSee');
 Route::post('/updateDenuncia', [App\Http\Controllers\CentralDeRiscoController::class, 'updateCentralDeRisco'])->name('updateDenuncia')->middleware('admin');
-
+Route::get('/activeUser/{id}', [App\Http\Controllers\AdminController::class, 'activeEmpregador'])->name('activeUser')->middleware('admin');
+Route::get('/desactiveUser/{id}', [App\Http\Controllers\AdminController::class, 'desativeEmpregador'])->name('desactiveUser')->middleware('admin');
+Route::get('/sendAdminNotification/{id}', [App\Http\Controllers\AdminController::class, 'sendAdminNotification'])->name('sendAdminNotification');
+Route::get('/inscricao-seguro', [App\Http\Controllers\AdminController::class, 'sendAdminNotification'])->name('sendAdminNotification');
 
 //@TODO admin privilegios
 Route::get('/premium',[App\Http\Controllers\premiumController::class,'getUsers'])->name('premium')->middleware('admin');
@@ -110,3 +120,14 @@ Route::get('/anuncios',[App\Http\Controllers\AdminController::class,'anuncios'])
 Route::get('/denuncia/{id}', [App\Http\Controllers\CentralDeRiscoController::class, 'denuncia'])->name('denuncia')->middleware('bothCanSee');
 Route::get('/centralRisco', [App\Http\Controllers\CentralDeRiscoController::class, 'index'])->name('centralRisco')->middleware('bothCanSee');
 Route::get('/searchDenuncias', [App\Http\Controllers\CentralDeRiscoController::class, 'search'])->name('searchDenuncias')->middleware('bothCanSee');
+
+
+//@TODO cursos
+Route::get('/cursos', [App\Http\Controllers\CursosController::class, 'getCursos'])->name('cursos');
+Route::get('/cursoinfo', [App\Http\Controllers\CursosController::class, 'getCursoInfo'])->name('cursoinfo');
+Route::get('/inscricao', [App\Http\Controllers\CursosController::class, 'inscricaoForm'])->name('inscricao');
+Route::post('/submeter-inscricao', [App\Http\Controllers\CursosController::class, 'submeterInscricao'])->name('submeter-inscricao');
+
+Route::get('/seguro', [App\Http\Controllers\CursosController::class, 'getSegurosInfo'])->name('seguro');
+Route::get('/inscricaoSeguro', [App\Http\Controllers\CursosController::class, 'getSeguroForm'])->name('inscricaoSeguro');
+Route::post('/submeter-seguro', [App\Http\Controllers\CursosController::class, 'submeterInscricaoSeguro'])->name('submeter-seguro');

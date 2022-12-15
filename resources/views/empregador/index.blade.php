@@ -298,13 +298,13 @@
                             </div>
                             <hr>
                             <div class="col-md-12">
-                              <button class="btn btn-outline-secondary btn-block waves-effect" data-toggle="modal" data-target="#denunciarMotorista">
-                                <i class="dripicons-warning"></i>&nbsp;
+                              <button class="btn btn-success btn-sm waves-effect waves-light" data-toggle="modal" data-target="#denunciarMotorista">
+                                <i class="dripicons-car"></i>&nbsp;
                                 Denunciar Motorista Para Central de Risco
                               </button>
 
-                              <button class="btn btn-outline-secondary btn-block waves-effect" data-toggle="modal" data-target="#denunciarMotorista" data-toggle="modal" data-target=".bs-central-risco-modal-center">
-                                <i class="dripicons-warning"></i>&nbsp;
+                              <button class="btn btn-success btn-sm waves-effect waves-light" data-toggle="modal" data-target=".bs-central-risco-modal-center" style="margin-top:8px">
+                                <i class="bi bi-ev-front-fill"></i>&nbsp;
                                 Ver Central de Risco de Motoristas
                               </button>
                             </div>
@@ -317,9 +317,8 @@
             <!-- end col -->
             <!-- end col -->
         </div>
-        <!-- end row -->
 
-        <!-- /inicio modal denunciar motorista -->
+      <!-- /inicio modal denunciar motorista -->
       <!--  <div id="denunciarMotorista" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
               <div class="modal-dialog modal-lg">
                   <div class="modal-content">

@@ -45,11 +45,12 @@
             </p>
             <div class="u-form u-form-1">
               <form  action="/upload-documents" method="post" enctype="multipart/form-data" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" style="padding: 15px;" source="email" name="form">
+                    @csrf
                 <div class="u-form-group u-form-name u-label-none u-form-group-1">
 
                   <!--Modal-->
                   <div class="modal-content">
-                      <input name="user_id" type="hidden" value="{{ Auth::user()->id }}">
+                      <input name="user_id" type="hidden" value="{{ $id }}">
                       <div class="modal-body">
                         <div class="form-group row">
                             <label for="example-text-input" class="col-sm-3 col-form-label">Nuit</label>
@@ -63,7 +64,7 @@
 
                   <!--Modal-->
                   <div class="modal-content">
-                      <input name="user_id" type="hidden" value="{{ Auth::user()->id }}">
+
                       <div class="modal-body">
                         <div class="form-group row">
                             <label for="example-text-input" class="col-sm-3 col-form-label">Certidão de Empresa</label>
@@ -78,7 +79,7 @@
 
                   <!--Modal-->
                   <div class="modal-content">
-                      <input name="user_id" type="hidden" value="{{ Auth::user()->id }}">
+
                       <div class="modal-body">
                         <div class="form-group row">
                             <label for="example-text-input" class="col-sm-3 col-form-label">Inicio de Actividades</label>
@@ -93,13 +94,8 @@
 
 
                 <div class="u-align-left u-form-group u-form-submit u-form-group-4">
-                  <a href="#" class="u-border-none u-btn u-btn-submit u-button-style u-custom-color-1 u-hover-custom-color-2 u-btn-1">Concluir</a>
-                  <input type="button" value="submit" class="u-form-control-hidden">
+                  <button type="submit" >Concluir</button>
                 </div>
-                <div class="u-form-send-message u-form-send-success">Muito obrigado, por ter submetido os seus doc.</div>
-                <div class="u-form-send-error u-form-send-message">Unable to send your message. Please fix errors then try again.</div>
-                <input type="hidden" value="" name="recaptchaResponse">
-                <input type="hidden" name="formServices" value="4ab70c084715913ca531db8083552465">
               </form>
             </div>
           </div>
@@ -113,7 +109,7 @@
                     <div class="modal-content">
                       <form class="form-horizontal m-t-20" action="/upload-documents" method="post" enctype="multipart/form-data">
                         @csrf
-                        <input name="user_id" type="hidden" value="{{ Auth::user()->id }}">
+                        <input name="user_id" type="hidden" value="{{ $id }}">
                         <div class="modal-header">
                             <h5 class="modal-title mt-0" id="myModalLabel">Nuit</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -143,7 +139,7 @@
                     <div class="modal-content">
                       <form class="form-horizontal m-t-20" action="/upload-documents" method="post" enctype="multipart/form-data">
                         @csrf
-                        <input name="user_id" type="hidden" value="{{ Auth::user()->id }}">
+                        <input name="user_id" type="hidden" value="{{ $id}}">
                         <div class="modal-header">
                             <h5 class="modal-title mt-0" id="myModalLabel">Nuit</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -173,7 +169,7 @@
                     <div class="modal-content">
                       <form class="form-horizontal m-t-20" action="/upload-documents" method="post" enctype="multipart/form-data">
                         @csrf
-                        <input name="user_id" type="hidden" value="{{ Auth::user()->id }}">
+                        <input name="user_id" type="hidden" value="{{$id }}">
                         <div class="modal-header">
                             <h5 class="modal-title mt-0" id="myModalLabel">Nuit</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">

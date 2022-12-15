@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Documentos;
+use App\Models\DocumentsEmpregador;
 use App\Models\Candidatos;
+use App\Models\Empregador;
 use App\Models\fotoUrl;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -40,29 +42,55 @@ class DocumentosController extends Controller
 
   }
 
-  public function documentUpload(Request $request)
-  {
-    $documento = $request->file('documento');
 
-    $documentoName = time() . '-' . $request->tipo . '.' . $documento->getClientOriginalExtension();
+  public function uploadAlldocuments(Request $request){
+        $documento1 = $request->file('documento_nuit');
+        self::documentUpload($documento1,'documento_nuit',$request);
+        $documento2 = $request->file('documento_certidao_empresa');
+        self::documentUpload($documento2,'documento_certidao',$request);
+        $documento3 = $request->file('documento_inicio_actividade');
+        self::documentUpload($documento3,'documento_inicio_actividade',$request);
+
+           $empregador = Empregador::find($request->user_id);
+           $user = User::find($empregador->user_id);
+
+        return redirect()->route('sendAdminNotification',$user->id);
+  }
+
+  public function documentUpload($documento,$documentField,$request)
+  {
+
+  //  $documento = $request->file($documentType);
+    $documentoName = $request->user_id . '-' . $documentField . '.' . $documento->getClientOriginalExtension();
     $upload_success = $documento->move(public_path('uploads'), $documentoName);
 
-    $novoDocumento = new Documentos;
-    $novoDocumento->empresa_id = $request->empresa_id;
-    $novoDocumento->tipo = $request->tipo;
-    $novoDocumento->ficheiro = 'uploads/' . $documentoName; //endereco do file no servidor
+    $novoDocumento = new DocumentsEmpregador;
+    $novoDocumento->empregador_id = $request->user_id;
+    $novoDocumento->tipo =$documento->getClientOriginalExtension();
+    $novoDocumento->ficheiro = 'uploads/' . $documentoName;
+
 
     if ($upload_success) {
         if ($novoDocumento->save()) {
 
-            $empresa= Candidatos::find($request->empresa_id);
-            $empresa->cv = $novoDocumento->ficheiro;
+
+            $empresa= Empregador::find( $request->user_id);
+
+            if($documentField=='documento_nuit'){
+                $empresa->documento_nuit = $novoDocumento->ficheiro;
+            }
+
+            if($documentField=='documento_certidao'){
+                $empresa->documento_certidao = $novoDocumento->ficheiro;
+            }
+
+            if($documentField=='documento_inicio_actividade'){
+                $empresa->documento_inicio_actividade = $novoDocumento->ficheiro;
+            }
+
             $empresa->update();
 
-            return redirect()->back()->with(array('success' => 'Documento adicionado com sucesso!'));
-
         } else {
-
             return redirect()->back()->with(array('erro' => 'Ocorreu um erro, tenta novamente!'));
         }
 

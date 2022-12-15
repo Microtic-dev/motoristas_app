@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-         Schema::create('documents_empregador', function (Blueprint $table) {
+         Schema::create('documents_empregadors', function (Blueprint $table) {
          $table->bigIncrements('id');
          $table->bigInteger('empregador_id')->unsigned();
          $table->string('tipo');

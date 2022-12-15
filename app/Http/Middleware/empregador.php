@@ -22,8 +22,11 @@ class empregador
 
       $user = Auth::user();
 
-      if($user->privilegio=='empregador')
+      if($user->privilegio=='empregador' && $user->active!='desativado')
           return $next($request);
+
+      if($user->privilegio=='empregador' && $user->active=='desativado')
+              return redirect('/aguarde');
 
       return redirect('/');
     }

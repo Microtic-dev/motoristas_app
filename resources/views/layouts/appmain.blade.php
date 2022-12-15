@@ -22,6 +22,11 @@
         <link href="{{asset('assets/css/icons.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('assets/css/style.css')}}" rel="stylesheet" type="text/css" />
         <link href="{{asset('assets/css/searchbar.css')}}" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="{{asset('css/courses_pages.css')}}" media="screen">
+        <link rel="stylesheet" href="{{asset('css/courses_pages2.css')}}" media="screen">
+
+        <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
+        <script class="u-script" type="text/javascript" src="courses.js" defer=""></script>
 
         <!-- DataTables -->
         <link href="{{asset('plugins/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
@@ -51,35 +56,41 @@
         <div class="header-bg" >
             <!-- Navigation Bar-->
             <header id="topnav" >
-                <div class="topbar-main">
-                    <div class="container-fluid">
-                      <!-- Logo-->
-                      <div>
-                          <a href="/" class="logo" >
-                            <img src="{{asset('assets/images/1.png')}}" alt="logo motoristas" height="23">
-                          </a>
-                      </div>
-                      <!-- End Logo-->
+              <nav class="navbar navbar-expand-lg navbar-custom" style=" background-color: #04c512;">
 
-                      <div class="menu-extras topbar-custom navbar p-0">
-                          <!-- Search input -->
-
-                          <ul class="list-inline ml-auto mb-0">
+                <!-- Logo-->
+                <div>
+                    <a href="/" class="logo navbar-brand" >
+                      <img src="{{asset('assets/images/1.png')}}" alt="logo motoristas" height="23">
+                    </a>
+                </div>
+                <!-- End Logo-->
 
 
+                <button class="navbar-toggler navbar-toggle nav-link" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <div class="lines">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                </button>
 
-                            <li class="list-inline-item dropdown notification-list nav-user">
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                          <ul class="list-inline ml-auto mb-0 navbar-nav mr-auto">
+
+                            <li class="list-inline-item dropdown notification-list nav-user nav-item">
                                 @guest
-                                    <a class="nav-link" href="#" data-toggle="modal" data-target=".bs-base-dados-modal-center">
+                                    <a class="nav-link" href="#" data-toggle="modal" data-target=".bs-base-dados-modal-center" style="color:#fff">
                                       <i class="bi bi-car-front"></i> Base de dados de Motoristas
                                     </a>
                                 @else
                                     @if(Auth::user()->privilegio == 'admin')
-                                      <a class="nav-link" href="/bd-motoristas">
+                                      <a class="nav-link" href="/bd-motoristas" style="color:#fff">
                                         <i class="bi bi-car-front"></i> Base de dados de Motoristas
                                       </a>
                                     @else
-                                      <a class="nav-link" href="#" data-toggle="modal" data-target=".bs-base-dados-modal-center">
+                                      <a class="nav-link" href="#" data-toggle="modal" data-target=".bs-base-dados-modal-center" style="color:#fff">
                                         <i class="bi bi-car-front"></i> Base de dados de Motoristas
                                       </a>
                                     @endif
@@ -87,18 +98,18 @@
                                 @endguest
                             </li>
 
-                            <li style="margin-right: 250px" class="list-inline-item dropdown notification-list nav-user">
+                            <li style="margin-right: 250px" class="list-inline-item dropdown notification-list nav-user nav-item">
                               @guest
-                                  <a class="nav-link" href="#" data-toggle="modal" data-target=".bs-central-risco-modal-center">
+                                  <a class="nav-link" href="#" data-toggle="modal" data-target=".bs-central-risco-modal-center" style="color:#fff">
                                     <i class="bi bi-car-front"></i> Central de Risco de Motoristas
                                   </a>
                               @else
                                   @if(Auth::user()->privilegio == 'admin' || Auth::user()->is_premium == 'yes')
-                                  <a class="nav-link" href="/centralRisco">
+                                  <a class="nav-link" href="/centralRisco" style="color:#fff">
                                     <i class="bi bi-sign-stop-fill"></i> Central de Risco de Motoristas
                                   </a>
                                   @else
-                                  <a class="nav-link" href="#" data-toggle="modal" data-target=".bs-central-risco-modal-center">
+                                  <a class="nav-link" href="#" data-toggle="modal" data-target=".bs-central-risco-modal-center" style="color:#fff">
                                     <i class="bi bi-car-front"></i> Central de Risco de Motoristas
                                   </a>
                                   @endif
@@ -106,67 +117,87 @@
                               @endguest
                             </li>
 
-                            <li class="list-inline-item dropdown notification-list nav-user">
+                            <li class="list-inline-item dropdown notification-list nav-user nav-item">
                                 @guest
-                                    <a class="nav-link" href="#" data-toggle="modal" data-target=".lista-formacao-center">
+                                    <a class="nav-link" href="/cursos"  style="color:#fff">
                                       <i class="bi bi-car-front"></i> Formação de motoristas
                                     </a>
                                 @else
                                     @if(Auth::user()->privilegio == 'admin')
-                                      <a class="nav-link" data-toggle="modal" data-target=".lista-formacao-center">
+                                      <a class="nav-link"  href="/cursos" style="color:#fff">
                                         <i class="bi bi-car-front"></i> Formação de motoristas
                                       </a>
                                     @else
-                                      <a class="nav-link" href="#" data-toggle="modal" data-target=".lista-formacao-center">
+                                      <a class="nav-link"  href="/cursos" style="color:#fff">
                                         <i class="bi bi-car-front"></i> Formação de motoristas
                                       </a>
                                     @endif
 
                                 @endguest
                             </li>
+
+                            <li class="list-inline-item dropdown notification-list nav-user nav-item">
+                                @guest
+                                    <a class="nav-link" href="/seguro" style="color:#fff">
+                                      <i class="bi bi-car-front"></i> Seguro de motoristas
+                                    </a>
+                                @else
+                                    @if(Auth::user()->privilegio == 'admin')
+                                      <a class="nav-link" href="/seguro" style="color:#fff">
+                                        <i class="bi bi-car-front"></i> Seguro de motoristas
+                                      </a>
+                                    @else
+                                      <a class="nav-link" href="/seguro" style="color:#fff">
+                                        <i class="bi bi-car-front"></i> Seguro de motoristas
+                                      </a>
+                                    @endif
+
+                                @endguest
+                            </li>
+
                               <!-- User-->
                               @guest
-                              <li class="list-inline-item dropdown notification-list">
-                                  <a class="nav-link" href="{{route('login','candidato')}}">
-                                    <i class="dripicons-user"></i> Candidato Motorista
+                              <li class="list-inline-item dropdown notification-list nav-item">
+                                  <a class="nav-link" href="{{route('login','candidato')}}" style="color:#fff">
+                                    <i class="dripicons-user"></i> Candidato
                                   </a>
                               </li>
-                              <li class="list-inline-item dropdown notification-list nav-user">
-                                  <a class="nav-link" href="{{route('login','recrutador')}}">
+                              <li class="list-inline-item dropdown notification-list nav-user nav-item">
+                                  <a class="nav-link" href="{{route('login','recrutador')}}" style="color:#fff">
                                     <i class="fas fa-hospital"></i>&nbsp;Empregador
                                   </a>
                               </li>
 
                               @else
                                 @if(Auth::user()->privilegio == 'empregador')
-                                  <li class="list-inline-item dropdown notification-list nav-user">
-                                      <a class="nav-link" href="/empregador">
+                                  <li class="list-inline-item dropdown notification-list nav-user nav-item">
+                                      <a class="nav-link" href="/empregador" style="color:#fff">
                                         <i class="fas fa-hospital"></i>&nbsp; Perfil
                                       </a>
                                   </li>
                                 @endif
                                 @if(Auth::user()->privilegio == 'candidato')
-                                <li class="list-inline-item dropdown notification-list">
-                                    <a class="nav-link" href="/candidato">
+                                <li class="list-inline-item dropdown notification-list nav-item">
+                                    <a class="nav-link" href="/candidato" style="color:#fff">
                                       <i class="dripicons-user"></i>&nbsp; Perfil
                                     </a>
                                 </li>
                                 @endif
                                 @if(Auth::user()->privilegio == 'admin')
-                                <li class="list-inline-item dropdown notification-list">
-                                    <a class="nav-link" href="/admin">
+                                <li class="list-inline-item dropdown notification-list nav-item">
+                                    <a class="nav-link" href="/admin" style="color:#fff">
                                       <i class="mdi mdi-view-dashboard"></i>&nbsp; Dashboard
                                     </a>
                                 </li>
                                 @endif
 
-                              <li class="list-inline-item dropdown notification-list nav-user">
-                                  <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button"
-                                  aria-haspopup="false" aria-expanded="false">
+                              <li class="list-inline-item dropdown notification-list nav-user nav-item  dropdown ">
+                                  <a class="nnav-link dropdown-toggle arrow-none waves-effect" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                            >
                                     <!--  <img src="assets/images/users/avatar-6.jpg" alt="user" class="rounded-circle"> -->
                                       <span class="d-none d-md-inline-block ml-1">{{ Auth::user()->name }} <i class="mdi mdi-chevron-down"></i> </span>
                                   </a>
-                                  <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated profile-dropdown">
+                                  <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated profile-dropdown" aria-labelledby="navbarDropdownMenuLink">
                                   <!--    <a class="dropdown-item" href="#"><i class="dripicons-user text-muted"></i> Profile</a>
                                       <a class="dropdown-item" href="#"><i class="dripicons-wallet text-muted"></i> My Wallet</a>
                                       <a class="dropdown-item" href="#"><span class="badge badge-success float-right m-t-5">5</span><i class="dripicons-gear text-muted"></i> Settings</a>
@@ -175,31 +206,15 @@
                                       <a class="dropdown-item" href="/logout"><i class="dripicons-exit text-muted"></i>Logout</a>
                                   </div>
                               </li>
-
                               @endguest
-
-                              <li class="menu-item list-inline-item">
-                                  <!-- Mobile menu toggle-->
-                                  <a class="navbar-toggle nav-link">
-                                      <div class="lines">
-                                          <span></span>
-                                          <span></span>
-                                          <span></span>
-                                      </div>
-                                  </a>
-                                  <!-- End mobile menu toggle-->
-                              </li>
-
                           </ul>
-
                       </div>
                       <!-- end menu-extras -->
 
                         <div class="clearfix"></div>
 
-                    </div> <!-- end container -->
-                </div>
-                <!-- end topbar-main -->
+
+              </nav>
 
           </header>
             <!-- End Navigation Bar-->

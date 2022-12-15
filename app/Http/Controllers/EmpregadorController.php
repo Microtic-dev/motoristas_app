@@ -27,9 +27,6 @@ class EmpregadorController extends Controller
     $user = Auth::user();
 
     if($user->privilegio=='empregador'){
-
-
-
        $categorias = Categorias::all();
        $provincias = Provincias::all();
        $anuncios = DB::table('anuncios')
@@ -43,6 +40,39 @@ class EmpregadorController extends Controller
        return view('empregador.index', array( 'anuncios' => $anuncios, 'categorias' => $categorias, 'provincias' => $provincias ));
    }
   }
+
+  public function getEmpregador($id)
+  {
+
+    $categorias = DB::table('categorias')->get();
+    $provincias = DB::table('provincias')->get();
+    $anuncios_provincias = DB::table('anuncios_provincias')->get();
+
+    $empregadors = DB::table('empregadors')
+            ->join('users', 'empregadors.user_id', '=', 'users.id')
+            ->where('empregadors.user_id',  $id)
+            ->select('empregadors.*', 'users.name as nome', 'users.foto_url as foto','users.celular as celular','users.active as active','users.email as email')
+            ->orderBy('id', 'DESC')
+            ->paginate(10);
+
+
+
+    $anuncios = DB::table('anuncios')
+
+            ->join('empregadors', 'anuncios.user_id', '=', 'empregadors.user_id')
+            ->join('users', 'anuncios.user_id', '=', 'users.id')
+            ->where('anuncios.user_id',  $id)
+            ->select('anuncios.*', 'users.name as nome','empregadors.empresa as empresa', 'users.foto_url as foto','users.celular as celular','users.active as active',
+                    'empregadors.empresa as website' ,  'empregadors.endereco as endereco', 'empregadors.sector_actividade as sector_actividade','empregadors.documento_nuit as documento_nuit',
+                     'empregadors.documento_certidao as documento_certidao','empregadors.documento_inicio_actividade as documento_inicio_actividade')
+            ->orderBy('id', 'DESC')
+            ->paginate(10);
+
+
+
+     return view('empregador.empregador',  compact('provincias' ,'categorias', 'anuncios','anuncios_provincias','empregadors'));
+  }
+
 
 public function registarEmpregador(Request $request)
     {
@@ -58,16 +88,13 @@ public function registarEmpregador(Request $request)
         $user->email = $request->newemail;
         $user->foto_url="none";
         $user->premium_count=0;
+        $user->active="desativado";
         $user->celular = $request->telefone;
         $user->privilegio = $request->privilegio;
         $user->is_premium = "no";
         $user->password = Hash::make($password);
 
         if($user->save()){
-
-
-
-
             $empregador = new Empregador;
             $empregador->user_id =$user->id;
 
@@ -84,11 +111,9 @@ public function registarEmpregador(Request $request)
             $empregador->estado = 'Aberto';
             $empregador->empresa = $request->name;
 
-
-
          if ($empregador->save()) {
 
-             return redirect('/empregador')->with('success', 'Conta criada com sucesso!');
+            return redirect()->route('documents',$empregador->id);
 
           }else{
 
@@ -113,6 +138,10 @@ public function registarEmpregador(Request $request)
   }
 
 
+public function aguarde(){
+    return view('empregador.aguarde');
+}
+
 
 
   public function getMotorista(Request $request)
@@ -136,8 +165,8 @@ public function registarEmpregador(Request $request)
   }
 
 
-  public function documents (){
-    return view('empregador.documents');
+  public function documents ($id){
+    return view('empregador.documents',['id'=>$id]);
   }
 
 

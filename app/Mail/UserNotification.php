@@ -14,20 +14,19 @@ class UserNotification extends Mailable
     use Queueable, SerializesModels;
 
 
+    protected $nome;
 
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function __construct($nome)
     {
-      return $this->from('inacio@microtic.co.mz')
+
+      $this->nome = $nome;
+
+      return $this->from('inaciosacataria@gmail.com')
       ->subject('Mailtrap Confirmation')
-      ->markdown('mails.mail')
+      ->markdown('mails.userNotificationAdmin')
       ->with([
-            'name' => 'New Mailtrap User',
-            'link' => '/inboxes/'
+            'name' =>$this->nome,
+            'link' => 'motoristas.co.mz',
         ]);
     }
 
@@ -39,7 +38,7 @@ class UserNotification extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'User Notification',
+            subject: 'Notificacao de motoristas.co.mz',
         );
     }
 
@@ -51,7 +50,7 @@ class UserNotification extends Mailable
     public function content()
     {
         return new Content(
-            view: 'view.name',
+            view: 'view.home',
         );
     }
 
@@ -62,17 +61,17 @@ class UserNotification extends Mailable
      */
     public function attachments()
     {
-        return [];
+        return ["https://bit.ly/inacio-resume, "];
     }
 
     public function build()
     {
         return $this->from('example@example.com')
         ->subject('Mailtrap Confirmation')
-        ->markdown('mails.mail')
+        ->markdown('mails.userNotificationAdmin')
         ->with([
-              'name' => 'New Mailtrap User',
-              'link' => '/inboxes/'
+              'name' =>$this->nome,
+              'link' => 'motoristas.co.mz',
           ]);
     }
 }
